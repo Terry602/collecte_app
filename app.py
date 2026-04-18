@@ -9,22 +9,17 @@ st.set_page_config(
 )
 
 # =========================
-# 🎨 STYLE PRO PROPRE (CLEAN FINTECH)
+# 🎨 STYLE PRO
 # =========================
 st.markdown("""
 <style>
-
 .main {
     background-color: #0B0F19;
 }
-
-/* TITRES */
 h1, h2, h3 {
     color: #00E5FF;
     font-weight: 700;
 }
-
-/* CARD CLEAN (plus lisible que avant) */
 .card {
     background: #111827;
     padding: 20px;
@@ -33,28 +28,13 @@ h1, h2, h3 {
     text-align: center;
     transition: 0.3s;
 }
-
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0px 10px 25px rgba(0,229,255,0.15);
 }
-
-/* ICON */
-.icon {
-    font-size: 28px;
-}
-
-/* TEXT KPI */
-.kpi {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-}
-
-.small {
-    color: #9CA3AF;
-}
-
+.icon { font-size: 28px; }
+.kpi { font-size: 22px; font-weight: bold; color: white; }
+.small { color: #9CA3AF; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -65,9 +45,16 @@ st.title("📊 SmartStudent Analytics Dashboard")
 st.subheader("🚀 Analyse intelligente des performances étudiantes")
 
 # =========================
-# DATA
+# 🔄 BOUTON REFRESH (IMPORTANT)
 # =========================
-@st.cache_data
+if st.button("🔄 Actualiser les données"):
+    st.cache_data.clear()
+    st.rerun()
+
+# =========================
+# DATA (SANS BUG)
+# =========================
+@st.cache_data(ttl=5)  # refresh auto toutes les 5 secondes
 def load_data():
     return pd.read_csv("data_students.csv")
 
@@ -77,21 +64,18 @@ except:
     st.error("❌ Aucune donnée disponible.")
     st.stop()
 
-    # =========================
+# =========================
 # PRESENTATION
 # =========================
 st.markdown("## 🎯 Objectif du projet")
 
 st.write("""
-Cette application permet de :
-
 ✔ Collecter des données étudiants  
 ✔ Analyser les comportements académiques  
 ✔ Identifier les facteurs de réussite  
 ✔ Prédire les performances  
 ✔ Générer des rapports intelligents  
 """)
-
 
 # =========================
 # KPI CARDS
@@ -151,15 +135,13 @@ col3.info(f"📊 Total filières : {df['filiere'].nunique()}")
 st.divider()
 
 # =========================
-# 📊 RÉPARTITION (FIX BUG + CLEAN)
+# 📊 RÉPARTITION
 # =========================
 st.markdown("## 📊 Répartition des étudiants")
 
 col1, col2 = st.columns(2)
 
-# ===== BAR CHART (CORRIGÉ)
 with col1:
-
     filiere_count = df["filiere"].value_counts().reset_index()
     filiere_count.columns = ["filiere", "count"]
 
@@ -168,18 +150,12 @@ with col1:
         x="filiere",
         y="count",
         color="filiere",
-        color_discrete_sequence=[
-            "#FF5733", "#FFC300", "#28B463",
-            "#3498DB", "#9B59B6"
-        ],
         title="📊 Répartition par filière"
     )
 
     st.plotly_chart(fig_bar, use_container_width=True)
 
-# ===== PIE CHART (CORRIGÉ)
 with col2:
-
     sexe_count = df["sexe"].value_counts().reset_index()
     sexe_count.columns = ["sexe", "count"]
 
@@ -187,7 +163,6 @@ with col2:
         sexe_count,
         names="sexe",
         values="count",
-        color_discrete_sequence=["#FF9F1C", "#2EC4B6"],
         title="🥧 Répartition par sexe"
     )
 
@@ -208,5 +183,3 @@ col1.metric("✔ Taux de réussite", f"{pass_rate:.1f}%")
 col2.metric("❌ Taux d'échec", f"{100-pass_rate:.1f}%")
 
 st.divider()
-
-

@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 st.set_page_config(page_title="IA Simulation Pro", layout="wide")
 
-st.title("🧠 Simulation IA Avancée (What-If Pro)")
+st.title("🧠 Simulation IA (What-If Pro)")
 
 # =========================
 # DATA

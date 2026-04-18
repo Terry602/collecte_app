@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 st.set_page_config(page_title="Analyse Globale", layout="wide")
 
@@ -13,10 +14,12 @@ st.title("📊 Analyse Exploratoire des Données Étudiantes")
 @st.cache_data
 def load_data():
     return pd.read_csv("data_students.csv")
+
 if st.button("🔄 Rafraîchir"):
     st.cache_data.clear()
 
 df = load_data()
+
 try:
     df = load_data()
 except:
@@ -37,39 +40,36 @@ col2.metric("😰 Stress moyen", round(df["stress"].mean(), 2))
 col3.metric("📚 Heures d'étude", round(df["heures_etude"].mean(), 2))
 
 # =========================
-# 🎨 STYLE HISTOGRAMMES PREMIUM
+# 🎨 HISTOGRAMMES PREMIUM (MODERNISÉS)
 # =========================
 st.subheader("📊 Distributions (version améliorée)")
 
-def beautiful_hist(data, title, color):
-    fig, ax = plt.subplots()
+fig1 = px.histogram(
+    df,
+    x="moyenne",
+    nbins=12,
+    title="📊 Moyennes des étudiants",
+    color_discrete_sequence=["#4CAF50"]
+)
+st.plotly_chart(fig1, use_container_width=True)
 
-    ax.hist(
-        data,
-        bins=12,
-        color=color,
-        edgecolor="white",
-        alpha=0.85
-    )
+fig2 = px.histogram(
+    df,
+    x="stress",
+    nbins=12,
+    title="😰 Niveau de stress",
+    color_discrete_sequence=["#F44336"]
+)
+st.plotly_chart(fig2, use_container_width=True)
 
-    ax.set_title(title, fontsize=14, fontweight="bold")
-    ax.grid(axis="y", linestyle="--", alpha=0.3)
-
-    return fig
-
-# =========================
-# HISTOGRAMMES (STYLE PRO)
-# =========================
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.pyplot(beautiful_hist(df["moyenne"], "📊 Moyennes des étudiants", "#4CAF50"))
-
-with col2:
-    st.pyplot(beautiful_hist(df["stress"], "😰 Niveau de stress", "#F44336"))
-
-with col3:
-    st.pyplot(beautiful_hist(df["heures_etude"], "📚 Heures d'étude", "#2196F3"))
+fig3 = px.histogram(
+    df,
+    x="heures_etude",
+    nbins=12,
+    title="📚 Heures d'étude",
+    color_discrete_sequence=["#2196F3"]
+)
+st.plotly_chart(fig3, use_container_width=True)
 
 # =========================
 # 🥧 PIE CHARTS MODERNES
@@ -79,7 +79,7 @@ st.subheader("🥧 Répartitions")
 col1, col2 = st.columns(2)
 
 with col1:
-    fig1, ax1 = plt.subplots()
+    fig4, ax1 = plt.subplots()
     df["filiere"].value_counts().plot(
         kind="pie",
         autopct="%1.1f%%",
@@ -89,10 +89,10 @@ with col1:
     )
     ax1.set_ylabel("")
     ax1.set_title("🎓 Répartition par filière")
-    st.pyplot(fig1)
+    st.pyplot(fig4)
 
 with col2:
-    fig2, ax2 = plt.subplots()
+    fig5, ax2 = plt.subplots()
     df["sexe"].value_counts().plot(
         kind="pie",
         autopct="%1.1f%%",
@@ -102,14 +102,14 @@ with col2:
     )
     ax2.set_ylabel("")
     ax2.set_title("👤 Répartition par sexe")
-    st.pyplot(fig2)
+    st.pyplot(fig5)
 
 # =========================
 # 🔥 CORRELATION
 # =========================
 st.subheader("🔥 Corrélation")
 
-fig3, ax3 = plt.subplots(figsize=(10,6))
+fig6, ax3 = plt.subplots(figsize=(10,6))
 sns.heatmap(
     numeric_df.corr(),
     annot=True,
@@ -118,44 +118,42 @@ sns.heatmap(
     ax=ax3
 )
 ax3.set_title("📊 Matrice de corrélation")
-st.pyplot(fig3)
+st.pyplot(fig6)
+
+
 
 # =========================
-# 📉 RELATIONS IMPORTANTES
+# 📉 RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
 # =========================
 st.subheader("📉 Relations clés")
 
-fig4, ax4 = plt.subplots()
-ax4.scatter(df["heures_etude"], df["moyenne"], color="#9C27B0", alpha=0.7)
-ax4.set_title("📚 Étude vs Performance")
-ax4.set_xlabel("Heures d'étude")
-ax4.set_ylabel("Moyenne")
-ax4.grid(alpha=0.2)
-st.pyplot(fig4)
-
-fig5, ax5 = plt.subplots()
-ax5.scatter(df["stress"], df["moyenne"], color="#FF9800", alpha=0.7)
-ax5.set_title("😰 Stress vs Performance")
-ax5.set_xlabel("Stress")
-ax5.set_ylabel("Moyenne")
-ax5.grid(alpha=0.2)
-st.pyplot(fig5)
-
-# =========================
-# 🎓 FILIERE
-# =========================
-st.subheader("🎓 Performance par filière")
-
-fig6, ax6 = plt.subplots()
-
-df.groupby("filiere")["moyenne"].mean().plot(
-    kind="bar",
-    ax=ax6,
-    color=["#FF5733", "#FFC300", "#28B463", "#3498DB", "#9B59B6"]
+fig7 = px.scatter(
+    df,
+    x="heures_etude",
+    y="moyenne",
+    color="heures_etude",
+    color_continuous_scale="Purples",
+    title="📚 Étude vs Performance",
+    trendline="ols"
 )
 
-ax6.set_title("📊 Moyenne par filière")
-ax6.set_ylabel("Moyenne")
-ax6.grid(axis="y", alpha=0.2)
+fig7.update_traces(marker=dict(size=10, opacity=0.7))
+fig7.update_layout(template="plotly_dark")
 
-st.pyplot(fig6)
+st.plotly_chart(fig7, use_container_width=True)
+
+
+fig8 = px.scatter(
+    df,
+    x="stress",
+    y="moyenne",
+    color="stress",
+    color_continuous_scale="Oranges",
+    title="😰 Stress vs Performance",
+    trendline="ols"
+)
+
+fig8.update_traces(marker=dict(size=10, opacity=0.7))
+fig8.update_layout(template="plotly_dark")
+
+st.plotly_chart(fig8, use_container_width=True)

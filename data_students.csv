@@ -1,9 +1,16 @@
 age,sexe,filiere,niveau,heures_etude,methode,regularite,sommeil,sport,telephone,stress,concentration,motivation,moyenne,credits,nom
-19,Masculin,Informatique,L2,8,Seul,8,6,Oui,4,3,8,8,15.0,54,Inconnu
-18,Masculin,Maths,L1,7,Seul,7,7,Oui,5,4,7,7,13.0,54,Inconnu
-20,Masculin,Informatique,L3,9,Seul,6,5,Oui,6,5,7,7,14.0,54,Inconnu
-21,Féminin,Médecine,Master1,7,Groupe,6,6,Oui,7,6,7,7,12.0,54,Inconnu
-23,Féminin,Langue étrangere,Master1,6,Groupe,5,7,Oui,8,6,6,6,12.0,50,Inconnu
 19,Masculin,Informatique,L2,8,Seul,9,6,Oui,4,3,9,9,16.95,54,Terry Nomo
 19,Féminin,Médecine,L2,8,Seul,6,7,Oui,5,4,6,7,14.5,51,Sereina Makuejue
 21,Masculin,Maths,L3,8,Seul,8,6,Oui,3,4,8,8,12.0,48,Christian gool
+19,Masculin,Géographie,L1,5,Seul,5,7,Oui,5,5,7,7,11.5,45,Ali Dangote
+22,Masculin,Philosophie,L3,6,Seul,5,7,Oui,6,6,6,7,10.8,45,Stephane Bitoumou
+20,Féminin,Biologie,L2,7,Seul,6,6,Oui,6,4,7,7,13.4,48,Alice  Eteingue
+23,Féminin,Biologie,Master1,7,Seul,7,5,Oui,5,3,8,8,14.4,51,Sandra Eyenga
+24,Masculin,Géographie,Master2,8,Seul,7,5,Oui,5,3,8,8,14.0,51,Danilo Lebogo
+20,Féminin,Médecine,L1,5,Groupe,5,6,Oui,4,5,6,7,12.5,45,Lorren Kamgue
+19,Féminin,Chimie,L1,4,Seul,5,6,Oui,5,5,6,6,10.5,45,Thérèse  Letono
+18,Masculin,Informatique,L2,5,Seul,6,6,Oui,6,4,6,6,12.46,57,Elian Amiel
+21,Féminin,Langue étrangère,L3,4,Seul,4,6,Oui,6,5,5,5,11.5,45,Sarah Atangana
+20,Féminin,Chimie,L2,6,Seul,6,5,Oui,4,3,6,6,13.5,48,Alice Akoum
+20,Féminin,Informatique,L2,4,Groupe,4,7,Oui,7,6,5,6,11.35,45,Natacha Kamga
+18,Masculin,Informatique,L1,6,Seul,6,6,Oui,5,4,6,6,14.0,51,André  Ngono
