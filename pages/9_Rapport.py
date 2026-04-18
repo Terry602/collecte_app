@@ -1,0 +1,190 @@
+import streamlit as st
+import pandas as pd
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+import io
+
+st.set_page_config(page_title="Rapport IA", layout="wide")
+
+st.title("📑 Génération de Rapport Intelligent")
+
+# =========================
+# DATA SAFE LOAD
+# =========================
+@st.cache_data
+def load_data():
+    df = pd.read_csv("data_students.csv")
+
+    # 🔥 COMPATIBILITÉ ANCIENNES DONNÉES
+    if "nom" not in df.columns:
+        df["nom"] = "Inconnu"
+
+    if "filiere" not in df.columns:
+        df["filiere"] = "Non défini"
+
+    if "niveau" not in df.columns:
+        df["niveau"] = "Non défini"
+
+    return df
+
+df = load_data()
+
+# =========================
+# FILTRES PRO (SAFE)
+# =========================
+st.subheader("🎓 Sélection intelligente de l'étudiant")
+
+# FILIERE
+filiere = st.selectbox(
+    "📚 Choisir la filière",
+    sorted(df["filiere"].dropna().unique())
+)
+
+df_f = df[df["filiere"] == filiere]
+
+# NIVEAU
+niveau = st.selectbox(
+    "🎓 Choisir le niveau",
+    sorted(df_f["niveau"].dropna().unique())
+)
+
+df_n = df_f[df_f["niveau"] == niveau]
+
+# =========================
+# PROTECTION CAS VIDE
+# =========================
+if df_n.empty:
+    st.warning("⚠️ Aucun étudiant trouvé pour cette sélection.")
+    st.stop()
+
+# =========================
+# NOM (SAFE)
+# =========================
+df_n = df_n.copy()
+
+# enlever NaN + trier seulement si colonne existe
+if "nom" in df_n.columns:
+    df_n["nom"] = df_n["nom"].fillna("Inconnu")
+    noms = sorted(df_n["nom"].unique())
+else:
+    noms = ["Inconnu"]
+
+nom = st.selectbox("👤 Choisir l'étudiant", noms)
+
+student = df_n[df_n["nom"] == nom].iloc[0]
+
+# =========================
+# IA RISK SCORE
+# =========================
+def risk_level(row):
+    score = (
+        (row.get("stress", 5) * 0.35) +
+        ((12 - row.get("heures_etude", 5)) * 0.45) +
+        ((row.get("sommeil", 6)) * 0.20)
+    )
+
+    if score < 5:
+        return "🟢 Faible risque"
+    elif score < 8:
+        return "🟡 Risque moyen"
+    else:
+        return "🔴 Risque élevé"
+
+risk = risk_level(student)
+
+# =========================
+# PROFIL
+# =========================
+st.subheader("👨‍🎓 Profil étudiant")
+
+st.write("👤 Nom :", student.get("nom", "Inconnu"))
+st.write("🎓 Niveau :", student.get("niveau", "N/A"))
+st.write("📚 Filière :", student.get("filiere", "N/A"))
+st.write("🎓 Moyenne :", student.get("moyenne", 0))
+st.write("😰 Niveau de stress (/10) :", student.get("stress", 0))
+st.write("📚 Heures d'étude /jour :", student.get("heures_etude", 0))
+st.write("😴 Sommeil (h/jour) :", student.get("sommeil", 0))
+st.write("📱 Téléphone (h/jour) :", student.get("telephone", 0))
+
+st.subheader("🧠 Diagnostic IA")
+st.success(f"Niveau détecté : {risk}")
+
+# =========================
+# RECOMMANDATIONS
+# =========================
+st.subheader("💡 Recommandations")
+
+if student.get("stress", 0) > 5:
+    st.write("🧘 Réduire le stress")
+if student.get("telephone", 0) > 6:
+    st.write("📵 Réduire votre temps au téléphone")
+if student.get("heures_etude", 0) < 5:
+    st.write("📚 Augmenter les heures d'étude")
+
+if student.get("sommeil", 0) < 6:
+    st.write("😴 Avoir entre 6h et 8h de sommeil")
+if student.get("sommeil", 0) > 8 :
+    st.write("⚠️ Reduire votre temps de sommeil")
+if student.get("motivation", 0) < 5:
+    st.write("🔥 La motivation aide, ayez des objectifs") 
+if student.get("concentration", 0) < 5:
+    st.write("La concentration est un facteur décisif, augmentez la")       
+# =========================
+# PDF GENERATION
+# =========================
+def generate_pdf(student, risk):
+    buffer = io.BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(50, 800, "RAPPORT INTELLIGENT ETUDIANT")
+
+    c.setFont("Helvetica", 12)
+    c.drawString(50, 760, f"Nom: {student.get('nom', 'Inconnu')}")
+    c.drawString(50, 740, f"Filière: {student.get('filiere', 'N/A')}")
+    c.drawString(50, 720, f"Niveau: {student.get('niveau', 'N/A')}")
+    c.drawString(50, 700, f"Moyenne: {student.get('moyenne', 0)}")
+    c.drawString(50, 680, f"Stress: {student.get('stress', 0)}")
+    c.drawString(50, 660, f"Heures étude: {student.get('heures_etude', 0)}")
+    c.drawString(50, 640, f"Sommeil: {student.get('sommeil', 0)}")
+    c.drawString(50, 620, f"Telephone: {student.get('telephone', 0)}")
+    c.drawString(50, 600, f"Risque: {risk}")
+
+    c.drawString(50, 560, "Analyse automatique:")
+    c.drawString(50, 540, "- Généré par système IA académique")
+
+    c.save()
+    buffer.seek(0)
+    return buffer
+
+# =========================
+# DOWNLOAD PDF
+# =========================
+pdf = generate_pdf(student, risk)
+
+st.download_button(
+    label="📥 Télécharger le rapport PDF",
+    data=pdf,
+    file_name=f"rapport_{nom}.pdf",
+    mime="application/pdf"
+)
+
+# =========================
+# EXPORT CSV
+# =========================
+st.subheader("📥 Export des données")
+
+csv = df.to_csv(index=False).encode("utf-8")
+
+st.download_button(
+    label="📊 Télécharger les données CSV",
+    data=csv,
+    file_name="donnees_etudiants.csv",
+    mime="text/csv"
+)
+
+# =========================
+# FOOTER
+# =========================
+st.divider()
+st.info("📄 Rapport personnel intelligent")

@@ -1,0 +1,9 @@
+age,sexe,filiere,niveau,heures_etude,methode,regularite,sommeil,sport,telephone,stress,concentration,motivation,moyenne,credits,nom
+19,Masculin,Informatique,L2,8,Seul,8,6,Oui,4,3,8,8,15.0,54,Inconnu
+18,Masculin,Maths,L1,7,Seul,7,7,Oui,5,4,7,7,13.0,54,Inconnu
+20,Masculin,Informatique,L3,9,Seul,6,5,Oui,6,5,7,7,14.0,54,Inconnu
+21,Féminin,Médecine,Master1,7,Groupe,6,6,Oui,7,6,7,7,12.0,54,Inconnu
+23,Féminin,Langue étrangere,Master1,6,Groupe,5,7,Oui,8,6,6,6,12.0,50,Inconnu
+19,Masculin,Informatique,L2,8,Seul,9,6,Oui,4,3,9,9,16.95,54,Terry Nomo
+19,Féminin,Médecine,L2,8,Seul,6,7,Oui,5,4,6,7,14.5,51,Sereina Makuejue
+21,Masculin,Maths,L3,8,Seul,8,6,Oui,3,4,8,8,12.0,48,Christian gool
