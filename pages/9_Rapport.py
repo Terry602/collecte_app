@@ -95,7 +95,7 @@ risk = risk_level(student)
 # =========================
 # PROFIL
 # =========================
-st.subheader("👨‍🎓 Profil étudiant")
+st.subheader("👨‍🎓 Informations de l'étudiant")
 
 st.write("👤 Nom :", student.get("nom", "Inconnu"))
 st.write("🎓 Niveau :", student.get("niveau", "N/A"))

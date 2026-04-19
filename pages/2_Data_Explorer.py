@@ -56,6 +56,7 @@ if niveau != "Tous":
 if sexe != "Tous":
     df_filtered = df_filtered[df_filtered["sexe"] == sexe]
 
+
 # =========================
 # SEARCH SAFE
 # =========================
@@ -73,6 +74,7 @@ if search:
         st.warning("Colonne nom absente dans les données")
     st.stop()
 
+st.divider()
 # =========================
 # KPIs
 # =========================
@@ -105,44 +107,3 @@ fig1 = px.bar(
 
 st.plotly_chart(fig1, use_container_width=True)
 
-# =========================
-# PIE CHART SEXE
-# =========================
-st.markdown("## 👤 Répartition par sexe")
-
-fig2 = px.pie(
-    df_filtered,
-    names="sexe",
-    color_discrete_sequence=px.colors.qualitative.Pastel
-)
-
-st.plotly_chart(fig2, use_container_width=True)
-
-# =========================
-# HISTOGRAMME
-# =========================
-st.markdown("## 📊 Distribution des moyennes")
-
-fig3 = px.histogram(
-    df_filtered,
-    x="moyenne",
-    nbins=10,
-    color_discrete_sequence=["#FF9800"]
-)
-
-st.plotly_chart(fig3, use_container_width=True)
-
-# =========================
-# CORRELATION
-# =========================
-st.markdown("## 🔥 Corrélation")
-
-numeric_df = df_filtered.select_dtypes(include=["int64", "float64"])
-
-fig4 = px.imshow(
-    numeric_df.corr(),
-    text_auto=True,
-    color_continuous_scale="RdBu"
-)
-
-st.plotly_chart(fig4, use_container_width=True)

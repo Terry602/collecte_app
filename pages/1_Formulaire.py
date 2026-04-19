@@ -9,6 +9,7 @@ import time
 st.set_page_config(page_title="SmartStudent Analytics", layout="centered")
 
 st.title("🧠 SmartStudent Analytics")
+st.divider()
 st.subheader("📥 Formulaire de collecte des données étudiants")
 
 DATA_FILE = "data_students.csv"

@@ -20,89 +20,105 @@ def load_data():
 df = load_data()
 
 # =========================
-# 🎯 SELECTION FILIERE (IMPORTANT 🔥)
+# 🔥 ENTRAINEMENT MULTI-MODELES (PAR FILIERE)
+# =========================
+@st.cache_resource
+def train_models(df):
+
+    models = {}
+    encodings = {}
+
+    for filiere in df["filiere"].dropna().unique():
+
+        df_fil = df[df["filiere"] == filiere].copy()
+
+        if len(df_fil) < 5:
+            continue
+
+        # encodage
+        df_fil["sexe"] = df_fil["sexe"].map({"Masculin": 0, "Féminin": 1})
+        df_fil["sport"] = df_fil["sport"].map({"Non": 0, "Oui": 1})
+        df_fil["methode"] = df_fil["methode"].map({"Seul": 0, "Groupe": 1})
+
+        df_fil = pd.get_dummies(df_fil, columns=["niveau"], drop_first=True)
+
+        features = [
+            "heures_etude",
+            "regularite",
+            "sommeil",
+            "stress",
+            "concentration",
+            "motivation",
+            "telephone",
+            "sexe",
+            "sport",
+            "methode"
+        ] + [col for col in df_fil.columns if col.startswith("niveau_")]
+
+        X = df_fil[features]
+        y = df_fil["moyenne"]
+
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
+
+        model_reg = RandomForestRegressor(
+            n_estimators=120,
+            max_depth=10,
+            random_state=42,
+            n_jobs=-1
+        )
+
+        model_reg.fit(X_train, y_train)
+
+        y_pred = model_reg.predict(X_test)
+        mae = mean_absolute_error(y_test, y_pred)
+
+        # classification
+        df_fil["reussite"] = (df_fil["moyenne"] >= 10).astype(int)
+
+        model_clf = RandomForestClassifier(
+            n_estimators=120,
+            max_depth=8,
+            random_state=42,
+            n_jobs=-1
+        )
+
+        model_clf.fit(X, df_fil["reussite"])
+
+        acc = accuracy_score(df_fil["reussite"], model_clf.predict(X))
+
+        # stockage
+        models[filiere] = {
+            "reg": model_reg,
+            "clf": model_clf,
+            "features": features,
+            "mae": mae,
+            "acc": acc
+        }
+
+    return models
+
+
+models = train_models(df)
+
+# =========================
+# 🎯 SELECTION FILIERE
 # =========================
 st.subheader("🎓 Choisir une filière")
 
 filiere_selected = st.selectbox(
     "📚 Filière",
-    sorted(df["filiere"].dropna().unique())
+    sorted(models.keys())
 )
 
-# 🔥 FILTRAGE DATA
-df = df[df["filiere"] == filiere_selected]
+model_data = models[filiere_selected]
 
-if len(df) < 10:
-    st.warning("⚠ Pas assez de données pour cette filière")
-    
-
-# =========================
-# ENCODAGE
-# =========================
-df_ml = df.copy()
-
-df_ml["sexe"] = df_ml["sexe"].map({"Masculin": 0, "Féminin": 1})
-df_ml["sport"] = df_ml["sport"].map({"Non": 0, "Oui": 1})
-df_ml["methode"] = df_ml["methode"].map({"Seul": 0, "Groupe": 1})
-
-# 🔥 ONE HOT ENCODING (IMPORTANT)
-df_ml = pd.get_dummies(df_ml, columns=["niveau"], drop_first=True)
-
-# =========================
-# FEATURES
-# =========================
-features = [
-    "heures_etude",
-    "regularite",
-    "sommeil",
-    "stress",
-    "concentration",
-    "motivation",
-    "telephone",
-    "sexe",
-    "sport",
-    "methode"
-] + [col for col in df_ml.columns if col.startswith("niveau_")]
-
-X = df_ml[features]
-
-# =========================
-# TARGET REGRESSION
-# =========================
-y_reg = df_ml["moyenne"]
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y_reg, test_size=0.2, random_state=42
-)
-
-model_reg = RandomForestRegressor(
-    n_estimators=150,
-    max_depth=10,
-    random_state=42,
-    n_jobs=-1
-)
-
-model_reg.fit(X_train, y_train)
-
-y_pred = model_reg.predict(X_test)
-mae = mean_absolute_error(y_test, y_pred)
-
-# =========================
-# TARGET CLASSIFICATION
-# =========================
-df_ml["reussite"] = (df_ml["moyenne"] >= 10).astype(int)
-
-model_clf = RandomForestClassifier(
-    n_estimators=150,
-    max_depth=8,
-    random_state=42,
-    n_jobs=-1
-)
-
-model_clf.fit(X, df_ml["reussite"])
-pred_c = model_clf.predict(X)
-
-acc = accuracy_score(df_ml["reussite"], pred_c)
+model_reg = model_data["reg"]
+model_clf = model_data["clf"]
+features = model_data["features"]
+mae = model_data["mae"]
+acc = model_data["acc"]
 
 # =========================
 # RESULTATS
@@ -113,27 +129,6 @@ col1, col2 = st.columns(2)
 
 col1.metric("📉 MAE", round(mae, 2))
 col2.metric("🎯 Accuracy", round(acc, 2))
-
-# =========================
-# EXPLICATION PÉDAGOGIQUE (IMPORTANT 🔥)
-# =========================
-st.subheader("🧠 Explication du modèle")
-
-st.markdown("""
-👉 Le modèle utilise **toutes les variables collectées** :
-
-- habitudes d’étude (heures, régularité)
-- mode de vie (sommeil, téléphone, sport)
-- bien-être (stress, motivation, concentration)
-- profil étudiant (filière, niveau, sexe, méthode)
-
-📌 Objectif :
-- prédire la moyenne académique
-- prédire la réussite ou l’échec
-
-📊 Algorithme utilisé :
-👉 Random Forest (modèle robuste et performant)
-""")
 
 # Interprétation MAE
 if mae < 1.5:
@@ -151,6 +146,26 @@ elif acc > 0.7:
 else:
     st.error("❌ Modèle faible")
 
+# =========================
+# EXPLICATION PÉDAGOGIQUE (IMPORTANT 🔥)
+# =========================
+st.subheader("🧠 Explication du modèle")
+
+st.markdown("""
+ Le modèle utilise **toutes les variables collectées** :
+
+- habitudes d’étude (heures, régularité)
+- mode de vie (sommeil, téléphone, sport)
+- bien-être (stress, motivation, concentration)
+- profil étudiant (filière, niveau, sexe, méthode)
+
+📌 Objectif :
+- prédire la moyenne académique
+- prédire la réussite ou l’échec
+
+📊 Algorithme utilisé :
+ Random Forest (modèle robuste et performant)
+""")
 
 # =========================
 # IMPORTANCE
@@ -165,7 +180,7 @@ st.bar_chart(importance)
 # =========================
 # 🎯 SIMULATION
 # =========================
-st.subheader("🎯 Tester ton profil (dans cette filière)")
+st.subheader("🎯 Tester ton profil")
 
 col1, col2 = st.columns(2)
 
@@ -183,10 +198,13 @@ with col2:
     sport = st.selectbox("Sport", ["Oui", "Non"])
     methode = st.selectbox("Méthode", ["Seul", "Groupe"])
 
-    niveau = st.selectbox("Niveau", df["niveau"].unique())
+    niveau = st.selectbox(
+        "Niveau",
+        [f.replace("niveau_", "") for f in features if "niveau_" in f]
+    )
 
 # =========================
-# INPUT UTILISATEUR
+# INPUT
 # =========================
 input_dict = {
     "heures_etude": heures,
@@ -201,9 +219,10 @@ input_dict = {
     "methode": 0 if methode == "Seul" else 1
 }
 
-# 🔥 gérer OneHot niveau
-for col in [c for c in df_ml.columns if c.startswith("niveau_")]:
-    input_dict[col] = 0
+# gérer OneHot niveau
+for col in features:
+    if col.startswith("niveau_"):
+        input_dict[col] = 0
 
 col_niveau = f"niveau_{niveau}"
 if col_niveau in input_dict:
@@ -241,15 +260,10 @@ elif pred_moyenne < 13:
 else:
     st.success("Excellent profil 🎯")
 
-# =========================
-# NOTE
-# =========================
-st.subheader("📚 Note méthodologique")
 
-st.info("""
-👉 Modèle spécifique à la filière sélectionnée
-👉 Encodage One-Hot pour meilleure précision
-👉 Random Forest optimisé
 
-✔ Résultat : prédiction plus réaliste et fiable
-""")
+
+
+
+
+  

@@ -27,6 +27,7 @@ except:
     st.stop()
 
 numeric_df = df.select_dtypes(include=['int64', 'float64'])
+st.divider()
 
 # =========================
 # KPIs
@@ -38,6 +39,8 @@ col1, col2, col3 = st.columns(3)
 col1.metric("🎓 Moyenne générale", round(df["moyenne"].mean(), 2))
 col2.metric("😰 Stress moyen", round(df["stress"].mean(), 2))
 col3.metric("📚 Heures d'étude", round(df["heures_etude"].mean(), 2))
+
+st.divider()
 
 # =========================
 # 🎨 HISTOGRAMMES PREMIUM (MODERNISÉS)
@@ -70,6 +73,8 @@ fig3 = px.histogram(
     color_discrete_sequence=["#2196F3"]
 )
 st.plotly_chart(fig3, use_container_width=True)
+
+st.divider()
 
 # =========================
 # 🥧 PIE CHARTS MODERNES
@@ -104,6 +109,9 @@ with col2:
     ax2.set_title("👤 Répartition par sexe")
     st.pyplot(fig5)
 
+
+    st.divider()
+
 # =========================
 # 🔥 CORRELATION
 # =========================
@@ -120,7 +128,7 @@ sns.heatmap(
 ax3.set_title("📊 Matrice de corrélation")
 st.pyplot(fig6)
 
-
+st.divider()
 
 # =========================
 # 📉 RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
