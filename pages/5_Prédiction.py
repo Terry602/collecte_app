@@ -20,7 +20,7 @@ def load_data():
 df = load_data()
 
 # =========================
-# 🔥 ENTRAINEMENT MULTI-MODELES (PAR FILIERE)
+#  ENTRAINEMENT MULTI-MODELES (PAR FILIERE)
 # =========================
 @st.cache_resource
 def train_models(df):
@@ -103,7 +103,7 @@ def train_models(df):
 models = train_models(df)
 
 # =========================
-# 🎯 SELECTION FILIERE
+#  SELECTION FILIERE
 # =========================
 st.subheader("🎓 Choisir une filière")
 
@@ -147,7 +147,7 @@ else:
     st.error("❌ Modèle faible")
 
 # =========================
-# EXPLICATION PÉDAGOGIQUE (IMPORTANT 🔥)
+# EXPLICATION PÉDAGOGIQUE 
 # =========================
 st.subheader("🧠 Explication du modèle")
 
