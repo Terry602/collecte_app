@@ -39,10 +39,11 @@ filiere_selected = st.selectbox(
 
 df_fil = df[df["filiere"] == filiere_selected]
 
+
 # =========================
 # KPI FILIERE + SEXE (SEMI CIRCLE)
 # =========================
-st.subheader(f"📊 Indicateurs - {filiere_selected}")
+st.subheader(f"📉 Indicateurs de la filiere - {filiere_selected}")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -56,9 +57,9 @@ col4.metric("👨‍🎓 Total étudiants", len(df_fil))
 # =========================
 # 🥧 SEMI-CIRCLE SEXE
 # =========================
-st.subheader(f"📊 Analyse - {filiere_selected}")
+st.subheader(f"📊 Analyse de la filiere - {filiere_selected}")
 
-st.subheader("👤 Répartition du sexe")
+st.subheader("")
 
 sex_counts = df_fil["sexe"].value_counts().reset_index()
 sex_counts.columns = ["sexe", "count"]
@@ -68,7 +69,7 @@ fig_sex = px.pie(
     names="sexe",
     values="count",
     hole=0.5,
-    title="Répartition des sexes",
+    title="👤 Répartition du sexe",
     color_discrete_sequence=["#FF9F1C", "#2EC4B6"]
 )
 
@@ -96,7 +97,7 @@ fig_corr = px.imshow(
     numeric_df.corr(),
     text_auto=True,
     color_continuous_scale="RdBu",
-    title="Corrélation des variables"
+    title="📦 Corrélation des variables"
 )
 
 st.plotly_chart(fig_corr, use_container_width=True)
@@ -147,7 +148,6 @@ fig_d = px.scatter(
 st.plotly_chart(fig_d, use_container_width=True)
 
 st.divider()
-
 # =========================
 # COMPARAISONS
 # =========================
@@ -166,7 +166,7 @@ fig1 = px.bar(
 
 st.plotly_chart(fig1, use_container_width=True)
 
-st.subheader("😰 Niveau de stress par filière")
+
 
 stress_filiere = df.groupby("filiere")["stress"].mean().reset_index()
 
@@ -181,7 +181,7 @@ fig2 = px.bar(
 
 st.plotly_chart(fig2, use_container_width=True)
 
-st.subheader("📚 Effort d'étude par filière")
+
 
 study_filiere = df.groupby("filiere")["heures_etude"].mean().reset_index()
 

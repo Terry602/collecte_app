@@ -8,8 +8,8 @@ from sklearn.metrics import mean_absolute_error, accuracy_score
 
 st.set_page_config(page_title="Prédiction IA", layout="wide")
 
-st.title("🤖 Module de Prédiction Intelligente (ML Avancé)")
-
+st.title(" Module de Prédiction Intelligente")
+st.divider()
 # =========================
 # DATA
 # =========================
@@ -152,7 +152,7 @@ else:
 st.subheader("🧠 Explication du modèle")
 
 st.markdown("""
- Le modèle utilise **toutes les variables collectées** :
+ Le modèle analyse **chaque filiere et prédit en fonction de la filiere choisie en utilisant toutes les variables collectées dans cette filiere** :
 
 - habitudes d’étude (heures, régularité)
 - mode de vie (sommeil, téléphone, sport)
@@ -163,10 +163,10 @@ st.markdown("""
 - prédire la moyenne académique
 - prédire la réussite ou l’échec
 
-📊 Algorithme utilisé :
+ Algorithme utilisé :
  Random Forest (modèle robuste et performant)
 """)
-
+st.divider()
 # =========================
 # IMPORTANCE
 # =========================
@@ -176,11 +176,11 @@ importance = pd.Series(model_reg.feature_importances_, index=features)
 importance = importance.sort_values()
 
 st.bar_chart(importance)
-
+st.divider()
 # =========================
-# 🎯 SIMULATION
+#  SIMULATION
 # =========================
-st.subheader("🎯 Tester ton profil")
+st.subheader(" Tester ton profil")
 
 col1, col2 = st.columns(2)
 
@@ -239,7 +239,7 @@ pred_reussite = model_clf.predict(input_data)[0]
 # =========================
 # RESULTATS
 # =========================
-st.subheader("📌 Résultat")
+st.subheader(" Résultat")
 
 st.metric("🎓 Moyenne prédite", round(pred_moyenne, 2))
 
@@ -247,7 +247,7 @@ if pred_reussite == 1:
     st.success("🎉 Réussite probable")
 else:
     st.error("⚠ Risque d'échec")
-
+st.divider()
 # =========================
 # ANALYSE
 # =========================

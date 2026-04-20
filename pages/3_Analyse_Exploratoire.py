@@ -7,7 +7,8 @@ import plotly.express as px
 # =========================
 st.set_page_config(page_title="Data Explorer PRO", layout="wide")
 
-st.title("📊 Data Explorer PRO")
+st.title(" Analyse Exploratoire ")
+st.divider()
 
 # =========================
 # LOAD DATA SAFE
@@ -92,7 +93,7 @@ st.divider()
 # =========================
 # FILIERE BAR CHART (SAFE)
 # =========================
-st.markdown("## 📚 Répartition par filière")
+st.markdown("## 👨‍🎓 Nombre d'étudiants par filière")
 
 filiere_counts = df_filtered["filiere"].value_counts().reset_index()
 filiere_counts.columns = ["filiere", "count"]

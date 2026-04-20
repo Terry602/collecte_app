@@ -6,8 +6,8 @@ import io
 
 st.set_page_config(page_title="Rapport IA", layout="wide")
 
-st.title("📑 Génération de Rapport Intelligent")
-
+st.title("📑 Génération de Rapport Personnel")
+st.divider()
 # =========================
 # DATA SAFE LOAD
 # =========================
@@ -105,9 +105,9 @@ st.write("😰 Niveau de stress (/10) :", student.get("stress", 0))
 st.write("📚 Heures d'étude /jour :", student.get("heures_etude", 0))
 st.write("😴 Sommeil (h/jour) :", student.get("sommeil", 0))
 st.write("📱 Téléphone (h/jour) :", student.get("telephone", 0))
-
-st.subheader("🧠 Diagnostic IA")
-st.success(f"Niveau détecté : {risk}")
+st.divider()
+st.subheader("🧠 Diagnostic Intelligent")
+st.success(f"Niveau de risque : {risk}")
 
 # =========================
 # RECOMMANDATIONS
@@ -157,6 +157,20 @@ def generate_pdf(student, risk):
     buffer.seek(0)
     return buffer
 
+
+# =========================
+# EXPORT CSV
+# =========================
+st.subheader("📄 Export des données")
+
+csv = df.to_csv(index=False).encode("utf-8")
+
+st.download_button(
+    label="📥 Télécharger les données CSV",
+    data=csv,
+    file_name="donnees_etudiants.csv",
+    mime="text/csv"
+)
 # =========================
 # DOWNLOAD PDF
 # =========================
@@ -170,21 +184,6 @@ st.download_button(
 )
 
 # =========================
-# EXPORT CSV
-# =========================
-st.subheader("📥 Export des données")
-
-csv = df.to_csv(index=False).encode("utf-8")
-
-st.download_button(
-    label="📊 Télécharger les données CSV",
-    data=csv,
-    file_name="donnees_etudiants.csv",
-    mime="text/csv"
-)
-
-# =========================
 # FOOTER
 # =========================
 st.divider()
-st.info("📄 Rapport personnel intelligent")

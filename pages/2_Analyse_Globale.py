@@ -6,7 +6,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Analyse Globale", layout="wide")
 
-st.title("📊 Analyse Exploratoire des Données Étudiantes")
+st.title(" Analyse Globale des Données Étudiantes")
 
 # =========================
 # DATA
@@ -45,7 +45,7 @@ st.divider()
 # =========================
 # 🎨 HISTOGRAMMES PREMIUM (MODERNISÉS)
 # =========================
-st.subheader("📊 Distributions (version améliorée)")
+st.subheader("🎨 Distributions des variables")
 
 fig1 = px.histogram(
     df,
@@ -110,7 +110,7 @@ with col2:
     st.pyplot(fig5)
 
 
-    st.divider()
+st.divider()
 
 # =========================
 # 🔥 CORRELATION

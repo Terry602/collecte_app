@@ -64,7 +64,7 @@ for c in df["cluster"].unique():
         cluster_map[c] = "🔴 À risque"
 
 df["profil"] = df["cluster"].map(cluster_map)
-
+st.divider()
 # =========================
 # DISPLAY KPI
 # =========================
@@ -75,7 +75,7 @@ col1, col2, col3 = st.columns(3)
 col1.metric("🟢 Performants", (df["profil"] == "🟢 Performants").sum())
 col2.metric("🟡 Moyens", (df["profil"] == "🟡 Moyens").sum())
 col3.metric("🔴 À risque", (df["profil"] == "🔴 À risque").sum())
-
+st.divider()
 # =========================
 # VISUALISATION 2D
 # =========================
@@ -95,7 +95,7 @@ fig = px.scatter(
 )
 
 st.plotly_chart(fig, use_container_width=True)
-
+st.divider()
 # =========================
 # PROFILS EXPLIQUÉS
 # =========================
@@ -111,4 +111,4 @@ for profil in df["profil"].unique():
     st.write("📚 Étude :", round(subset["heures_etude"].mean(), 2))
     st.write("👥 Effectif :", len(subset))
 
-    st.divider()
+st.divider()

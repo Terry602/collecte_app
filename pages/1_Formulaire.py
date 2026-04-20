@@ -8,7 +8,7 @@ import time
 # =========================
 st.set_page_config(page_title="SmartStudent Analytics", layout="centered")
 
-st.title("🧠 SmartStudent Analytics")
+st.title("🧠 SmartStudent Analytics Forms ")
 st.divider()
 st.subheader("📥 Formulaire de collecte des données étudiants")
 
@@ -105,11 +105,11 @@ if submit:
     # =========================
     placeholder = st.empty()
 
-    placeholder.success("✅ Données enregistrées avec succès !")
+    placeholder.success(" Données enregistrées avec succès !")
     time.sleep(2)
     placeholder.empty()
 
     placeholder2 = st.empty()
-    placeholder2.info("📊 Données ajoutées au système d'analyse")
+    placeholder2.info(" Données ajoutées au système d'analyse")
     time.sleep(2)
     placeholder2.empty()

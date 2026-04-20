@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -14,7 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 st.set_page_config(page_title="IA Simulation Pro", layout="wide")
 
-st.title("🧠 Simulation IA (What-If Pro)")
+st.title("🧠 Simulation Intelligente (What If Pro)")
 st.divider()
 
 # =========================
@@ -71,6 +64,8 @@ def train_models(df):
 
 models = train_models(df)
 
+st.markdown("""
+ ***Le modèle analyse chaque filiere et prédit en fonction des données collectées et traitées de la filiere de l'étudiant***""")
 # =========================
 # CHOIX FILIERE
 # =========================
@@ -84,11 +79,11 @@ features = model_data["features"]
 df_fil = model_data["data"]
 
 sexe_input = st.selectbox("👤 Sexe", df_fil["sexe"].unique())
-
+st.divider()
 # =========================
 # MOYENNE ACTUELLE
 # =========================
-st.subheader("🎯 Ta situation actuelle")
+st.subheader(" Ta situation actuelle")
 
 moyenne_actuelle = st.number_input(
     "🎓 Entre ta moyenne actuelle (/20)",
@@ -104,7 +99,7 @@ closest = df_fil.sort_values("diff").iloc[0]
 # =========================
 # INPUT USER
 # =========================
-st.subheader("🎯 Paramètres étudiant (modifiables)")
+st.subheader("⚙️ Paramètres étudiant (modifiables)")
 
 col1, col2, col3 = st.columns(3)
 
@@ -204,7 +199,7 @@ st.divider()
 # =========================
 # 🔥 OPTIMISATION AUTO
 # =========================
-st.subheader("🚀 Optimisation automatique")
+st.subheader(" Optimisation automatique")
 
 best_score = pred
 
@@ -266,7 +261,7 @@ else:
 # FOOTER
 # =========================
 st.divider()
-st.info("🧠 IA par filière + simulation intelligente basée sur données réelles")
+
 
 
 

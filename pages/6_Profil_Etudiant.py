@@ -7,7 +7,7 @@ st.set_page_config(page_title="Profil Étudiant", layout="wide")
 st.title("👤 Profil Intelligent de l'Étudiant")
 
 DATA_FILE = "data_students.csv"
-
+st.divider()
 # =========================
 # CHARGEMENT DONNÉES
 # =========================
@@ -37,7 +37,7 @@ with col2:
     motivation = st.slider("🔥 Motivation (1-10)", 1, 10, 5)
     concentration = st.slider("🧠 Concentration (1-10)", 1, 10, 5)
     telephone = st.slider("📱 Temps téléphone (h)", 0, 12, 4)
-
+st.divider()
 # =========================
 # SCORE DE RISQUE
 # =========================
@@ -73,26 +73,7 @@ else:
 st.metric("Score de risque", round(score_risque, 2))
 st.subheader(niveau)
 st.write(commentaire)
-
-# =========================
-# COMPARAISON AVEC LES AUTRES
-# =========================
-st.subheader("📊 Position par rapport aux autres étudiants")
-
-df["score_proxy"] = (
-    df["stress"]/10 +
-    (7 - df["sommeil"])/7 +
-    (4 - df["heures_etude"])/4
-)
-
-moyenne_population = df["score_proxy"].mean()
-
-if score_risque < moyenne_population:
-    st.success("📈 Tu es MEILLEUR que la moyenne des étudiants")
-else:
-    st.warning("📉 Tu es au-dessus de la moyenne de risque")
-
-
+st.divider()
 
 # =========================
 # RADAR SIMPLE (VISUEL)

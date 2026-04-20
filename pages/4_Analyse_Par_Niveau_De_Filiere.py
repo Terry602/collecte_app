@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Analyse par Niveau", layout="wide")
 
-st.title("🏫 Analyse par Niveau Académique (par Filière)")
+st.title("🏫 Analyse par Niveau Académique De Filière")
 
 # =========================
 # DATA
@@ -14,11 +14,11 @@ def load_data():
     return pd.read_csv("data_students.csv")
 
 df = load_data()
-
+st.divider()
 # =========================
 # FILTRE FILIÈRE
 # =========================
-st.subheader("🎯 Sélection de la filière")
+st.subheader(" Sélection de la filière")
 
 filiere_selected = st.selectbox(
     "📚 Choisir une filière",
@@ -37,7 +37,7 @@ if df_fil.empty:
 # =========================
 # KPI NIVEAU GLOBAL FILTRÉ
 # =========================
-st.subheader(f"📊 Indicateurs - {filiere_selected}")
+st.subheader(f"📈 Indicateurs - {filiere_selected}")
 
 niveau_group = df_fil.groupby("niveau").mean(numeric_only=True).reset_index()
 
@@ -50,7 +50,7 @@ col3.metric("📚 Étudiants", len(df_fil))
 # =========================
 # ANALYSE PAR NIVEAU
 # =========================
-st.subheader("📈 Analyse par niveau dans la filière")
+st.subheader("📊 Analyse par niveau dans la filière")
 
 fig1 = px.bar(
     niveau_group,
@@ -88,12 +88,12 @@ st.plotly_chart(fig3, use_container_width=True)
 # =========================
 # RÉPARTITION NIVEAU (FILTRÉE)
 # =========================
-st.subheader("👨‍🎓 Répartition des étudiants")
+
 
 fig4 = px.pie(
     df_fil,
     names="niveau",
-    title=f"Répartition des niveaux - {filiere_selected}",
+    title=f"👨‍🎓 Répartition des niveaux - {filiere_selected}",
     color_discrete_sequence=px.colors.qualitative.Set3
 )
 

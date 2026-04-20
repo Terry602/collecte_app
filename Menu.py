@@ -25,7 +25,7 @@ except:
 # ==========================================================
 # 🎨 TITRE
 # ==========================================================
-st.title("📊 SmartStudent Analytics Application")
+st.title("Application D'analyse Étudiants ")
 st.write("Dashboard intelligent d’analyse des performances étudiantes")
 
 st.divider()
@@ -43,38 +43,39 @@ def load_data():
 # =========================
 # PRESENTATION
 # =========================
-st.markdown("## 🎯 Objectif du projet")
+st.markdown("##  Objectif du projet")
+
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("""
     📥 **Collecte intelligente des données**  
-    → Centralisation et structuration des données étudiantes  
+    
 
     📊 **Analyse comportementale & académique**  
-    → Étude des performances et des habitudes d’apprentissage  
+    
 
     🧠 **Identification des facteurs de réussite**  
-    → Détection des variables clés de performance  
+     
 
     🤖 **Prédiction des performances**  
-    → Modèles de Machine Learning pour anticiper les résultats  
+    
     """)
 
 with col2:
     st.markdown("""
     📑 **Génération de rapports intelligents**  
-    → Insights automatiques pour la prise de décision  
+    
 
     🧹 **Data Cleaning & Preprocessing**  
-    → Nettoyage et préparation des données  
+    
 
     📈 **Data Visualization Avancée**  
-    → Graphiques interactifs et analyses exploratoires  
+     
 
     🧪 **Feature Engineering & Model Evaluation**  
-    → Création de variables et évaluation des modèles ML  
+     
     """)
 
     st.divider()
@@ -159,7 +160,7 @@ col2.metric("❌ Taux d'échec", f"{100-pass_rate:.1f}%")
 
 st.divider()
 # ==========================================================
-# 📊 DISTRIBUTION DES NOTES
+#  DISTRIBUTION DES NOTES
 # ==========================================================
 st.subheader("📈 Distribution des performances")
 
@@ -176,7 +177,7 @@ st.plotly_chart(fig_hist, use_container_width=True)
 
 
 # ==========================================================
-# 🏆 TOP ÉTUDIANTS
+#  TOP ÉTUDIANTS
 # ==========================================================
 st.subheader("🏆 Top étudiants")
 
@@ -190,7 +191,7 @@ st.dataframe(
 st.divider()
 
 # ==========================================================
-# 📊 FACTEURS D’IMPACT
+#  FACTEURS D’IMPACT
 # ==========================================================
 st.subheader("📊 Facteurs influençant la performance")
 
@@ -205,24 +206,10 @@ st.plotly_chart(fig_corr, use_container_width=True)
 
 st.divider()
 
-# ==========================================================
-# 🎯 SCORE GLOBAL IA
-# ==========================================================
-st.subheader("🎯 Score global du système")
 
-score = (
-    df["moyenne"].mean() * 0.5 +
-    (10 - df["stress"].mean()) * 0.2 +
-    df["motivation"].mean() * 0.2 +
-    df["regularite"].mean() * 0.1
-)
-
-st.metric("🧠 Score global IA", f"{score:.2f} / 20")
-
-st.divider()
 
 # ==========================================================
-# 🌟 PROFIL IDÉAL
+#  PROFIL IDÉAL
 # ==========================================================
 st.subheader("🌟 Profil étudiant idéal")
 
@@ -240,7 +227,7 @@ st.success(f"""
 st.divider()
 
 # ==========================================================
-# 📈 TENDANCES
+#  TENDANCES
 # ==========================================================
 st.subheader("📈 Tendances globales")
 

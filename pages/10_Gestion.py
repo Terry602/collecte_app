@@ -108,4 +108,4 @@ if confirm:
 # FOOTER
 # =========================
 st.divider()
-st.info("🧠 Suppression sécurisée avec gestion d'erreur avancée")
+st.info(" Suppression sécurisée avec gestion d'erreur avancée")
