@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.graph_objects as go  # ✅ CORRECTION ICI
+import plotly.graph_objects as go  
 
 from sklearn.ensemble import RandomForestRegressor
 
@@ -20,7 +20,7 @@ def load_data():
 df = load_data()
 
 # =========================
-# 🔥 TRAIN MODELS PAR FILIERE
+#  TRAIN MODELS PAR FILIERE
 # =========================
 @st.cache_resource
 def train_models(df):
@@ -91,7 +91,7 @@ moyenne_actuelle = st.number_input(
 )
 
 # =========================
-# 🔥 INITIALISATION INTELLIGENTE
+#  INITIALISATION INTELLIGENTE
 # =========================
 df_fil["diff"] = abs(df_fil["moyenne"] - moyenne_actuelle)
 closest = df_fil.sort_values("diff").iloc[0]
@@ -116,7 +116,7 @@ with col3:
     telephone = st.slider("📱 Téléphone", 0, 12, int(closest["telephone"]))
 
 # =========================
-# 🔥 FONCTION BUILD INPUT (MANQUANTE AVANT ❌)
+#  FONCTION BUILD INPUT 
 # =========================
 def build_input(h, s, sl, m, c, t):
     d = {
@@ -162,7 +162,7 @@ col2.metric("🎯 Moyenne actuelle", round(moyenne_actuelle, 2))
 col3.metric("📈 Impact", f"{percent:.1f}%")
 st.divider()
 # =========================
-# 🔥 RADAR CHART
+#  RADAR CHART
 # =========================
 st.subheader("📡 Profil étudiant")
 
@@ -197,7 +197,7 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 st.divider()
 # =========================
-# 🔥 OPTIMISATION AUTO
+#  OPTIMISATION AUTO
 # =========================
 st.subheader(" Optimisation automatique")
 
