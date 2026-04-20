@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # ==========================================================
-# ⚙️ CONFIG PAGE
+#  CONFIG PAGE
 # ==========================================================
 st.set_page_config(
     page_title="SmartStudent Analytics - Advanced",
@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==========================================================
-# 📦 CHARGEMENT DONNÉES
+#  CHARGEMENT DONNÉES
 # ==========================================================
 @st.cache_data(ttl=5)
 def load_data():
@@ -23,7 +23,7 @@ except:
     st.stop()
 
 # ==========================================================
-# 🎨 TITRE
+#  TITRE
 # ==========================================================
 st.title("Application D'analyse Étudiants ")
 st.write("Dashboard intelligent d’analyse des performances étudiantes")
@@ -31,7 +31,7 @@ st.write("Dashboard intelligent d’analyse des performances étudiantes")
 st.divider()
 
 # =========================
-# DATA (SANS BUG)
+# DATA 
 # =========================
   # refresh auto toutes les 5 secondes
 def load_data():
@@ -246,7 +246,7 @@ st.plotly_chart(fig_trend, use_container_width=True)
 st.divider()
 
 # ==========================================================
-# 🧠 CONCLUSION IA
+# CONCLUSION IA
 # ==========================================================
 st.subheader("🧠 Conclusion intelligente")
 
@@ -267,7 +267,7 @@ st.info("""
 """)
 
 # =========================
-# 🎨 STYLE PRO
+# STYLE PRO
 # =========================
 st.markdown("""
 <style>
