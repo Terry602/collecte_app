@@ -55,7 +55,7 @@ col4.metric("👨‍🎓 Total étudiants", len(df_fil))
 
 
 # =========================
-# 🥧 SEMI-CIRCLE SEXE
+#  SEMI-CIRCLE SEXE
 # =========================
 st.subheader(f"📊 Analyse de la filiere - {filiere_selected}")
 
