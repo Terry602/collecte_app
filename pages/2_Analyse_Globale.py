@@ -43,7 +43,7 @@ col3.metric("📚 Heures d'étude", round(df["heures_etude"].mean(), 2))
 st.divider()
 
 # =========================
-# 🎨 HISTOGRAMMES PREMIUM (MODERNISÉS)
+#  HISTOGRAMMES PREMIUM (MODERNISÉS)
 # =========================
 st.subheader("🎨 Distributions des variables")
 
@@ -77,7 +77,7 @@ st.plotly_chart(fig3, use_container_width=True)
 st.divider()
 
 # =========================
-# 🥧 PIE CHARTS MODERNES
+#  PIE CHARTS MODERNES
 # =========================
 st.subheader("🥧 Répartitions")
 
@@ -113,7 +113,7 @@ with col2:
 st.divider()
 
 # =========================
-# 🔥 CORRELATION
+#  CORRELATION
 # =========================
 st.subheader("🔥 Corrélation")
 
@@ -131,7 +131,7 @@ st.pyplot(fig6)
 st.divider()
 
 # =========================
-# 📉 RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
+#  RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
 # =========================
 st.subheader("📉 Relations clés")
 
