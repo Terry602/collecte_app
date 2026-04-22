@@ -4,8 +4,43 @@ import plotly.express as px
 
 st.set_page_config(page_title="Analyse par Niveau", layout="wide")
 
-st.title("🏫 Analyse par Niveau Académique De Filière")
+st.markdown("""
+<style>
 
+/* ===== NIVEAU ANALYSIS HEADER (NAVY BLUE STYLE) ===== */
+.niveau-header {
+    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #BFDBFE;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 20px rgba(59,130,246,0.12);
+}
+
+/* TITLE */
+.niveau-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.niveau-subtitle {
+    font-size: 13px;
+    color: #1D4ED8;
+    margin-top: 6px;
+}
+</style>
+
+<div class="niveau-header">
+    <div class="niveau-title">🏫 Analyse par Niveau Académique</div>
+    <div class="niveau-subtitle">Étude des performances et évolutions selon les niveaux de formation</div>
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
 # =========================
 # DATA
 # =========================
@@ -14,7 +49,7 @@ def load_data():
     return pd.read_csv("data_students.csv")
 
 df = load_data()
-st.divider()
+
 # =========================
 # FILTRE FILIÈRE
 # =========================

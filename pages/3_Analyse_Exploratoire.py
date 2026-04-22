@@ -7,7 +7,42 @@ import plotly.express as px
 # =========================
 st.set_page_config(page_title="Data Explorer PRO", layout="wide")
 
-st.title(" Analyse Exploratoire ")
+st.markdown("""
+<style>
+
+/* ===== EXPLORATION HEADER INDIGO STYLE ===== */
+.explorer-header {
+    background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #C7D2FE;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 20px rgba(99,102,241,0.10);
+}
+
+/* TITLE */
+.explorer-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1E1B4B;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.explorer-subtitle {
+    font-size: 13px;
+    color: #4338CA;
+    margin-top: 6px;
+}
+</style>
+
+<div class="explorer-header">
+    <div class="explorer-title">🔎 Analyse Exploratoire</div>
+    <div class="explorer-subtitle">Data Exploration • Patterns Detection • Statistical Insights</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 
 # =========================

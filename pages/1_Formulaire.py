@@ -8,7 +8,42 @@ import time
 # =========================
 st.set_page_config(page_title="SmartStudent Analytics", layout="centered")
 
-st.title("🧠 SmartStudent Analytics Forms ")
+st.markdown("""
+<style>
+
+/* ===== HEADER LIGHT SAAS ===== */
+.form-header {
+    background: linear-gradient(135deg, #F8FAFC, #EEF2FF);
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #E5E7EB;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
+}
+
+/* TITLE */
+.form-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.3px;
+}
+
+/* SUBTITLE */
+.form-subtitle {
+    font-size: 13px;
+    color: #64748B;
+    margin-top: 6px;
+}
+</style>
+
+<div class="form-header">
+    <div class="form-title">🧠 SmartStudent Analytics Forms</div>
+    <div class="form-subtitle">Data collection & intelligent student profiling system</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 st.subheader("📥 Formulaire de collecte des données étudiants")
 

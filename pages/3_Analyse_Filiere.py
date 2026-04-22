@@ -6,7 +6,41 @@ import seaborn as sns
 
 st.set_page_config(page_title="Analyse par Filière", layout="wide")
 
-st.title("🎓 Analyse par Filière")
+st.markdown("""
+<style>
+
+/* ===== FILIERE ANALYSIS HEADER (AMBER STYLE) ===== */
+.filiere-header {
+    background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #FDE68A;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 20px rgba(245,158,11,0.10);
+}
+
+/* TITLE */
+.filiere-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #7C2D12;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.filiere-subtitle {
+    font-size: 13px;
+    color: #92400E;
+    margin-top: 6px;
+}
+</style>
+
+<div class="filiere-header">
+    <div class="filiere-title">🎓 Analyse par Filière</div>
+    <div class="filiere-subtitle">Comparaison des performances, comportements et tendances par spécialisation</div>
+</div>
+""", unsafe_allow_html=True)
 
 DATA_FILE = "data_students.csv"
 
@@ -55,7 +89,7 @@ col4.metric("👨‍🎓 Total étudiants", len(df_fil))
 
 
 # =========================
-# 🥧 SEMI-CIRCLE SEXE
+#  SEMI-CIRCLE SEXE
 # =========================
 st.subheader(f"📊 Analyse de la filiere - {filiere_selected}")
 
@@ -211,7 +245,7 @@ ax4.set_ylabel("Moyenne")
 plt.xticks(rotation=45)
 
 st.pyplot(fig4)
-
+st.divider()
 # =========================
 # INSIGHTS
 # =========================

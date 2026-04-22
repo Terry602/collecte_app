@@ -5,7 +5,43 @@ import time
 
 st.set_page_config(page_title="Gestion des étudiants", layout="wide")
 
-st.title("🗑️ Gestion des étudiants")
+st.markdown("""
+<style>
+
+/* ===== GESTION HEADER (ADMIN CONTROL STYLE) ===== */
+.gestion-header {
+    background: linear-gradient(135deg, #FFF1F2, #FFE4E6);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #FECDD3;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 25px rgba(244,63,94,0.10);
+}
+
+/* TITLE */
+.gestion-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #881337;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.gestion-subtitle {
+    font-size: 13px;
+    color: #9F1239;
+    margin-top: 6px;
+}
+</style>
+
+<div class="gestion-header">
+    <div class="gestion-title">🗑️ Gestion des étudiants</div>
+    <div class="gestion-subtitle">Admin Panel • Data Control • Student Records Management</div>
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
 
 DATA_FILE = "data_students.csv"
 

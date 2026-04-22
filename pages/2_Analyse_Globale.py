@@ -6,8 +6,41 @@ import plotly.express as px
 
 st.set_page_config(page_title="Analyse Globale", layout="wide")
 
-st.title(" Analyse Globale des Données Étudiantes")
+st.markdown("""
+<style>
 
+/* ===== ANALYTICS HEADER GREEN STYLE ===== */
+.analytics-header {
+    background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #A7F3D0;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(16,185,129,0.08);
+}
+
+/* TITLE */
+.analytics-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #064E3B;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.analytics-subtitle {
+    font-size: 13px;
+    color: #065F46;
+    margin-top: 6px;
+}
+</style>
+
+<div class="analytics-header">
+    <div class="analytics-title">📊 Analyse Globale des Données Étudiantes</div>
+    <div class="analytics-subtitle">Exploration complète des tendances, performances et corrélations académiques</div>
+</div>
+""", unsafe_allow_html=True)
 # =========================
 # DATA
 # =========================
@@ -43,7 +76,7 @@ col3.metric("📚 Heures d'étude", round(df["heures_etude"].mean(), 2))
 st.divider()
 
 # =========================
-# 🎨 HISTOGRAMMES PREMIUM (MODERNISÉS)
+#  HISTOGRAMMES PREMIUM (MODERNISÉS)
 # =========================
 st.subheader("🎨 Distributions des variables")
 
@@ -77,7 +110,7 @@ st.plotly_chart(fig3, use_container_width=True)
 st.divider()
 
 # =========================
-# 🥧 PIE CHARTS MODERNES
+#  PIE CHARTS MODERNES
 # =========================
 st.subheader("🥧 Répartitions")
 
@@ -113,7 +146,7 @@ with col2:
 st.divider()
 
 # =========================
-# 🔥 CORRELATION
+#  CORRELATION
 # =========================
 st.subheader("🔥 Corrélation")
 
@@ -131,7 +164,7 @@ st.pyplot(fig6)
 st.divider()
 
 # =========================
-# 📉 RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
+#  RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
 # =========================
 st.subheader("📉 Relations clés")
 

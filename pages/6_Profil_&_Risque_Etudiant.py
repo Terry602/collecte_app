@@ -4,7 +4,42 @@ import numpy as np
 
 st.set_page_config(page_title="Profil Étudiant", layout="wide")
 
-st.title("👤 Profil Intelligent de l'Étudiant")
+st.markdown("""
+<style>
+
+/* ===== PROFIL HEADER (AI PROFILE STYLE) ===== */
+.profil-header {
+    background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #BAE6FD;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 25px rgba(14,165,233,0.12);
+}
+
+/* TITLE */
+.profil-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.profil-subtitle {
+    font-size: 13px;
+    color: #0369A1;
+    margin-top: 6px;
+}
+</style>
+
+<div class="profil-header">
+    <div class="profil-title">👤 Profil Intelligent de l'Étudiant</div>
+    <div class="profil-subtitle">AI-driven Student Profile • Behavioral Analytics • Academic Intelligence</div>
+</div>
+""", unsafe_allow_html=True)
+
 
 DATA_FILE = "data_students.csv"
 st.divider()
@@ -43,7 +78,7 @@ st.divider()
 # =========================
 st.subheader("🧠 Résultat d'analyse")
 
-# Normalisation simple
+# Normalisation
 stress_n = stress / 10
 sommeil_risk = max(0, (7 - sommeil) / 7)
 etude_risk = max(0, (4 - heures_etude) / 4)
@@ -63,18 +98,55 @@ score_risque = (
 if score_risque < 0.3:
     niveau = "🟢 Faible risque"
     commentaire = "Tu es sur une bonne trajectoire 👍"
+    color = "#16A34A"
+    bg = "#ECFDF5"
+
 elif score_risque < 0.6:
     niveau = "🟠 Risque moyen"
     commentaire = "Attention à ton équilibre travail/repos ⚠️"
+    color = "#F59E0B"
+    bg = "#FFFBEB"
+
 else:
     niveau = "🔴 Risque élevé"
     commentaire = "Risque de baisse de performance important ❌"
+    color = "#DC2626"
+    bg = "#FEF2F2"
 
-st.metric("Score de risque", round(score_risque, 2))
-st.subheader(niveau)
-st.write(commentaire)
+# =========================
+# AFFICHAGE
+# =========================
+st.markdown(f"""
+<div style="font-size:14px; color:#64748B;">
+    🎯 Score de risque académique
+</div>
+
+<div style="
+    font-size:32px;
+    font-weight:800;
+    color:{color};
+    margin:8px 0;
+">
+    {round(score_risque, 2)}
+</div>
+
+<div style="
+    font-size:18px;
+    font-weight:700;
+    color:{color};
+    margin-bottom:6px;
+">
+    {niveau}
+</div>
+
+<div style="
+    font-size:14px;
+    color:#0F172A;
+">
+    {commentaire}
+</div>
+""", unsafe_allow_html=True)
 st.divider()
-
 # =========================
 # RADAR SIMPLE (VISUEL)
 # =========================

@@ -1,13 +1,48 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.graph_objects as go  # ✅ CORRECTION ICI
+import plotly.graph_objects as go 
 
 from sklearn.ensemble import RandomForestRegressor
 
 st.set_page_config(page_title="IA Simulation Pro", layout="wide")
 
-st.title("🧠 Simulation Intelligente (What If Pro)")
+st.markdown("""
+<style>
+
+/* ===== SIMULATION HEADER (AI WHAT-IF ENGINE STYLE) ===== */
+.simulation-header {
+    background: linear-gradient(135deg, #ECFEFF, #CFFAFE);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #A5F3FC;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 25px rgba(6,182,212,0.12);
+}
+
+/* TITLE */
+.simulation-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.simulation-subtitle {
+    font-size: 13px;
+    color: #0E7490;
+    margin-top: 6px;
+}
+</style>
+
+<div class="simulation-header">
+    <div class="simulation-title">🧠 Simulation Intelligente (What If Pro)</div>
+    <div class="simulation-subtitle">AI Scenario Engine • Predictive Simulation • Decision Modeling</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 
 # =========================
@@ -20,7 +55,7 @@ def load_data():
 df = load_data()
 
 # =========================
-# 🔥 TRAIN MODELS PAR FILIERE
+# TRAIN MODELS PAR FILIERE
 # =========================
 @st.cache_resource
 def train_models(df):
@@ -91,7 +126,7 @@ moyenne_actuelle = st.number_input(
 )
 
 # =========================
-# 🔥 INITIALISATION INTELLIGENTE
+# INITIALISATION INTELLIGENTE
 # =========================
 df_fil["diff"] = abs(df_fil["moyenne"] - moyenne_actuelle)
 closest = df_fil.sort_values("diff").iloc[0]
@@ -116,7 +151,7 @@ with col3:
     telephone = st.slider("📱 Téléphone", 0, 12, int(closest["telephone"]))
 
 # =========================
-# 🔥 FONCTION BUILD INPUT (MANQUANTE AVANT ❌)
+# FONCTION BUILD INPUT (MANQUANTE AVANT ❌)
 # =========================
 def build_input(h, s, sl, m, c, t):
     d = {
@@ -155,14 +190,131 @@ percent = (diff / moyenne_actuelle) * 100 if moyenne_actuelle != 0 else 0
 # =========================
 st.subheader("📊 Résultats de simulation")
 
+# =========================
+# STYLE KPI CARDS
+# =========================
+st.markdown("""
+<style>
+.sim-card {
+    background: #FFFFFF;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #E5E7EB;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: 0.25s ease;
+}
+
+.sim-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.sim-title {
+    font-size: 13px;
+    color: #64748B;
+    margin-bottom: 6px;
+}
+
+.sim-value {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+.sim-impact {
+    font-size: 26px;
+    font-weight: 800;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# =========================
+# COULEUR IMPACT
+# =========================
+impact_color = "#16A34A" if percent >= 0 else "#DC2626"
+
+# =========================
+# AFFICHAGE
+# =========================
+st.subheader("📊 Résultats de simulation")
+
+# =========================
+# STYLE KPI CARDS
+# =========================
+st.markdown("""
+<style>
+.sim-card {
+    background: #FFFFFF;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #E5E7EB;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: 0.25s ease;
+}
+
+.sim-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.sim-title {
+    font-size: 13px;
+    color: #64748B;
+    margin-bottom: 6px;
+}
+
+.sim-value {
+    font-size: 26px;
+    font-weight: 800;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# =========================
+# COULEURS DYNAMIQUES
+# =========================
+pred_color = "#16A34A" if percent >= 0 else "#DC2626"   # vert / rouge
+current_color = "#EAB308"  # jaune fort (visible)
+impact_color = "#16A34A" if percent >= 0 else "#DC2626"
+
+# =========================
+# AFFICHAGE
+# =========================
 col1, col2, col3 = st.columns(3)
 
-col1.metric("🎓 Moyenne prédite", round(pred, 2))
-col2.metric("🎯 Moyenne actuelle", round(moyenne_actuelle, 2))
-col3.metric("📈 Impact", f"{percent:.1f}%")
+col1.markdown(f"""
+<div class="sim-card">
+    <div class="sim-title">🎓 Moyenne prédite</div>
+    <div class="sim-value" style="color:{pred_color};">
+        {round(pred, 2)}
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+col2.markdown(f"""
+<div class="sim-card">
+    <div class="sim-title">🎯 Moyenne actuelle</div>
+    <div class="sim-value" style="color:{current_color};">
+        {round(moyenne_actuelle, 2)}
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+col3.markdown(f"""
+<div class="sim-card">
+    <div class="sim-title">📈 Impact</div>
+    <div class="sim-value" style="color:{impact_color};">
+        {percent:.1f}%
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 # =========================
-# 🔥 RADAR CHART
+# RADAR CHART
 # =========================
 st.subheader("📡 Profil étudiant")
 
@@ -197,7 +349,7 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 st.divider()
 # =========================
-# 🔥 OPTIMISATION AUTO
+# OPTIMISATION AUTO
 # =========================
 st.subheader(" Optimisation automatique")
 

@@ -6,7 +6,42 @@ import io
 
 st.set_page_config(page_title="Rapport IA", layout="wide")
 
-st.title("📑 Génération de Rapport Personnel")
+st.markdown("""
+<style>
+
+/* ===== REPORT HEADER (PREMIUM BLUE / INDIGO STYLE) ===== */
+.report-header {
+    background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #C7D2FE;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 25px rgba(79,70,229,0.12);
+}
+
+/* TITLE */
+.report-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1E1B4B;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.report-subtitle {
+    font-size: 13px;
+    color: #4338CA;
+    margin-top: 6px;
+}
+</style>
+
+<div class="report-header">
+    <div class="report-title">📑 Génération de Rapport Personnel</div>
+    <div class="report-subtitle">AI-driven Academic Report • Insights • Performance Intelligence</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 # =========================
 # DATA SAFE LOAD

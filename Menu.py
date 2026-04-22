@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
+import time
 # ==========================================================
 # ⚙️ CONFIG PAGE
 # ==========================================================
@@ -23,10 +23,63 @@ except:
     st.stop()
 
 # ==========================================================
-# 🎨 TITRE
+# 🎨 HEADER STYLE FINTECH PREMIUM
 # ==========================================================
-st.title("Application D'analyse Étudiants ")
-st.write("Dashboard intelligent d’analyse des performances étudiantes")
+
+st.markdown("""
+<style>
+
+/* ===== FINTECH HEADER WRAPPER ===== */
+.fintech-header {
+    background: linear-gradient(135deg, #0F172A, #111827);
+    padding: 28px 20px;
+    border-radius: 16px;
+    border: 1px solid #1F2937;
+    text-align: center;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* TITLE FINTECH */
+.fintech-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #F8FAFC;
+    letter-spacing: -0.5px;
+}
+
+/* SUBTITLE FINTECH */
+.fintech-subtitle {
+    font-size: 14px;
+    color: #94A3B8;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+}
+
+/* SMALL FINTECH TAG */
+.fintech-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #22D3EE;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 20px;
+    background: rgba(34, 211, 238, 0.08);
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="fintech-header">
+    <div class="fintech-title">🎓 Application d'Analyse des Étudiants</div>
+    <div class="fintech-subtitle">
+       Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA 
+    </div>
+    <div class="fintech-tag">AI • Data Science • Predictive Analytics</div>
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
@@ -40,45 +93,118 @@ def load_data():
 
     df = load_data()
 
+
 # =========================
-# PRESENTATION
+# OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
-st.markdown("##  Objectif du projet")
 
+st.markdown("## 🧭 Objectif du projet")
 
-col1, col2 = st.columns(2)
+st.components.v1.html("""
+<style>
+.container {
+    position: relative;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-with col1:
-    st.markdown("""
-    📥 **Collecte intelligente des données**  
-    
+/* OBJECTIF GLOBAL */
+.objective {
+    position: absolute;
+    opacity: 0;
+    text-align: center;
+    padding: 18px 28px;
+    border-radius: 14px;
+    border: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(10px);
+    width: 80%;
+}
 
-    📊 **Analyse comportementale & académique**  
-    
+/* TITRE */
+.title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
 
-    🧠 **Identification des facteurs de réussite**  
-     
+/* DESCRIPTION */
+.desc {
+    font-size: 13px;
+    color: #000000;
+}
 
-    🤖 **Prédiction des performances**  
-    
-    """)
+/* ACTIVE */
+.objective.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
 
-with col2:
-    st.markdown("""
-    📑 **Génération de rapports intelligents**  
-    
+<div class="container">
 
-    🧹 **Data Cleaning & Preprocessing**  
-    
+    <div class="objective active">
+        <div class="title" style="color:#2563EB;">📥 Collecte intelligente des données</div>
+        <div class="desc">Centralisation et structuration des données étudiantes pour analyse.</div>
+    </div>
 
-    📈 **Data Visualization Avancée**  
-     
+    <div class="objective">
+        <div class="title" style="color:#059669;">📊 Analyse comportementale & académique</div>
+        <div class="desc">Étude des performances et comportements des étudiants.</div>
+    </div>
 
-    🧪 **Feature Engineering & Model Evaluation**  
-     
-    """)
+    <div class="objective">
+        <div class="title" style="color:#7C3AED;">🧠 Identification des facteurs de réussite</div>
+        <div class="desc">Détection des variables influençant les résultats académiques.</div>
+    </div>
 
-    st.divider()
+    <div class="objective">
+        <div class="title" style="color:#DC2626;">🤖 Prédiction des performances</div>
+        <div class="desc">Utilisation de modèles IA pour anticiper les résultats.</div>
+    </div>
+
+    <div class="objective">
+        <div class="title" style="color:#EA580C;">📑 Génération de rapports intelligents</div>
+        <div class="desc">Production automatique d’insights pour la prise de décision.</div>
+    </div>
+
+    <div class="objective">
+        <div class="title" style="color:#0EA5E9;">🧹 Data Cleaning & Preprocessing</div>
+        <div class="desc">Nettoyage, transformation et préparation des données.</div>
+    </div>
+
+    <div class="objective">
+        <div class="title" style="color:#16A34A;">📈 Data Visualization Avancée</div>
+        <div class="desc">Création de dashboards interactifs et visuels.</div>
+    </div>
+
+    <div class="objective">
+        <div class="title" style="color:#9333EA;">🧪 Feature Engineering & Model Evaluation</div>
+        <div class="desc">Optimisation des variables et évaluation des modèles.</div>
+    </div>
+
+</div>
+
+<script>
+let index = 0;
+const items = document.querySelectorAll('.objective');
+
+function showNext() {
+    items[index].classList.remove('active');
+    index = (index + 1) % items.length;
+    items[index].classList.add('active');
+}
+
+setInterval(showNext, 3000);
+</script>
+""", height=140)
+
+st.divider()
+
 # =========================
 # KPI CARDS
 # =========================
@@ -173,18 +299,36 @@ fig_hist = px.histogram(
 )
 
 st.plotly_chart(fig_hist, use_container_width=True)
-
-
-
+st.divider()
 # ==========================================================
 #  TOP ÉTUDIANTS
 # ==========================================================
+
 st.subheader("🏆 Top étudiants")
 
-top_students = df.sort_values("moyenne", ascending=False).head(5)
+top_students = df.sort_values("moyenne", ascending=False).head(10)
 
 st.dataframe(
-    top_students[["filiere", "niveau", "moyenne"]],
+    top_students[
+        [
+            "nom",
+            "age",
+            "sexe",
+            "filiere",
+            "niveau",
+            "heures_etude",
+            "methode",
+            "regularite",
+            "sommeil",
+            "sport",
+            "telephone",
+            "stress",
+            "concentration",
+            "motivation",
+            "moyenne",
+            "credits"
+        ]
+    ],
     use_container_width=True
 )
 
@@ -251,48 +395,117 @@ st.divider()
 st.subheader("🧠 Conclusion intelligente")
 
 if df["stress"].mean() > 6:
-    st.warning("👉 Le stress est un facteur critique global")
+    st.warning(" Le stress est un facteur critique global")
 
 if df["heures_etude"].mean() < 3:
-    st.warning("👉 Temps d’étude global insuffisant")
+    st.warning(" Temps d’étude global insuffisant")
 
 if df["motivation"].mean() > 7:
-    st.success("👉 Bonne motivation globale des étudiants")
+    st.success(" Bonne motivation globale des étudiants")
 
 st.info("""
-💡 Recommandation globale :
 - Augmenter les heures d’étude
 - Réduire le stress
 - Améliorer la régularité
 """)
 
 # =========================
-# 🎨 STYLE PRO
+# 🎨 STYLE PRO (AMÉLIORÉ + LISIBLE + MODERNE)
 # =========================
 st.markdown("""
 <style>
+
+/* =========================
+   GLOBAL BACKGROUND (LIGHT PRO DASHBOARD)
+========================= */
 .main {
-    background-color: #0B0F19;
+    background-color: #F5F7FB;
 }
+
+/* TITRES */
 h1, h2, h3 {
-    color: #00E5FF;
+    color: #0F172A;
     font-weight: 700;
 }
+
+/* =========================
+   KPI / CARDS (STYLE GLASS CLEAN)
+========================= */
 .card {
-    background: #111827;
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px solid #1F2937;
+    background: #FFFFFF;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #E5E7EB;
     text-align: center;
-    transition: 0.3s;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
+
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 10px 25px rgba(0,229,255,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    border-color: #93C5FD;
 }
-.icon { font-size: 28px; }
-.kpi { font-size: 22px; font-weight: bold; color: white; }
-.small { color: #9CA3AF; }
+
+/* ICON */
+.icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+/* KPI VALUE */
+.kpi {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+}
+
+/* SMALL TEXT */
+.small {
+    font-size: 13px;
+    color: #6B7280;
+    margin-top: 5px;
+}
+
+/* =========================
+   STREAMLIT METRICS CLEAN
+========================= */
+[data-testid="stMetric"] {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 15px;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* =========================
+   TABLE CLEAN
+========================= */
+.stDataFrame {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* =========================
+   PLOTLY BACKGROUND CLEAN
+========================= */
+.js-plotly-plot {
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* =========================
+   SUCCESS / WARNING / INFO CLEAN
+========================= */
+.stSuccess, .stWarning, .stInfo {
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
+
 </style>
 """, unsafe_allow_html=True)
 

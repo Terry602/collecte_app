@@ -7,7 +7,41 @@ from sklearn.cluster import KMeans
 
 st.set_page_config(page_title="Clustering Étudiants", layout="wide")
 
-st.title("🧠 Segmentation Intelligente des Étudiants")
+st.markdown("""
+<style>
+
+/* ===== CLUSTERING HEADER (AI / PURPLE SCIENCE STYLE) ===== */
+.clustering-header {
+    background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #DDD6FE;
+    text-align: center;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 25px rgba(139,92,246,0.12);
+}
+
+/* TITLE */
+.clustering-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1E1B4B;
+    letter-spacing: -0.4px;
+}
+
+/* SUBTITLE */
+.clustering-subtitle {
+    font-size: 13px;
+    color: #6D28D9;
+    margin-top: 6px;
+}
+</style>
+
+<div class="clustering-header">
+    <div class="clustering-title">🧠 Segmentation Intelligente des Étudiants</div>
+    <div class="clustering-subtitle">Machine Learning • K-Means • AI-driven Student Profiling</div>
+</div>
+""", unsafe_allow_html=True)
 
 # =========================
 # DATA

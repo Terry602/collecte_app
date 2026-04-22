@@ -8,7 +8,42 @@ from sklearn.metrics import mean_absolute_error, accuracy_score
 
 st.set_page_config(page_title="Prédiction IA", layout="wide")
 
-st.title(" Module de Prédiction Intelligente")
+st.markdown("""
+<style>
+
+/* ===== HEADER CONTAINER ===== */
+.header-box {
+    background: linear-gradient(135deg, #0F172A, #111827);
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid #1F2937;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    margin-bottom: 10px;
+}
+
+/* TITLE */
+.header-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #F8FAFC;
+    letter-spacing: -0.5px;
+}
+
+/* SUBTLE TAG */
+.header-tag {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #94A3B8;
+}
+</style>
+
+<div class="header-box">
+    <div class="header-title">🤖 Module de Prédiction Intelligente</div>
+    <div class="header-tag">AI-powered Academic Performance Prediction System</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 # =========================
 # DATA
@@ -20,7 +55,7 @@ def load_data():
 df = load_data()
 
 # =========================
-# 🔥 ENTRAINEMENT MULTI-MODELES (PAR FILIERE)
+#  ENTRAINEMENT MULTI-MODELES (PAR FILIERE)
 # =========================
 @st.cache_resource
 def train_models(df):
@@ -103,7 +138,108 @@ def train_models(df):
 models = train_models(df)
 
 # =========================
-# 🎯 SELECTION FILIERE
+# EXPLICATION PÉDAGOGIQUE (PAUSE + HIGHLIGHT)
+# =========================
+
+st.subheader("🧠 Explication du modèle")
+
+st.components.v1.html("""
+<style>
+
+/* ===== CONTAINER GLOBAL ===== */
+.scroll-wrapper {
+    height: 60px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* ===== CONTENT ===== */
+.scroll-content {
+    display: flex;
+    flex-direction: column;
+    animation: scrollStep 32s infinite;
+}
+
+/* ===== LINE ===== */
+.line {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #64748B;
+    transition: all 0.4s ease;
+}
+
+/* ===== ACTIVE LINE ===== */
+.line.active {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0F172A;
+    transform: scale(1.05);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes scrollStep {
+
+    0%   { transform: translateY(0%); }
+    10%  { transform: translateY(0%); }
+
+    12.5% { transform: translateY(-60px); }
+    22.5% { transform: translateY(-60px); }
+
+    25%  { transform: translateY(-120px); }
+    35%  { transform: translateY(-120px); }
+
+    37.5% { transform: translateY(-180px); }
+    47.5% { transform: translateY(-180px); }
+
+    50%  { transform: translateY(-240px); }
+    60%  { transform: translateY(-240px); }
+
+    62.5% { transform: translateY(-300px); }
+    72.5% { transform: translateY(-300px); }
+
+    75%  { transform: translateY(-360px); }
+    85%  { transform: translateY(-360px); }
+
+    87.5% { transform: translateY(-420px); }
+    97.5% { transform: translateY(-420px); }
+
+    100% { transform: translateY(0%); }
+}
+
+</style>
+
+<div class="scroll-wrapper">
+    <div class="scroll-content">
+
+        <div class="line active">Le modèle analyse chaque filière et exploite toutes les variables de la filière choisie </div>
+        <div class="line"> Ceci étant, les variables exploitées sont entre autres : </div>
+
+        <div class="line">- Habitudes d’étude : heures et régularité</div>
+
+        <div class="line">- Mode de vie : sommeil, téléphone, sport</div>
+
+        <div class="line">- Bien-être : stress, motivation, concentration</div>
+
+        <div class="line">- Profil académique : filière, niveau, sexe, méthode</div>
+
+        <div class="line">📌 Objectif : </div>
+
+        <div class="line">- prédire la moyenne académique</div> 
+
+        <div class="line">- prédire la réussite ou l’échec</div>
+
+
+        <div class="line">🤖 Algorithme utilisée : Random Forest (robuste et performant)</div>
+
+    </div>
+</div>
+""", height=90)
+# =========================
+#  SELECTION FILIERE
 # =========================
 st.subheader("🎓 Choisir une filière")
 
@@ -146,26 +282,7 @@ elif acc > 0.7:
 else:
     st.error("❌ Modèle faible")
 
-# =========================
-# EXPLICATION PÉDAGOGIQUE (IMPORTANT 🔥)
-# =========================
-st.subheader("🧠 Explication du modèle")
 
-st.markdown("""
- Le modèle analyse **chaque filiere et prédit en fonction de la filiere choisie en utilisant toutes les variables collectées dans cette filiere** :
-
-- habitudes d’étude (heures, régularité)
-- mode de vie (sommeil, téléphone, sport)
-- bien-être (stress, motivation, concentration)
-- profil étudiant (filière, niveau, sexe, méthode)
-
-📌 Objectif :
-- prédire la moyenne académique
-- prédire la réussite ou l’échec
-
- Algorithme utilisé :
- Random Forest (modèle robuste et performant)
-""")
 st.divider()
 # =========================
 # IMPORTANCE
@@ -241,12 +358,31 @@ pred_reussite = model_clf.predict(input_data)[0]
 # =========================
 st.subheader(" Résultat")
 
-st.metric("🎓 Moyenne prédite", round(pred_moyenne, 2))
+# Couleur conditionnelle
+color = "#16A34A" if pred_moyenne >= 10 else "#DC2626"
 
+st.markdown(f"""
+<div style="
+    background: #FFFFFF;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+">
+    <div style="font-size:14px; color:#64748B;">🎓 Moyenne prédite</div>
+    <div style="font-size:28px; font-weight:800; color:{color};">
+        {round(pred_moyenne, 2)} / 20
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Résultat réussite / échec
 if pred_reussite == 1:
     st.success("🎉 Réussite probable")
 else:
     st.error("⚠ Risque d'échec")
+
 st.divider()
 # =========================
 # ANALYSE
@@ -254,11 +390,11 @@ st.divider()
 st.subheader("💡 Analyse personnalisée")
 
 if pred_moyenne < 10:
-    st.warning("Profil à risque → augmente étude + réduit stress")
+    st.warning("Profil à risque, augmente tes heures d'étude et réduit le (stress + telephone + sommeil)")
 elif pred_moyenne < 13:
-    st.info("Profil moyen → amélioration possible")
+    st.info("Profil moyen, amélioration possible")
 else:
-    st.success("Excellent profil 🎯")
+    st.success("Excellent profil ")
 
 
 
