@@ -138,6 +138,7 @@ def train_models(df):
 models = train_models(df)
 
 # =========================
+<<<<<<< HEAD:pages/5_Prédiction_Intelligente.py
 # EXPLICATION PÉDAGOGIQUE (PAUSE + HIGHLIGHT)
 # =========================
 
@@ -239,6 +240,8 @@ st.components.v1.html("""
 </div>
 """, height=90)
 # =========================
+=======
+>>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/5_Prédiction.py
 #  SELECTION FILIERE
 # =========================
 st.subheader("🎓 Choisir une filière")
@@ -282,6 +285,13 @@ elif acc > 0.7:
 else:
     st.error("❌ Modèle faible")
 
+<<<<<<< HEAD:pages/5_Prédiction_Intelligente.py
+=======
+# =========================
+# EXPLICATION PÉDAGOGIQUE 
+# =========================
+st.subheader("🧠 Explication du modèle")
+>>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/5_Prédiction.py
 
 st.divider()
 # =========================

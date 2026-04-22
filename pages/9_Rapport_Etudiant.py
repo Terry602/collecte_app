@@ -65,7 +65,7 @@ def load_data():
 df = load_data()
 
 # =========================
-# FILTRES PRO (SAFE)
+# FILTRES 
 # =========================
 st.subheader("🎓 Sélection intelligente de l'étudiant")
 
@@ -93,7 +93,7 @@ if df_n.empty:
     st.stop()
 
 # =========================
-# NOM (SAFE)
+# NOM 
 # =========================
 df_n = df_n.copy()
 

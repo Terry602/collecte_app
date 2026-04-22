@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 import time
 # ==========================================================
-# ⚙️ CONFIG PAGE
+#  CONFIG PAGE
 # ==========================================================
 st.set_page_config(
     page_title="SmartStudent Analytics - Advanced",
@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==========================================================
-# 📦 CHARGEMENT DONNÉES
+#  CHARGEMENT DONNÉES
 # ==========================================================
 @st.cache_data(ttl=5)
 def load_data():
@@ -23,7 +23,11 @@ except:
     st.stop()
 
 # ==========================================================
+<<<<<<< HEAD
 # 🎨 HEADER STYLE FINTECH PREMIUM
+=======
+#  TITRE
+>>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac
 # ==========================================================
 
 st.markdown("""
@@ -84,7 +88,7 @@ st.markdown("""
 st.divider()
 
 # =========================
-# DATA (SANS BUG)
+# DATA 
 # =========================
   # refresh auto toutes les 5 secondes
 def load_data():
@@ -390,7 +394,7 @@ st.plotly_chart(fig_trend, use_container_width=True)
 st.divider()
 
 # ==========================================================
-# 🧠 CONCLUSION IA
+# CONCLUSION IA
 # ==========================================================
 st.subheader("🧠 Conclusion intelligente")
 
@@ -410,7 +414,11 @@ st.info("""
 """)
 
 # =========================
+<<<<<<< HEAD
 # 🎨 STYLE PRO (AMÉLIORÉ + LISIBLE + MODERNE)
+=======
+# STYLE PRO
+>>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac
 # =========================
 st.markdown("""
 <style>
