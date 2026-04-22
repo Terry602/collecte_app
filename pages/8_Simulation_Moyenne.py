@@ -1,11 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-<<<<<<< HEAD:pages/8_Simulation_Moyenne.py
 import plotly.graph_objects as go 
-=======
 import plotly.graph_objects as go  
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/8_Simulation.py
 
 from sklearn.ensemble import RandomForestRegressor
 
@@ -59,11 +56,7 @@ def load_data():
 df = load_data()
 
 # =========================
-<<<<<<< HEAD:pages/8_Simulation_Moyenne.py
-# TRAIN MODELS PAR FILIERE
-=======
 #  TRAIN MODELS PAR FILIERE
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/8_Simulation.py
 # =========================
 @st.cache_resource
 def train_models(df):
@@ -134,11 +127,7 @@ moyenne_actuelle = st.number_input(
 )
 
 # =========================
-<<<<<<< HEAD:pages/8_Simulation_Moyenne.py
 # INITIALISATION INTELLIGENTE
-=======
-#  INITIALISATION INTELLIGENTE
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/8_Simulation.py
 # =========================
 df_fil["diff"] = abs(df_fil["moyenne"] - moyenne_actuelle)
 closest = df_fil.sort_values("diff").iloc[0]
@@ -163,11 +152,7 @@ with col3:
     telephone = st.slider("📱 Téléphone", 0, 12, int(closest["telephone"]))
 
 # =========================
-<<<<<<< HEAD:pages/8_Simulation_Moyenne.py
-# FONCTION BUILD INPUT (MANQUANTE AVANT ❌)
-=======
-#  FONCTION BUILD INPUT 
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/8_Simulation.py
+# FONCTION BUILD INPUT 
 # =========================
 def build_input(h, s, sl, m, c, t):
     d = {
@@ -330,11 +315,7 @@ col3.markdown(f"""
 
 st.divider()
 # =========================
-<<<<<<< HEAD:pages/8_Simulation_Moyenne.py
 # RADAR CHART
-=======
-#  RADAR CHART
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/8_Simulation.py
 # =========================
 st.subheader("📡 Profil étudiant")
 
@@ -369,11 +350,7 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 st.divider()
 # =========================
-<<<<<<< HEAD:pages/8_Simulation_Moyenne.py
 # OPTIMISATION AUTO
-=======
-#  OPTIMISATION AUTO
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/8_Simulation.py
 # =========================
 st.subheader(" Optimisation automatique")
 

@@ -23,11 +23,7 @@ except:
     st.stop()
 
 # ==========================================================
-<<<<<<< HEAD
-# 🎨 HEADER STYLE FINTECH PREMIUM
-=======
-#  TITRE
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac
+#  HEADER
 # ==========================================================
 
 st.markdown("""
@@ -152,42 +148,42 @@ st.components.v1.html("""
 <div class="container">
 
     <div class="objective active">
-        <div class="title" style="color:#2563EB;">📥 Collecte intelligente des données</div>
+        <div class="title" style="color:#2563EB;">Collecte intelligente des données</div>
         <div class="desc">Centralisation et structuration des données étudiantes pour analyse.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#059669;">📊 Analyse comportementale & académique</div>
+        <div class="title" style="color:#059669;">Analyse comportementale & académique</div>
         <div class="desc">Étude des performances et comportements des étudiants.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#7C3AED;">🧠 Identification des facteurs de réussite</div>
+        <div class="title" style="color:#7C3AED;"> Identification des facteurs de réussite</div>
         <div class="desc">Détection des variables influençant les résultats académiques.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#DC2626;">🤖 Prédiction des performances</div>
+        <div class="title" style="color:#DC2626;"> Prédiction des performances</div>
         <div class="desc">Utilisation de modèles IA pour anticiper les résultats.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#EA580C;">📑 Génération de rapports intelligents</div>
+        <div class="title" style="color:#EA580C;"> Génération de rapports intelligents</div>
         <div class="desc">Production automatique d’insights pour la prise de décision.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#0EA5E9;">🧹 Data Cleaning & Preprocessing</div>
+        <div class="title" style="color:#0EA5E9;"> Data Cleaning & Preprocessing</div>
         <div class="desc">Nettoyage, transformation et préparation des données.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#16A34A;">📈 Data Visualization Avancée</div>
+        <div class="title" style="color:#16A34A;"> Data Visualization Avancée</div>
         <div class="desc">Création de dashboards interactifs et visuels.</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9333EA;">🧪 Feature Engineering & Model Evaluation</div>
+        <div class="title" style="color:#9333EA;"> Feature Engineering & Model Evaluation</div>
         <div class="desc">Optimisation des variables et évaluation des modèles.</div>
     </div>
 
@@ -413,109 +409,6 @@ st.info("""
 - Améliorer la régularité
 """)
 
-# =========================
-<<<<<<< HEAD
-# 🎨 STYLE PRO (AMÉLIORÉ + LISIBLE + MODERNE)
-=======
-# STYLE PRO
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac
-# =========================
-st.markdown("""
-<style>
-
-/* =========================
-   GLOBAL BACKGROUND (LIGHT PRO DASHBOARD)
-========================= */
-.main {
-    background-color: #F5F7FB;
-}
-
-/* TITRES */
-h1, h2, h3 {
-    color: #0F172A;
-    font-weight: 700;
-}
-
-/* =========================
-   KPI / CARDS (STYLE GLASS CLEAN)
-========================= */
-.card {
-    background: #FFFFFF;
-    padding: 22px;
-    border-radius: 16px;
-    border: 1px solid #E5E7EB;
-    text-align: center;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    border-color: #93C5FD;
-}
-
-/* ICON */
-.icon {
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-/* KPI VALUE */
-.kpi {
-    font-size: 24px;
-    font-weight: 800;
-    color: #111827;
-}
-
-/* SMALL TEXT */
-.small {
-    font-size: 13px;
-    color: #6B7280;
-    margin-top: 5px;
-}
-
-/* =========================
-   STREAMLIT METRICS CLEAN
-========================= */
-[data-testid="stMetric"] {
-    background: #FFFFFF;
-    border-radius: 14px;
-    padding: 15px;
-    border: 1px solid #E5E7EB;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-}
-
-/* =========================
-   TABLE CLEAN
-========================= */
-.stDataFrame {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* =========================
-   PLOTLY BACKGROUND CLEAN
-========================= */
-.js-plotly-plot {
-    background: white;
-    border-radius: 12px;
-    padding: 10px;
-}
-
-/* =========================
-   SUCCESS / WARNING / INFO CLEAN
-========================= */
-.stSuccess, .stWarning, .stInfo {
-    border-radius: 12px;
-    padding: 10px;
-}
-
-
-
-</style>
-""", unsafe_allow_html=True)
 
 
 # =========================

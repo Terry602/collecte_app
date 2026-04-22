@@ -138,8 +138,7 @@ def train_models(df):
 models = train_models(df)
 
 # =========================
-<<<<<<< HEAD:pages/5_Prédiction_Intelligente.py
-# EXPLICATION PÉDAGOGIQUE (PAUSE + HIGHLIGHT)
+# EXPLICATION PÉDAGOGIQUE
 # =========================
 
 st.subheader("🧠 Explication du modèle")
@@ -240,8 +239,6 @@ st.components.v1.html("""
 </div>
 """, height=90)
 # =========================
-=======
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/5_Prédiction.py
 #  SELECTION FILIERE
 # =========================
 st.subheader("🎓 Choisir une filière")
@@ -269,7 +266,6 @@ col1, col2 = st.columns(2)
 col1.metric("📉 MAE", round(mae, 2))
 col2.metric("🎯 Accuracy", round(acc, 2))
 
-# Interprétation MAE
 if mae < 1.5:
     st.success("✔ Prédiction très fiable (faible erreur)")
 elif mae < 3:
@@ -277,7 +273,6 @@ elif mae < 3:
 else:
     st.error("❌ Modèle peu précis → données insuffisantes ou bruit élevé")
 
-# Interprétation accuracy
 if acc > 0.85:
     st.success("✔ Excellent modèle de classification")
 elif acc > 0.7:
@@ -285,13 +280,6 @@ elif acc > 0.7:
 else:
     st.error("❌ Modèle faible")
 
-<<<<<<< HEAD:pages/5_Prédiction_Intelligente.py
-=======
-# =========================
-# EXPLICATION PÉDAGOGIQUE 
-# =========================
-st.subheader("🧠 Explication du modèle")
->>>>>>> 10086ec68340be6fec0111451fb055ae06fd3cac:pages/5_Prédiction.py
 
 st.divider()
 # =========================
@@ -346,7 +334,6 @@ input_dict = {
     "methode": 0 if methode == "Seul" else 1
 }
 
-# gérer OneHot niveau
 for col in features:
     if col.startswith("niveau_"):
         input_dict[col] = 0
@@ -368,7 +355,6 @@ pred_reussite = model_clf.predict(input_data)[0]
 # =========================
 st.subheader(" Résultat")
 
-# Couleur conditionnelle
 color = "#16A34A" if pred_moyenne >= 10 else "#DC2626"
 
 st.markdown(f"""
@@ -387,7 +373,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Résultat réussite / échec
 if pred_reussite == 1:
     st.success("🎉 Réussite probable")
 else:
