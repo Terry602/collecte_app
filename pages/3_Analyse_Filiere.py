@@ -269,4 +269,3 @@ if age_high:
 
 if credits_high:
     st.info(f" Filière avec le plus de crédits validés : {credits_high}")
-

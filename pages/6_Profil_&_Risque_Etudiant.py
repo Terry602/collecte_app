@@ -141,7 +141,7 @@ st.markdown(f"""
 
 <div style="
     font-size:14px;
-    color:#0F172A;
+    color:#3B82F6;
 ">
     {commentaire}
 </div>

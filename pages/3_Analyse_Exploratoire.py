@@ -142,4 +142,3 @@ fig1 = px.bar(
 )
 
 st.plotly_chart(fig1, use_container_width=True)
-

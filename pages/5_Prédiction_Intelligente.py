@@ -176,7 +176,7 @@ st.components.v1.html("""
 .line.active {
     font-size: 17px;
     font-weight: 700;
-    color: #0F172A;
+    color:#3B82F6;
     transform: scale(1.05);
 }
 
@@ -215,7 +215,7 @@ st.components.v1.html("""
 <div class="scroll-wrapper">
     <div class="scroll-content">
 
-        <div class="line active">Le modèle analyse chaque filière et exploite toutes les variables de la filière choisie </div>
+        <div class="line active"> Le modèle analyse et exploite toutes les variables de la filière choisie </div>
         <div class="line"> Ceci étant, les variables exploitées sont entre autres : </div>
 
         <div class="line">- Habitudes d’étude : heures et régularité</div>

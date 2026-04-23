@@ -82,48 +82,33 @@ col3.metric("📚 Heures d'étude", round(df["heures_etude"].mean(), 2))
 st.divider()
 
 # =========================
-#  HISTOGRAMMES
+#  HISTOGRAMMES (inchangé)
 # =========================
 st.markdown("""
-<h3 style="color:#64748B;">
+<h3 style="color:#3B82F6;">
  Distributions des variables
 </h3>
 """, unsafe_allow_html=True)
 
-fig1 = px.histogram(
-    df,
-    x="moyenne",
-    nbins=12,
-    title=" Moyennes des étudiants",
-    color_discrete_sequence=["#4CAF50"]
-)
+fig1 = px.histogram(df, x="moyenne", nbins=12, title=" Moyennes des étudiants",
+                    color_discrete_sequence=["#4CAF50"])
 st.plotly_chart(fig1, use_container_width=True)
 
-fig2 = px.histogram(
-    df,
-    x="stress",
-    nbins=12,
-    title=" Niveau de stress",
-    color_discrete_sequence=["#F44336"]
-)
+fig2 = px.histogram(df, x="stress", nbins=12, title=" Niveau de stress",
+                    color_discrete_sequence=["#F44336"])
 st.plotly_chart(fig2, use_container_width=True)
 
-fig3 = px.histogram(
-    df,
-    x="heures_etude",
-    nbins=12,
-    title=" Heures d'étude",
-    color_discrete_sequence=["#2196F3"]
-)
+fig3 = px.histogram(df, x="heures_etude", nbins=12, title=" Heures d'étude",
+                    color_discrete_sequence=["#2196F3"])
 st.plotly_chart(fig3, use_container_width=True)
 
 st.divider()
 
 # =========================
-#  PIE CHARTS MODERNES
+#  PIE CHARTS 
 # =========================
 st.markdown("""
-<h3 style="color:#64748B;">
+<h3 style="color:#059669;">
  Répartitions
 </h3>
 """, unsafe_allow_html=True)
@@ -131,61 +116,52 @@ st.markdown("""
 col1, col2 = st.columns(2)
 
 with col1:
-    fig4, ax1 = plt.subplots()
-    df["filiere"].value_counts().plot(
-        kind="pie",
-        autopct="%1.1f%%",
-        startangle=90,
-        colors=["#FF5733", "#FFC300", "#28B463", "#3498DB", "#9B59B6"],
-        ax=ax1
+    fig4 = px.pie(
+        df,
+        names="filiere",
+        title=" Répartition par filière",
+        color_discrete_sequence=["#FF5733", "#FFC300", "#28B463", "#3498DB", "#9B59B6"]
     )
-    ax1.set_ylabel("")
-    ax1.set_title(" Répartition par filière")
-    st.pyplot(fig4)
+    st.plotly_chart(fig4, use_container_width=True)
 
 with col2:
-    fig5, ax2 = plt.subplots()
-    df["sexe"].value_counts().plot(
-        kind="pie",
-        autopct="%1.1f%%",
-        startangle=90,
-        colors=["#FF9F1C", "#2EC4B6"],
-        ax=ax2
+    fig5 = px.pie(
+        df,
+        names="sexe",
+        title=" Répartition par sexe",
+        color_discrete_sequence=["#FF9F1C", "#2EC4B6"]
     )
-    ax2.set_ylabel("")
-    ax2.set_title(" Répartition par sexe")
-    st.pyplot(fig5)
-
+    st.plotly_chart(fig5, use_container_width=True)
 
 st.divider()
 
 # =========================
-#  CORRELATION
+#  CORRELATION 
 # =========================
 st.markdown("""
-<h3 style="color:#64748B;">
+<h3 style="color:#92400E;">
  Corrélation
 </h3>
 """, unsafe_allow_html=True)
 
-fig6, ax3 = plt.subplots(figsize=(10,6))
-sns.heatmap(
-    numeric_df.corr(),
-    annot=True,
-    cmap="coolwarm",
-    fmt=".2f",
-    ax=ax3
+corr_matrix = numeric_df.corr()
+
+fig6 = px.imshow(
+    corr_matrix,
+    text_auto=True,
+    color_continuous_scale="RdBu_r",
+    title=" Matrice de corrélation"
 )
-ax3.set_title(" Matrice de corrélation")
-st.pyplot(fig6)
+
+st.plotly_chart(fig6, use_container_width=True)
 
 st.divider()
 
 # =========================
-#  RELATIONS IMPORTANTES (MODERNISÉ PLOTLY)
+#  RELATIONS IMPORTANTES (inchangé)
 # =========================
 st.markdown("""
-<h3 style="color:#64748B;">
+<h3 style="color:#EAB308;">
 Relations clés
 </h3>
 """, unsafe_allow_html=True)
@@ -205,7 +181,6 @@ fig7.update_layout(template="plotly_dark")
 
 st.plotly_chart(fig7, use_container_width=True)
 
-
 fig8 = px.scatter(
     df,
     x="stress",
@@ -224,34 +199,34 @@ st.plotly_chart(fig8, use_container_width=True)
 st.divider()
 
 # =========================
-# BOXPLOT (INTOUCHABLE)
+# BOXPLOT 
 # =========================
 st.markdown("""
-<h3 style="color:#64748B;">
+<h3 style="color:#94A3B8;">
  Distribution des notes par filière
 </h3>
 """, unsafe_allow_html=True)
 
-fig4, ax4 = plt.subplots(figsize=(10,6))
-sns.boxplot(data=df, x="filiere", y="moyenne", ax=ax4, palette="Set2")
+fig9 = px.box(
+    df,
+    x="filiere",
+    y="moyenne",
+    color="filiere",
+    title="Répartition des moyennes par filière",
+    color_discrete_sequence=px.colors.qualitative.Set2
+)
 
-ax4.set_title("Répartition des moyennes par filière")
-ax4.set_xlabel("Filière")
-ax4.set_ylabel("Moyenne")
+fig9.update_layout(xaxis_tickangle=45)
 
-plt.xticks(rotation=45)
-
-st.pyplot(fig4)
+st.plotly_chart(fig9, use_container_width=True)
 
 st.divider()
+
 # =========================
-# EXPORT CSV + AFFICHAGE DONNÉES
+# EXPORT CSV + AFFICHAGE DONNÉES (inchangé)
 # =========================
 col1, col2 = st.columns(2)
 
-# =========================
-# BOUTON 1 : DOWNLOAD CSV
-# =========================
 csv = df.to_csv(index=False).encode("utf-8")
 
 with col1:
@@ -262,15 +237,9 @@ with col1:
         mime="text/csv"
     )
 
-# =========================
-# BOUTON 2 : AFFICHER DATA
-# =========================
 with col2:
-    show_data = st.button("👁️ Voir tous les étudiants")
+    show_data = st.button("👁️ Voir les données brutes")
 
-# =========================
-# AFFICHAGE CONDITIONNEL
-# =========================
 if show_data:
     st.subheader("📚 Liste complète des étudiants")
 
