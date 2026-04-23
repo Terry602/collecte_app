@@ -37,7 +37,7 @@ st.markdown("""
 </style>
 
 <div class="report-header">
-    <div class="report-title">📑 Génération de Rapport Personnel</div>
+    <div class="report-title"> Génération de Rapport Personnel</div>
     <div class="report-subtitle">AI-driven Academic Report • Insights • Performance Intelligence</div>
 </div>
 """, unsafe_allow_html=True)
@@ -50,7 +50,6 @@ st.divider()
 def load_data():
     df = pd.read_csv("data_students.csv")
 
-    # 🔥 COMPATIBILITÉ ANCIENNES DONNÉES
     if "nom" not in df.columns:
         df["nom"] = "Inconnu"
 
@@ -67,11 +66,11 @@ df = load_data()
 # =========================
 # FILTRES 
 # =========================
-st.subheader("🎓 Sélection intelligente de l'étudiant")
+st.subheader(" Sélection de l'étudiant")
 
 # FILIERE
 filiere = st.selectbox(
-    "📚 Choisir la filière",
+    " Choisir la filière",
     sorted(df["filiere"].dropna().unique())
 )
 
@@ -79,7 +78,7 @@ df_f = df[df["filiere"] == filiere]
 
 # NIVEAU
 niveau = st.selectbox(
-    "🎓 Choisir le niveau",
+    " Choisir le niveau",
     sorted(df_f["niveau"].dropna().unique())
 )
 
@@ -89,7 +88,7 @@ df_n = df_f[df_f["niveau"] == niveau]
 # PROTECTION CAS VIDE
 # =========================
 if df_n.empty:
-    st.warning("⚠️ Aucun étudiant trouvé pour cette sélection.")
+    st.warning(" Aucun étudiant trouvé pour cette sélection.")
     st.stop()
 
 # =========================
@@ -104,7 +103,7 @@ if "nom" in df_n.columns:
 else:
     noms = ["Inconnu"]
 
-nom = st.selectbox("👤 Choisir l'étudiant", noms)
+nom = st.selectbox(" Choisir l'étudiant", noms)
 
 student = df_n[df_n["nom"] == nom].iloc[0]
 
@@ -130,7 +129,7 @@ risk = risk_level(student)
 # =========================
 # PROFIL
 # =========================
-st.subheader("👨‍🎓 Informations de l'étudiant")
+st.subheader(" Informations de l'étudiant")
 
 st.write("👤 Nom :", student.get("nom", "Inconnu"))
 st.write("🎓 Niveau :", student.get("niveau", "N/A"))
@@ -147,23 +146,28 @@ st.success(f"Niveau de risque : {risk}")
 # =========================
 # RECOMMANDATIONS
 # =========================
-st.subheader("💡 Recommandations")
+st.subheader(" Recommandations")
 
 if student.get("stress", 0) > 5:
-    st.write("🧘 Réduire le stress")
+    st.warning(" Réduire le stress")
+
 if student.get("telephone", 0) > 6:
-    st.write("📵 Réduire votre temps au téléphone")
+    st.warning(" Réduire votre temps au téléphone")
+
 if student.get("heures_etude", 0) < 5:
-    st.write("📚 Augmenter les heures d'étude")
+    st.error(" Augmenter les heures d'étude")
 
 if student.get("sommeil", 0) < 6:
-    st.write("😴 Avoir entre 6h et 8h de sommeil")
-if student.get("sommeil", 0) > 8 :
-    st.write("⚠️ Reduire votre temps de sommeil")
+    st.warning(" Avoir entre 6h et 8h de sommeil")
+
+if student.get("sommeil", 0) > 8:
+    st.info(" Réduire votre temps de sommeil")
+
 if student.get("motivation", 0) < 5:
-    st.write("🔥 La motivation aide, ayez des objectifs") 
+    st.error(" La motivation est essentielle, fixez-vous des objectifs")
+
 if student.get("concentration", 0) < 5:
-    st.write("La concentration est un facteur décisif, augmentez la")       
+    st.error(" La concentration est un facteur clé, améliorez-la")
 # =========================
 # PDF GENERATION
 # =========================
@@ -193,19 +197,6 @@ def generate_pdf(student, risk):
     return buffer
 
 
-# =========================
-# EXPORT CSV
-# =========================
-st.subheader("📄 Export des données")
-
-csv = df.to_csv(index=False).encode("utf-8")
-
-st.download_button(
-    label="📥 Télécharger les données CSV",
-    data=csv,
-    file_name="donnees_etudiants.csv",
-    mime="text/csv"
-)
 # =========================
 # DOWNLOAD PDF
 # =========================

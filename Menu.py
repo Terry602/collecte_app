@@ -19,7 +19,7 @@ def load_data():
 try:
     df = load_data()
 except:
-    st.error("❌ Aucune donnée disponible.")
+    st.error(" Aucune donnée disponible, veuillez remplir le formulaire dans le menu retractable.")
     st.stop()
 
 # ==========================================================
@@ -73,7 +73,7 @@ st.markdown("""
 
 st.markdown("""
 <div class="fintech-header">
-    <div class="fintech-title">🎓 Application d'Analyse des Étudiants</div>
+    <div class="fintech-title"> Application d'Analyse des Étudiants</div>
     <div class="fintech-subtitle">
        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA 
     </div>
@@ -98,7 +98,7 @@ def load_data():
 # OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
 
-st.markdown("## 🧭 Objectif du projet")
+st.markdown("##  Objectif du projet")
 
 st.components.v1.html("""
 <style>
@@ -208,7 +208,7 @@ st.divider()
 # =========================
 # KPI CARDS
 # =========================
-st.markdown("## ⚙️ Indicateurs globaux")
+st.markdown("##  Indicateurs globaux")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -249,16 +249,16 @@ st.divider()
 # =========================
 # INSIGHTS
 # =========================
-st.markdown("## 🧠 Insights automatiques")
+st.markdown("##  Insights automatiques")
 
 best = df.groupby("filiere")["moyenne"].mean().idxmax()
 worst = df.groupby("filiere")["moyenne"].mean().idxmin()
 
 col1, col2, col3 = st.columns(3)
 
-col1.success(f"🏆 Meilleure filière : {best}")
-col2.error(f"⚠️ Filière faible : {worst}")
-col3.info(f"📊 Total filières : {df['filiere'].nunique()}")
+col1.success(f" Meilleure filière : {best}")
+col2.error(f" Filière faible : {worst}")
+col3.info(f" Total filières : {df['filiere'].nunique()}")
 
 col1, col2, col3 = st.columns(3)
 
@@ -266,29 +266,29 @@ stress_high = df.groupby("filiere")["stress"].mean().idxmax()
 study_high = df.groupby("filiere")["heures_etude"].mean().idxmax()
 motivation_high = df.groupby("filiere")["motivation"].mean().idxmax()
 
-col1.warning(f"😰 Filière la plus stressée : {stress_high}")
-col2.info(f"📚 Filière la plus travailleuse : {study_high}")
-col3.success(f"🔥 Filière la plus motivée : {motivation_high}")
+col1.warning(f" Filière la plus stressée : {stress_high}")
+col2.info(f" Filière la plus travailleuse : {study_high}")
+col3.success(f" Filière la plus motivée : {motivation_high}")
 
 st.divider()
 
 # =========================
 # PERFORMANCE
 # =========================
-st.markdown("## 📈 Performance globale")
+st.markdown("##  Performance globale")
 
 pass_rate = (df["moyenne"] >= 10).mean() * 100
 
 col1, col2 = st.columns(2)
 
-col1.metric("✔ Taux de réussite", f"{pass_rate:.1f}%")
-col2.metric("❌ Taux d'échec", f"{100-pass_rate:.1f}%")
+col1.metric(" Taux de réussite", f"{pass_rate:.1f}%")
+col2.metric(" Taux d'échec", f"{100-pass_rate:.1f}%")
 
 st.divider()
 # ==========================================================
 #  DISTRIBUTION DES NOTES
 # ==========================================================
-st.subheader("📈 Distribution des performances")
+st.subheader(" Distribution des performances")
 
 fig_hist = px.histogram(
     df,
@@ -304,7 +304,7 @@ st.divider()
 #  TOP ÉTUDIANTS
 # ==========================================================
 
-st.subheader("🏆 Top étudiants")
+st.subheader(" Top étudiants")
 
 top_students = df.sort_values("moyenne", ascending=False).head(10)
 
@@ -337,7 +337,7 @@ st.divider()
 # ==========================================================
 #  FACTEURS D’IMPACT
 # ==========================================================
-st.subheader("📊 Facteurs influençant la performance")
+st.subheader(" Facteurs influençant la performance")
 
 correlation = df.select_dtypes(include="number").corr()["moyenne"].sort_values()
 
@@ -355,7 +355,7 @@ st.divider()
 # ==========================================================
 #  PROFIL IDÉAL
 # ==========================================================
-st.subheader("🌟 Profil étudiant idéal")
+st.subheader(" Profil étudiant idéal")
 
 best_student = df.sort_values("moyenne", ascending=False).iloc[0]
 
@@ -373,7 +373,7 @@ st.divider()
 # ==========================================================
 #  TENDANCES
 # ==========================================================
-st.subheader("📈 Tendances globales")
+st.subheader(" Tendances globales")
 
 trend = df.groupby("niveau")["moyenne"].mean().reset_index()
 
@@ -392,7 +392,7 @@ st.divider()
 # ==========================================================
 # CONCLUSION IA
 # ==========================================================
-st.subheader("🧠 Conclusion intelligente")
+st.subheader(" Espace recommandation")
 
 if df["stress"].mean() > 6:
     st.warning(" Le stress est un facteur critique global")
@@ -409,12 +409,4 @@ st.info("""
 - Améliorer la régularité
 """)
 
-
-
-# =========================
-# 🔄 BOUTON REFRESH (IMPORTANT)
-# =========================
-if st.button("🔄 Actualiser les données"):
-    st.cache_data.clear()
-    st.rerun()
 

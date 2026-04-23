@@ -38,7 +38,7 @@ st.markdown("""
 </style>
 
 <div class="explorer-header">
-    <div class="explorer-title">🔎 Analyse Exploratoire</div>
+    <div class="explorer-title"> Analyse Exploratoire</div>
     <div class="explorer-subtitle">Data Exploration • Patterns Detection • Statistical Insights</div>
 </div>
 """, unsafe_allow_html=True)
@@ -52,7 +52,7 @@ st.divider()
 def load_data():
     df = pd.read_csv("data_students.csv")
 
-    # 🔥 COMPATIBILITÉ ANCIENNES DONNÉES
+    #  COMPATIBILITÉ ANCIENNES DONNÉES
     if "nom" not in df.columns:
         df["nom"] = "Inconnu"
 
@@ -72,7 +72,7 @@ df = load_data()
 # =========================
 # SIDEBAR FILTERS
 # =========================
-st.sidebar.header("🎛️ Filtres")
+st.sidebar.header(" Filtres")
 
 filiere = st.sidebar.selectbox("📚 Filière", ["Toutes"] + sorted(df["filiere"].dropna().unique()))
 niveau = st.sidebar.selectbox("🎓 Niveau", ["Tous"] + sorted(df["niveau"].dropna().unique()))
@@ -96,7 +96,7 @@ if sexe != "Tous":
 # =========================
 # SEARCH SAFE
 # =========================
-st.markdown("## 🔎 Recherche étudiant")
+st.markdown("##  Recherche étudiant")
 
 search = st.text_input("Tape le nom de l'étudiant")
 
@@ -114,7 +114,7 @@ st.divider()
 # =========================
 # KPIs
 # =========================
-st.markdown("## 📌 Indicateurs clés")
+st.markdown("##  Indicateurs clés")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -128,7 +128,7 @@ st.divider()
 # =========================
 # FILIERE BAR CHART (SAFE)
 # =========================
-st.markdown("## 👨‍🎓 Nombre d'étudiants par filière")
+st.markdown("##  Nombre d'étudiants par filière")
 
 filiere_counts = df_filtered["filiere"].value_counts().reset_index()
 filiere_counts.columns = ["filiere", "count"]

@@ -35,7 +35,7 @@ st.markdown("""
 </style>
 
 <div class="niveau-header">
-    <div class="niveau-title">🏫 Analyse par Niveau Académique</div>
+    <div class="niveau-title"> Analyse par Niveau Académique</div>
     <div class="niveau-subtitle">Étude des performances et évolutions selon les niveaux de formation</div>
 </div>
 """, unsafe_allow_html=True)
@@ -56,7 +56,7 @@ df = load_data()
 st.subheader(" Sélection de la filière")
 
 filiere_selected = st.selectbox(
-    "📚 Choisir une filière",
+    " Choisir une filière",
     df["filiere"].dropna().unique()
 )
 
@@ -66,13 +66,13 @@ df_fil = df[df["filiere"] == filiere_selected]
 # CAS VIDE
 # =========================
 if df_fil.empty:
-    st.warning("⚠️ Aucune donnée pour cette filière")
+    st.warning(" Aucune donnée pour cette filière")
     st.stop()
 
 # =========================
 # KPI NIVEAU GLOBAL FILTRÉ
 # =========================
-st.subheader(f"📈 Indicateurs - {filiere_selected}")
+st.subheader(f" Indicateurs - {filiere_selected}")
 
 niveau_group = df_fil.groupby("niveau").mean(numeric_only=True).reset_index()
 
@@ -85,7 +85,7 @@ col3.metric("📚 Étudiants", len(df_fil))
 # =========================
 # ANALYSE PAR NIVEAU
 # =========================
-st.subheader("📊 Analyse par niveau dans la filière")
+st.subheader(" Analyse par niveau dans la filière")
 
 fig1 = px.bar(
     niveau_group,

@@ -39,13 +39,13 @@ st.markdown("""
 </style>
 
 <div class="form-header">
-    <div class="form-title">🧠 SmartStudent Analytics Forms</div>
+    <div class="form-title"> SmartStudent Analytics Forms</div>
     <div class="form-subtitle">Data collection & intelligent student profiling system</div>
 </div>
 """, unsafe_allow_html=True)
 
 st.divider()
-st.subheader("📥 Formulaire de collecte des données étudiants")
+st.subheader(" Formulaire de collecte des données étudiants")
 
 DATA_FILE = "data_students.csv"
 
@@ -122,7 +122,7 @@ if submit:
     # =========================
     # COMPATIBILITÉ ANCIENNES DONNÉES
     # =========================
-    if os.path.exists(DATA_FILE):
+    if os.path.exists(DATA_FILE) and os.path.getsize(DATA_FILE) > 0:
         df = pd.read_csv(DATA_FILE)
 
         if "nom" not in df.columns:

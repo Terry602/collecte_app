@@ -39,7 +39,7 @@ st.markdown("""
 </style>
 
 <div class="header-box">
-    <div class="header-title">🤖 Module de Prédiction Intelligente</div>
+    <div class="header-title"> Module de Prédiction Intelligente</div>
     <div class="header-tag">AI-powered Academic Performance Prediction System</div>
 </div>
 """, unsafe_allow_html=True)
@@ -141,7 +141,7 @@ models = train_models(df)
 # EXPLICATION PÉDAGOGIQUE
 # =========================
 
-st.subheader("🧠 Explication du modèle")
+st.subheader(" Explication du modèle")
 
 st.components.v1.html("""
 <style>
@@ -226,14 +226,14 @@ st.components.v1.html("""
 
         <div class="line">- Profil académique : filière, niveau, sexe, méthode</div>
 
-        <div class="line">📌 Objectif : </div>
+        <div class="line"> Objectif : </div>
 
         <div class="line">- prédire la moyenne académique</div> 
 
         <div class="line">- prédire la réussite ou l’échec</div>
 
 
-        <div class="line">🤖 Algorithme utilisée : Random Forest (robuste et performant)</div>
+        <div class="line"> Algorithme utilisée : Random Forest (robuste et performant)</div>
 
     </div>
 </div>
@@ -241,10 +241,10 @@ st.components.v1.html("""
 # =========================
 #  SELECTION FILIERE
 # =========================
-st.subheader("🎓 Choisir une filière")
+st.subheader(" Choisir une filière")
 
 filiere_selected = st.selectbox(
-    "📚 Filière",
+    "Filière",
     sorted(models.keys())
 )
 
@@ -259,33 +259,33 @@ acc = model_data["acc"]
 # =========================
 # RESULTATS
 # =========================
-st.subheader("📊 Performances du modèle")
+st.subheader(" Performances du modèle")
 
 col1, col2 = st.columns(2)
 
-col1.metric("📉 MAE", round(mae, 2))
-col2.metric("🎯 Accuracy", round(acc, 2))
+col1.metric(" MAE", round(mae, 2))
+col2.metric(" Accuracy", round(acc, 2))
 
 if mae < 1.5:
-    st.success("✔ Prédiction très fiable (faible erreur)")
+    st.success(" Prédiction très fiable (faible erreur)")
 elif mae < 3:
-    st.warning("⚠ Précision moyenne mais acceptable")
+    st.warning(" Précision moyenne mais acceptable")
 else:
-    st.error("❌ Modèle peu précis → données insuffisantes ou bruit élevé")
+    st.error(" Modèle peu précis → données insuffisantes ou bruit élevé")
 
 if acc > 0.85:
-    st.success("✔ Excellent modèle de classification")
+    st.success(" Excellent modèle de classification")
 elif acc > 0.7:
-    st.warning("⚠ Modèle correct mais améliorable")
+    st.warning(" Modèle correct mais améliorable")
 else:
-    st.error("❌ Modèle faible")
+    st.error(" Modèle faible")
 
 
 st.divider()
 # =========================
 # IMPORTANCE
 # =========================
-st.subheader("📊 Facteurs les plus influents")
+st.subheader(" Facteurs les plus influents")
 
 importance = pd.Series(model_reg.feature_importances_, index=features)
 importance = importance.sort_values()
@@ -382,7 +382,7 @@ st.divider()
 # =========================
 # ANALYSE
 # =========================
-st.subheader("💡 Analyse personnalisée")
+st.subheader(" Analyse personnalisée")
 
 if pred_moyenne < 10:
     st.warning("Profil à risque, augmente tes heures d'étude et réduit le (stress + telephone + sommeil)")

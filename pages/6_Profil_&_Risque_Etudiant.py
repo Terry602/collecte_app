@@ -35,7 +35,7 @@ st.markdown("""
 </style>
 
 <div class="profil-header">
-    <div class="profil-title">👤 Profil Intelligent de l'Étudiant</div>
+    <div class="profil-title"> Profil Intelligent de l'Étudiant</div>
     <div class="profil-subtitle">AI-driven Student Profile • Behavioral Analytics • Academic Intelligence</div>
 </div>
 """, unsafe_allow_html=True)
@@ -53,13 +53,13 @@ def load_data():
 try:
     df = load_data()
 except:
-    st.error("❌ Aucune donnée disponible.")
+    st.error(" Aucune donnée disponible.")
     st.stop()
 
 # =========================
 # FORMULAIRE PROFIL
 # =========================
-st.subheader("📥 Entre tes données pour analyse")
+st.subheader(" Entre tes données pour analyse")
 
 col1, col2 = st.columns(2)
 
@@ -76,7 +76,7 @@ st.divider()
 # =========================
 # SCORE DE RISQUE
 # =========================
-st.subheader("🧠 Résultat d'analyse")
+st.subheader(" Résultat d'analyse")
 
 # Normalisation
 stress_n = stress / 10
@@ -109,7 +109,7 @@ elif score_risque < 0.6:
 
 else:
     niveau = "🔴 Risque élevé"
-    commentaire = "Risque de baisse de performance important ❌"
+    commentaire = "Risque de baisse de performance important "
     color = "#DC2626"
     bg = "#FEF2F2"
 
@@ -118,7 +118,7 @@ else:
 # =========================
 st.markdown(f"""
 <div style="font-size:14px; color:#64748B;">
-    🎯 Score de risque académique
+     Score de risque académique
 </div>
 
 <div style="
@@ -165,7 +165,7 @@ st.bar_chart(dict(zip(categories, values)))
 # =========================
 # RECOMMANDATIONS AUTOMATIQUES
 # =========================
-st.subheader("💡 Recommandations personnalisées")
+st.subheader(" Recommandations personnalisées")
 
 if sommeil < 6:
     st.info("😴 Essaie de dormir au moins 6h par nuit")
@@ -182,4 +182,4 @@ if motivation < 5:
 if telephone > 6:
     st.info("📵 Réduis le temps passé sur téléphone")
 else:
-    st.info("🟩 Allez, nos encouragements")
+    st.info(" Allez, nos encouragements")

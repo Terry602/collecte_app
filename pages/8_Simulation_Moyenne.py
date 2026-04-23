@@ -39,7 +39,7 @@ st.markdown("""
 </style>
 
 <div class="simulation-header">
-    <div class="simulation-title">🧠 Simulation Intelligente (What If Pro)</div>
+    <div class="simulation-title"> Simulation Intelligente (What If Pro)</div>
     <div class="simulation-subtitle">AI Scenario Engine • Predictive Simulation • Decision Modeling</div>
 </div>
 """, unsafe_allow_html=True)
@@ -105,7 +105,7 @@ st.markdown("""
 # =========================
 # CHOIX FILIERE
 # =========================
-st.subheader("🎓 Profil étudiant")
+st.subheader(" Profil étudiant")
 
 filiere_input = st.selectbox("📚 Filière", list(models.keys()))
 model_data = models[filiere_input]
@@ -122,7 +122,7 @@ st.divider()
 st.subheader(" Ta situation actuelle")
 
 moyenne_actuelle = st.number_input(
-    "🎓 Entre ta moyenne actuelle (/20)",
+    " Entre ta moyenne actuelle (/20)",
     0.0, 20.0, 10.0
 )
 
@@ -135,7 +135,7 @@ closest = df_fil.sort_values("diff").iloc[0]
 # =========================
 # INPUT USER
 # =========================
-st.subheader("⚙️ Paramètres étudiant (modifiables)")
+st.subheader(" Paramètres étudiant (modifiables)")
 
 col1, col2, col3 = st.columns(3)
 
@@ -189,7 +189,7 @@ percent = (diff / moyenne_actuelle) * 100 if moyenne_actuelle != 0 else 0
 # =========================
 # RESULTATS
 # =========================
-st.subheader("📊 Résultats de simulation")
+st.subheader(" Résultats de simulation")
 
 # =========================
 # STYLE KPI CARDS
@@ -235,10 +235,6 @@ st.markdown("""
 # =========================
 impact_color = "#16A34A" if percent >= 0 else "#DC2626"
 
-# =========================
-# AFFICHAGE
-# =========================
-st.subheader("📊 Résultats de simulation")
 
 # =========================
 # STYLE KPI CARDS
@@ -288,7 +284,7 @@ col1, col2, col3 = st.columns(3)
 
 col1.markdown(f"""
 <div class="sim-card">
-    <div class="sim-title">🎓 Moyenne prédite</div>
+    <div class="sim-title"> Moyenne prédite</div>
     <div class="sim-value" style="color:{pred_color};">
         {round(pred, 2)}
     </div>
@@ -297,7 +293,7 @@ col1.markdown(f"""
 
 col2.markdown(f"""
 <div class="sim-card">
-    <div class="sim-title">🎯 Moyenne actuelle</div>
+    <div class="sim-title"> Moyenne actuelle</div>
     <div class="sim-value" style="color:{current_color};">
         {round(moyenne_actuelle, 2)}
     </div>
@@ -306,7 +302,7 @@ col2.markdown(f"""
 
 col3.markdown(f"""
 <div class="sim-card">
-    <div class="sim-title">📈 Impact</div>
+    <div class="sim-title"> Impact</div>
     <div class="sim-value" style="color:{impact_color};">
         {percent:.1f}%
     </div>
@@ -317,7 +313,7 @@ st.divider()
 # =========================
 # RADAR CHART
 # =========================
-st.subheader("📡 Profil étudiant")
+st.subheader(" Profil étudiant")
 
 radar = go.Figure()
 
@@ -332,7 +328,7 @@ st.plotly_chart(radar, use_container_width=True)
 # =========================
 # GRAPH
 # =========================
-st.subheader("📊 Avant vs Après")
+st.subheader(" Avant vs Après")
 
 fig = go.Figure()
 
@@ -371,12 +367,12 @@ for _ in range(100):
     if score > best_score:
         best_score = score
 
-st.metric("🎯 Meilleure moyenne possible", round(best_score, 2))
+st.metric(" Meilleure moyenne possible", round(best_score, 2))
 
 # =========================
 # RECOMMANDATIONS IA
 # =========================
-st.subheader("💡 Recommandations IA")
+st.subheader(" Recommandations IA")
 
 if heures < 4:
     st.warning("📚 Augmente ton temps d'étude")
@@ -399,16 +395,16 @@ if telephone > 6:
 # =========================
 # DIAGNOSTIC IA
 # =========================
-st.subheader("🧠 Diagnostic IA")
+st.subheader(" Diagnostic IA")
 
 if diff > 2:
-    st.success("🚀 Très forte amélioration possible")
+    st.success(" Très forte amélioration possible")
 elif diff > 0:
-    st.info("📈 Amélioration détectée")
+    st.info(" Amélioration détectée")
 elif diff > -2:
-    st.warning("⚠️ Légère baisse possible")
+    st.warning(" Légère baisse possible")
 else:
-    st.error("❌ Forte baisse de performance")
+    st.error(" Forte baisse de performance")
 
 # =========================
 # FOOTER

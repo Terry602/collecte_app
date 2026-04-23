@@ -38,7 +38,7 @@ st.markdown("""
 </style>
 
 <div class="clustering-header">
-    <div class="clustering-title">🧠 Segmentation Intelligente des Étudiants</div>
+    <div class="clustering-title"> Segmentation Intelligente des Étudiants</div>
     <div class="clustering-subtitle">Machine Learning • K-Means • AI-driven Student Profiling</div>
 </div>
 """, unsafe_allow_html=True)
@@ -53,7 +53,7 @@ def load_data():
 try:
     df = load_data()
 except:
-    st.error("❌ Aucune donnée disponible")
+    st.error(" Aucune donnée disponible")
     st.stop()
 
 # =========================
@@ -102,7 +102,7 @@ st.divider()
 # =========================
 # DISPLAY KPI
 # =========================
-st.subheader("📊 Répartition des profils")
+st.subheader(" Répartition des profils")
 
 col1, col2, col3 = st.columns(3)
 
@@ -113,7 +113,7 @@ st.divider()
 # =========================
 # VISUALISATION 2D
 # =========================
-st.subheader("📉 Visualisation des clusters")
+st.subheader(" Visualisation des clusters")
 
 fig = px.scatter(
     df,
@@ -133,7 +133,7 @@ st.divider()
 # =========================
 # PROFILS EXPLIQUÉS
 # =========================
-st.subheader("🧠 Analyse des groupes")
+st.subheader(" Analyse des groupes")
 
 for profil in df["profil"].unique():
     st.markdown(f"### {profil}")
