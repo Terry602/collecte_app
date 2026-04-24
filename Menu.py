@@ -480,11 +480,11 @@ st.info("""
 - Améliorer la régularité
 """)
 st.divider()
-st.info(""" Utiliser l'onglet  [<<]  visible au dessus a gauche de votre écran pour remplir le formulaire, naviguer dans l'application et prédire vos futures moyennes""")
+st.info(""" Utiliser l'onglet  [<<]  visible au dessus à gauche de votre écran pour remplir le formulaire, naviguer dans l'application et prédire vos futures moyennes""")
 st.markdown("""
 <div style="
-    font-size:14px;
-    color:#94A3B8;
+    font-size:16px;
+    color:#38BDF8;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
