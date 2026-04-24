@@ -129,13 +129,13 @@ st.markdown("""
 
 /* title icon */
 .kpi-icon {
-    font-size: 16px;
+    font-size: 12px;
     margin-bottom: 6px;
 }
 
 /* value */
 .kpi-value {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 800;
     color: #0F172A;
 }
