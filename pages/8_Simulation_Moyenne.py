@@ -403,42 +403,60 @@ if st.button("🔍 Voir le résultat"):
     st.divider()
 
 # =========================
-# MODELE (COMPATIBLE 2e PARTIE)
+# MODELE (VERSION ROBUSTE)
 # =========================
 
-model_data = models[filiere_input]
+model_data = models.get(filiere_input)
 
-# 🔥 on crée UNE clé "model" compatible
-model = model_data.get("model")
+if model_data is None:
+    st.error("❌ Filière non trouvée dans models")
+    st.stop()
 
-# si elle n'existe pas, on prend clf ou reg automatiquement
+# =========================
+# RECUPERATION DU MODELE
+# =========================
+
+# compatibilité anciens + nouveaux formats
+model = (
+    model_data.get("model")
+    or model_data.get("clf")
+    or model_data.get("reg")
+)
+
 if model is None:
-    model = model_data.get("clf") or model_data.get("reg")
+    st.error("❌ Aucun modèle trouvé (model/clf/reg manquant)")
+    st.stop()
 
-features = model_data["features"]
-df_fil = model_data["data"]
+features = model_data.get("features", [])
+df_fil = model_data.get("data")
+
+if df_fil is None:
+    st.error("❌ Données (data) manquantes dans models")
+    st.stop()
 
 # =========================
-# RESULTATS
+# METRIQUES
 # =========================
-st.subheader("⚡ Performances du modèle")
 
 mae = model_data.get("mae")
 acc = model_data.get("acc")
 
+st.subheader("⚡ Performances du modèle")
+
 col1, col2 = st.columns(2)
 
-col1.metric("📉 MAE", round(mae, 2) if mae else "N/A")
-col2.metric("🎯 Accuracy", round(acc, 2) if acc else "N/A")
+col1.metric("📉 MAE", round(mae, 2) if mae is not None else "N/A")
+col2.metric("🎯 Accuracy", round(acc, 2) if acc is not None else "N/A")
 
 # =========================
 # INTERPRÉTATION
 # =========================
+
 if mae is not None:
     if mae < 1.5:
         st.success("✅ Prédiction très fiable")
     elif mae < 3:
-        st.warning("⚠️ Fiabilité moyenne")
+        st.warning("⚠️ Précision moyenne")
     else:
         st.error("❌ Modèle peu précis")
 
