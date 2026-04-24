@@ -155,8 +155,8 @@ st.markdown("""
 
 /* KPI number */
 .kpi {
-    font-size: 26px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 600;
     color: #0F172A;
 }
 
