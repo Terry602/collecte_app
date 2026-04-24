@@ -111,7 +111,7 @@ st.markdown("""
     background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
     border: 1px solid #E2E8F0;
     border-radius: 16px;
-    padding: 10px 8px;
+    padding: 8px 6px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
     transition: all 0.3s ease;
