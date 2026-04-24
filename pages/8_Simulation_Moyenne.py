@@ -314,25 +314,7 @@ radar.add_trace(go.Scatterpolar(
 
 st.plotly_chart(radar, use_container_width=True)
 
-# =========================
-# GRAPH
-# =========================
-st.subheader(" Avant vs Après")
 
-fig = go.Figure()
-
-fig.add_trace(go.Bar(
-    x=["Avant", "Après IA"],
-    y=[moyenne_actuelle, pred],
-    marker_color=["#FF9F1C", "#2EC4B6"]
-))
-
-fig.update_layout(
-    title="Impact des habitudes (par filière)",
-    yaxis_title="Moyenne /20"
-)
-
-st.plotly_chart(fig, use_container_width=True)
 st.divider()
 
 # =========================
