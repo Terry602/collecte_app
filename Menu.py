@@ -110,18 +110,19 @@ def load_data():
 
 
     df = load_data()
-
 st.markdown("""
-                <div style="
-        font-size:14px;
-        color:#94A3B8;
-        margin-top:10px;
-        letter-spacing:0.3px;
-    ">
-        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
-    </div>
-""", height=200)
-st.divider
+<div style="
+    font-size:14px;
+    color:#94A3B8;
+    margin-top:10px;
+    letter-spacing:0.3px;
+">
+    Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
+
 # =========================
 # OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
