@@ -36,7 +36,7 @@ components.html("""
         </svg>
 
         <div style="
-            font-size:28px;
+            font-size:25px;
             font-weight:800;
             color:#064E3B;
         ">
