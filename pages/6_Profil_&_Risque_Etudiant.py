@@ -93,7 +93,7 @@ except:
 # =========================
 # FORMULAIRE PROFIL
 # =========================
-st.subheader(" Entre tes données pour analyse")
+st.subheader(" Entre tes données et mesure ton risque")
 
 col1, col2 = st.columns(2)
 
@@ -112,75 +112,78 @@ st.divider()
 # =========================
 st.subheader(" Résultat d'analyse")
 
-# Normalisation
-stress_n = stress / 10
-sommeil_risk = max(0, (7 - sommeil) / 7)
-etude_risk = max(0, (4 - heures_etude) / 4)
-motivation_risk = (10 - motivation) / 10
+if st.button("⚠️ Voir ton risque"):
 
-# SCORE GLOBAL
-score_risque = (
-    0.35 * stress_n +
-    0.25 * sommeil_risk +
-    0.25 * etude_risk +
-    0.15 * motivation_risk
-)
+    # Normalisation
+    stress_n = stress / 10
+    sommeil_risk = max(0, (7 - sommeil) / 7)
+    etude_risk = max(0, (4 - heures_etude) / 4)
+    motivation_risk = (10 - motivation) / 10
 
-# =========================
-# INTERPRÉTATION
-# =========================
-if score_risque < 0.3:
-    niveau = "🟢 Faible risque"
-    commentaire = "Tu es sur une bonne trajectoire 👍"
-    color = "#16A34A"
-    bg = "#ECFDF5"
+    # SCORE GLOBAL
+    score_risque = (
+        0.35 * stress_n +
+        0.25 * sommeil_risk +
+        0.25 * etude_risk +
+        0.15 * motivation_risk
+    )
 
-elif score_risque < 0.6:
-    niveau = "🟠 Risque moyen"
-    commentaire = "Attention à ton équilibre travail/repos ⚠️"
-    color = "#F59E0B"
-    bg = "#FFFBEB"
+    # =========================
+    # INTERPRÉTATION
+    # =========================
+    if score_risque < 0.3:
+        niveau = "🟢 Faible risque"
+        commentaire = "Tu es sur une bonne trajectoire 👍"
+        color = "#16A34A"
+        bg = "#ECFDF5"
 
-else:
-    niveau = "🔴 Risque élevé"
-    commentaire = "Risque de baisse de performance important "
-    color = "#DC2626"
-    bg = "#FEF2F2"
+    elif score_risque < 0.6:
+        niveau = "🟠 Risque moyen"
+        commentaire = "Attention à ton équilibre travail/repos ⚠️"
+        color = "#F59E0B"
+        bg = "#FFFBEB"
 
-# =========================
-# AFFICHAGE
-# =========================
-st.markdown(f"""
-<div style="font-size:14px; color:#64748B;">
-     Score de risque académique
-</div>
+    else:
+        niveau = "🔴 Risque élevé"
+        commentaire = "Risque de baisse de performance important "
+        color = "#DC2626"
+        bg = "#FEF2F2"
 
-<div style="
-    font-size:32px;
-    font-weight:800;
-    color:{color};
-    margin:8px 0;
-">
-    {round(score_risque, 2)}
-</div>
+    # =========================
+    # AFFICHAGE
+    # =========================
+    st.markdown(f"""
+    <div style="font-size:14px; color:#64748B;">
+         Score de risque académique
+    </div>
 
-<div style="
-    font-size:18px;
-    font-weight:700;
-    color:{color};
-    margin-bottom:6px;
-">
-    {niveau}
-</div>
+    <div style="
+        font-size:32px;
+        font-weight:800;
+        color:{color};
+        margin:8px 0;
+    ">
+        {round(score_risque, 2)}
+    </div>
 
-<div style="
-    font-size:14px;
-    color:#3B82F6;
-">
-    {commentaire}
-</div>
-""", unsafe_allow_html=True)
-st.divider()
+    <div style="
+        font-size:18px;
+        font-weight:700;
+        color:{color};
+        margin-bottom:6px;
+    ">
+        {niveau}
+    </div>
+
+    <div style="
+        font-size:14px;
+        color:#3B82F6;
+    ">
+        {commentaire}
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.divider()
 # =========================
 # RADAR SIMPLE (VISUEL)
 # =========================
