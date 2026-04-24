@@ -233,50 +233,48 @@ fig_corr = px.imshow(
 )
 
 st.plotly_chart(fig_corr, use_container_width=True)
-
+st.divider()
 # =========================
-# NUAGES DE POINTS + RÉGRESSION
+# NUAGES DE POINTS FUSIONNÉS
 # =========================
+st.subheader("📊 Relations clés avec la performance")
 
-# Études vs performance
-fig_a = px.scatter(
-    df_fil,
-    x="heures_etude",
-    y="moyenne",
-    trendline="ols",
-    title=" Études vs Performance"
+# transformer les données (format long)
+df_long = df_fil.melt(
+    id_vars=["moyenne"],
+    value_vars=["heures_etude", "concentration", "motivation", "regularite"],
+    var_name="Variable",
+    value_name="Valeur"
 )
-st.plotly_chart(fig_a, use_container_width=True)
 
-# Concentration vs performance
-fig_b = px.scatter(
-    df_fil,
-    x="concentration",
-    y="moyenne",
-    trendline="ols",
-    title=" Concentration vs Performance"
-)
-st.plotly_chart(fig_b, use_container_width=True)
+# mapping noms propres
+labels_map = {
+    "heures_etude": "📚 Étude",
+    "concentration": "🧠 Concentration",
+    "motivation": "🔥 Motivation",
+    "regularite": "📅 Régularité"
+}
+df_long["Variable"] = df_long["Variable"].map(labels_map)
 
-# Motivation vs performance
-fig_c = px.scatter(
-    df_fil,
-    x="motivation",
+# création du graphe
+fig = px.scatter(
+    df_long,
+    x="Valeur",
     y="moyenne",
+    facet_col="Variable",
+    facet_col_wrap=2,
     trendline="ols",
-    title=" Motivation vs Performance"
+    color="Variable",
+    title="🎯 Impact des facteurs clés sur la performance académique"
 )
-st.plotly_chart(fig_c, use_container_width=True)
 
-# Régularité vs performance
-fig_d = px.scatter(
-    df_fil,
-    x="regularite",
-    y="moyenne",
-    trendline="ols",
-    title=" Régularité vs Performance"
+# amélioration visuelle
+fig.update_layout(
+    showlegend=False,
+    margin=dict(t=60, l=30, r=30, b=30)
 )
-st.plotly_chart(fig_d, use_container_width=True)
+
+st.plotly_chart(fig, use_container_width=True)
 
 st.divider()
 # =========================
@@ -369,6 +367,59 @@ st.success(f" Filière la plus régulière : {regularite_high}")
 
 if age_high:
     st.info(f" Filière avec étudiants les plus âgés : {age_high}")
+
+# =========================
+# ANALYSE PAR NIVEAU
+# =========================
+st.subheader("🧠 Analyse par niveau dans la filière")
+
+fig1 = px.bar(
+    niveau_group,
+    x="niveau",
+    y="moyenne",
+    color="niveau",
+    title=f"🎓 Moyenne par niveau - {filiere_selected}",
+    color_discrete_sequence=px.colors.qualitative.Set3
+)
+
+st.plotly_chart(fig1, use_container_width=True)
+
+fig2 = px.bar(
+    niveau_group,
+    x="niveau",
+    y="stress",
+    color="niveau",
+    title=f"😰 Stress par niveau - {filiere_selected}",
+    color_discrete_sequence=px.colors.qualitative.Pastel
+)
+
+st.plotly_chart(fig2, use_container_width=True)
+
+fig3 = px.bar(
+    niveau_group,
+    x="niveau",
+    y="heures_etude",
+    color="niveau",
+    title=f"📚 Heures d'étude par niveau - {filiere_selected}",
+    color_discrete_sequence=px.colors.qualitative.Bold
+)
+
+st.plotly_chart(fig3, use_container_width=True)
+
+# =========================
+# RÉPARTITION NIVEAU (FILTRÉE)
+# =========================
+
+
+fig4 = px.pie(
+    df_fil,
+    names="niveau",
+    title=f"👨‍🎓 Répartition des niveaux - {filiere_selected}",
+    color_discrete_sequence=px.colors.qualitative.Set3
+)
+
+st.plotly_chart(fig4, use_container_width=True)
+
 
 if credits_high:
     st.info(f" Filière avec le plus de crédits validés : {credits_high}")
