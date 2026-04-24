@@ -215,6 +215,56 @@ fig8.update_layout(template="plotly_dark")
 
 st.plotly_chart(fig8, use_container_width=True)
 
+
+st.divider()
+# =========================
+# COMPARAISONS
+# =========================
+st.subheader("⚖️ Comparaison des filières")
+
+moyenne_filiere = df.groupby("filiere")["moyenne"].mean().reset_index()
+
+fig1 = px.bar(
+    moyenne_filiere,
+    x="filiere",
+    y="moyenne",
+    color="filiere",
+    title=" Moyenne académique par filière",
+    color_discrete_sequence=px.colors.qualitative.Set3
+)
+
+st.plotly_chart(fig1, use_container_width=True)
+
+
+
+stress_filiere = df.groupby("filiere")["stress"].mean().reset_index()
+
+fig2 = px.bar(
+    stress_filiere,
+    x="filiere",
+    y="stress",
+    color="filiere",
+    title=" Stress moyen par filière",
+    color_discrete_sequence=px.colors.qualitative.Pastel
+)
+
+st.plotly_chart(fig2, use_container_width=True)
+
+
+
+study_filiere = df.groupby("filiere")["heures_etude"].mean().reset_index()
+
+fig3 = px.bar(
+    study_filiere,
+    x="filiere",
+    y="heures_etude",
+    color="filiere",
+    title=" Heures d'étude moyennes par filière",
+    color_discrete_sequence=px.colors.qualitative.Bold
+)
+
+st.plotly_chart(fig3, use_container_width=True)
+
 st.divider()
 
 # =========================
