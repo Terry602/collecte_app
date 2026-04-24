@@ -327,3 +327,16 @@ if show_data:
         df,
         use_container_width=True
     )
+st.divider()
+st.markdown("""
+<div style="
+    font-size:18px;
+    font-weight:600;
+    color:#0F172A;
+    margin-top:10px;
+">
+🤔 Souhaitez-vous visualiser les statistiques par Filière ?
+</div>
+""", unsafe_allow_html=True)
+
+
