@@ -233,8 +233,8 @@ if st.button("🔍 Voir le résultat"):
     <style>
     .sim-card {
         background: #FFFFFF;
-        padding: 18px;
-        border-radius: 14px;
+        padding: 10px;
+        border-radius: 7px;
         border: 1px solid #E5E7EB;
         text-align: center;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -253,7 +253,7 @@ if st.button("🔍 Voir le résultat"):
     }
 
     .sim-value {
-        font-size: 26px;
+        font-size: 18px;
         font-weight: 800;
     }
     </style>
@@ -302,7 +302,7 @@ if st.button("🔍 Voir le résultat"):
 # =========================
 # RADAR CHART
 # =========================
-st.subheader("👤 Profil étudiant")
+st.subheader("👤 Ton nouveau Profil")
 
 radar = go.Figure()
 
