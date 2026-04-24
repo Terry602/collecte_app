@@ -52,7 +52,7 @@ components.html("""
 
         <!-- TITLE -->
         <div style="
-            font-size:22px;
+            font-size:20px;
             font-weight:800;
             color:#0F172A;
             letter-spacing:-0.4px;
