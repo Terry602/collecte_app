@@ -55,7 +55,7 @@ components.html("""
 
         <!-- TITLE -->
         <div style="
-            font-size:30px;
+            font-size:25px;
             font-weight:800;
             color:#0F172A;
             letter-spacing:-0.4px;
