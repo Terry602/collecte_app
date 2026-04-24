@@ -99,7 +99,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#3B82F6;">
-📦 Distributions des variables
+📦 Distributions des moyennes
 </h3>
 """, unsafe_allow_html=True)
 
@@ -107,19 +107,12 @@ fig_hist = px.histogram(
     df,
     x="moyenne",
     nbins=20,
-    title="Distribution des moyennes",
     marginal="box"
 )
 
 st.plotly_chart(fig_hist, use_container_width=True)
 
-fig2 = px.histogram(df, x="stress", nbins=12, title=" Niveau de stress",
-                    color_discrete_sequence=["#F44336"])
-st.plotly_chart(fig2, use_container_width=True)
 
-fig3 = px.histogram(df, x="heures_etude", nbins=12, title=" Heures d'étude",
-                    color_discrete_sequence=["#2196F3"])
-st.plotly_chart(fig3, use_container_width=True)
 
 st.divider()
 
