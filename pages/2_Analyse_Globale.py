@@ -325,7 +325,7 @@ if "age" in df.columns:
 
 if "credits" in df.columns:
     credits_high = df.groupby("filiere")["credits"].mean().idxmax()
-st.divider()
+
 # =========================
 # AFFICHAGE
 # =========================
@@ -341,7 +341,7 @@ st.success(f" Filière la plus régulière : {regularite_high}")
 
 if age_high:
     st.info(f" Filière avec étudiants les plus âgés : {age_high}")
-
+st.divider()
 # =========================
 # EXPORT CSV + AFFICHAGE DONNÉES (inchangé)
 # =========================
@@ -381,7 +381,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
-show_stats = st.button("📊 Statistique par filière")
+show_stats = st.button("🧮 Statistique par filière")
 if show_stats:
     # =========================
     # FILTRES
