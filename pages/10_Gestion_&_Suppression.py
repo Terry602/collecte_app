@@ -2,14 +2,12 @@ import streamlit as st
 import pandas as pd
 import os
 import time
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Gestion des étudiants", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== GESTION HEADER (ADMIN CONTROL STYLE) ===== */
-.gestion-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #FFF1F2, #FFE4E6);
     padding: 22px;
     border-radius: 16px;
@@ -17,29 +15,60 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 10px 25px rgba(244,63,94,0.10);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.gestion-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #881337;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.gestion-subtitle {
-    font-size: 13px;
-    color: #9F1239;
-    margin-top: 6px;
-}
-</style>
+        <!-- 🗂️ + ⚙️ ICON (Admin / student management system) -->
+        <svg width="44" height="44" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#9F1239"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="gestion-header">
-    <div class="gestion-title"> Gestion des étudiants</div>
-    <div class="gestion-subtitle">Admin Panel • Data Control • Student Records Management</div>
+            <!-- folder / database -->
+            <path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H3z"/>
+
+            <!-- settings gear -->
+            <circle cx="17" cy="15" r="2"/>
+            <path d="M17 11v2"/>
+            <path d="M17 17v2"/>
+            <path d="M15 15h2"/>
+            <path d="M19 15h2"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#881337;
+            letter-spacing:-0.4px;
+        ">
+            Gestion des étudiants
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#9F1239;
+        margin-top:6px;
+    ">
+        Admin Panel • Data Control • Student Records Management
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 st.divider()
 
@@ -68,7 +97,7 @@ df = load_data()
 # =========================
 # FILTRES
 # =========================
-st.subheader(" Sélection de l'étudiant")
+st.subheader("📌 Sélection de l'étudiant")
 
 filiere = st.selectbox(
     " Choisir la filière",
@@ -99,7 +128,7 @@ student = df_n[df_n["nom"] == nom].iloc[0]
 # =========================
 # PROFIL
 # =========================
-st.subheader(" Informations étudiant")
+st.subheader("📄 Informations étudiant")
 
 st.write("👤 Nom :", student["nom"])
 st.write("🎓 Niveau :", student["niveau"])

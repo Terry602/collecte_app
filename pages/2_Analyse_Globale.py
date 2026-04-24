@@ -3,45 +3,58 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
-
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Analyse Globale", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== ANALYTICS HEADER GREEN STYLE ===== */
-.analytics-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
-    padding: 22px;
-    border-radius: 16px;
+    padding: 25px;
+    border-radius: 18px;
     border: 1px solid #A7F3D0;
     text-align: center;
-    margin-bottom: 12px;
-    box-shadow: 0 6px 18px rgba(16,185,129,0.08);
-}
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(16,185,129,0.12);
+    font-family: Arial;
+">
 
-/* TITLE */
-.analytics-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #064E3B;
-    letter-spacing: -0.4px;
-}
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.analytics-subtitle {
-    font-size: 13px;
-    color: #065F46;
-    margin-top: 6px;
-}
-</style>
+        <svg width="40" height="40" viewBox="0 0 24 24"
+             fill="none" stroke="#059669" stroke-width="2.5">
 
-<div class="analytics-header">
-    <div class="analytics-title"> Analyse Globale des Données Étudiantes</div>
-    <div class="analytics-subtitle">Exploration complète des tendances, performances et corrélations académiques</div>
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <polyline points="8 11 10 13 14 9"/>
+
+        </svg>
+
+        <div style="
+            font-size:28px;
+            font-weight:800;
+            color:#064E3B;
+        ">
+            Analyse Globale des Données Étudiantes
+        </div>
+
+    </div>
+
+    <div style="
+        font-size:14px;
+        color:#065F46;
+        margin-top:8px;
+    ">
+        Exploration complète des tendances, performances et corrélations académiques
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=180)
 
 # =========================
 # DATA
@@ -69,7 +82,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#92400E;">
- Indicateurs clés
+🌍  Indicateurs clés
 </h3>
 """, unsafe_allow_html=True)
 
@@ -77,7 +90,7 @@ col1, col2, col3 = st.columns(3)
 
 col1.metric("🎓 Moyenne générale", round(df["moyenne"].mean(), 2))
 col2.metric("😰 Stress moyen", round(df["stress"].mean(), 2))
-col3.metric("📚 Heures d'étude", round(df["heures_etude"].mean(), 2))
+col3.metric("📚 Heures d'étude moyenne", round(df["heures_etude"].mean(), 2))
 
 st.divider()
 
@@ -86,13 +99,19 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#3B82F6;">
- Distributions des variables
+📦 Distributions des variables
 </h3>
 """, unsafe_allow_html=True)
 
-fig1 = px.histogram(df, x="moyenne", nbins=12, title=" Moyennes des étudiants",
-                    color_discrete_sequence=["#4CAF50"])
-st.plotly_chart(fig1, use_container_width=True)
+fig_hist = px.histogram(
+    df,
+    x="moyenne",
+    nbins=20,
+    title="Distribution des moyennes",
+    marginal="box"
+)
+
+st.plotly_chart(fig_hist, use_container_width=True)
 
 fig2 = px.histogram(df, x="stress", nbins=12, title=" Niveau de stress",
                     color_discrete_sequence=["#F44336"])
@@ -109,7 +128,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#059669;">
- Répartitions
+🔀 Répartitions
 </h3>
 """, unsafe_allow_html=True)
 
@@ -140,7 +159,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#92400E;">
- Corrélation
+🔗 Corrélation
 </h3>
 """, unsafe_allow_html=True)
 
@@ -162,7 +181,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#EAB308;">
-Relations clés
+🔑 Relations clés
 </h3>
 """, unsafe_allow_html=True)
 
@@ -203,7 +222,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#94A3B8;">
- Distribution des notes par filière
+📊 Distribution des notes par filière
 </h3>
 """, unsafe_allow_html=True)
 
@@ -221,10 +240,29 @@ fig9.update_layout(xaxis_tickangle=45)
 st.plotly_chart(fig9, use_container_width=True)
 
 st.divider()
+# ==========================================================
+#  TENDANCES
+# ==========================================================
+st.subheader("📈 Tendances globales")
+
+trend = df.groupby("niveau")["moyenne"].mean().reset_index()
+
+fig_trend = px.line(
+    trend,
+    x="niveau",
+    y="moyenne",
+    markers=True,
+    title="Évolution des performances par niveau"
+)
+
+st.plotly_chart(fig_trend, use_container_width=True)
+
+st.divider()
 
 # =========================
 # EXPORT CSV + AFFICHAGE DONNÉES (inchangé)
 # =========================
+st.subheader("📁 Export & Visualisation de données")
 col1, col2 = st.columns(2)
 
 csv = df.to_csv(index=False).encode("utf-8")

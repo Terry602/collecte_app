@@ -2,50 +2,78 @@ import streamlit as st
 import pandas as pd
 import os
 import time
-
+import streamlit.components.v1 as components
 # =========================
 # CONFIG
 # =========================
 st.set_page_config(page_title="SmartStudent Analytics", layout="centered")
 
-st.markdown("""
-<style>
-
-/* ===== HEADER LIGHT SAAS ===== */
-.form-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #F8FAFC, #EEF2FF);
-    padding: 22px;
-    border-radius: 14px;
+    padding: 24px;
+    border-radius: 16px;
     border: 1px solid #E5E7EB;
     text-align: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-    margin-bottom: 10px;
-}
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.form-title {
-    font-size: 28px;
-    font-weight: 800;
-    color: #0F172A;
-    letter-spacing: -0.3px;
-}
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.form-subtitle {
-    font-size: 13px;
-    color: #64748B;
-    margin-top: 6px;
-}
-</style>
+        <!-- 🧠 + 📊 ICON (Brain + Analytics fusion) -->
+        <svg width="42" height="42" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#6366F1"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="form-header">
-    <div class="form-title"> SmartStudent Analytics Forms</div>
-    <div class="form-subtitle">Data collection & intelligent student profiling system</div>
+            <!-- brain shape -->
+            <path d="M9 3c-2 0-3.5 1.5-3.5 3.5S7 10 7 10"/>
+            <path d="M15 3c2 0 3.5 1.5 3.5 3.5S17 10 17 10"/>
+            <path d="M7 10c-1.5 0-2.5 1-2.5 2.5S6 15 7 15"/>
+            <path d="M17 10c1.5 0 2.5 1 2.5 2.5S18 15 17 15"/>
+
+            <!-- analytics bars -->
+            <line x1="9" y1="18" x2="9" y2="14"/>
+            <line x1="12" y1="18" x2="12" y2="12"/>
+            <line x1="15" y1="18" x2="15" y2="10"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:28px;
+            font-weight:800;
+            color:#0F172A;
+            letter-spacing:-0.3px;
+        ">
+            SmartStudent Analytics Forms
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#64748B;
+        margin-top:8px;
+    ">
+        Data collection & intelligent student profiling system
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=140)
 
 st.divider()
-st.subheader(" Formulaire de collecte des données étudiants")
+st.subheader("📑 Formulaire de collecte des données étudiants")
 
 DATA_FILE = "data_students.csv"
 

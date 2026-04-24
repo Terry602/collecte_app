@@ -3,16 +3,16 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go 
 import plotly.graph_objects as go  
+import streamlit.components.v1 as components
 
 from sklearn.ensemble import RandomForestRegressor
 
 st.set_page_config(page_title="IA Simulation Pro", layout="wide")
 
-st.markdown("""
-<style>
 
-/* ===== SIMULATION HEADER (AI WHAT-IF ENGINE STYLE) ===== */
-.simulation-header {
+
+components.html("""
+<div style="
     background: linear-gradient(135deg, #ECFEFF, #CFFAFE);
     padding: 22px;
     border-radius: 16px;
@@ -20,29 +20,62 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 10px 25px rgba(6,182,212,0.12);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.simulation-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #0F172A;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.simulation-subtitle {
-    font-size: 13px;
-    color: #0E7490;
-    margin-top: 6px;
-}
-</style>
+        <!-- 🧠 + 🔀 ICON (Simulation / what-if decision tree) -->
+        <svg width="44" height="44" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#0E7490"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="simulation-header">
-    <div class="simulation-title"> Simulation Intelligente (What If Pro)</div>
-    <div class="simulation-subtitle">AI Scenario Engine • Predictive Simulation • Decision Modeling</div>
+            <!-- decision tree / simulation nodes -->
+            <circle cx="12" cy="4" r="2"/>
+            <circle cx="6" cy="12" r="2"/>
+            <circle cx="18" cy="12" r="2"/>
+            <circle cx="12" cy="20" r="2"/>
+
+            <!-- connections (scenario branches) -->
+            <line x1="12" y1="6" x2="6" y2="10"/>
+            <line x1="12" y1="6" x2="18" y2="10"/>
+            <line x1="6" y1="14" x2="12" y2="18"/>
+            <line x1="18" y1="14" x2="12" y2="18"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#0F172A;
+            letter-spacing:-0.4px;
+        ">
+            Simulation Intelligente (What If Pro)
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#0E7490;
+        margin-top:6px;
+    ">
+        AI Scenario Engine • Predictive Simulation • Decision Modeling
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 st.divider()
 
@@ -135,7 +168,7 @@ closest = df_fil.sort_values("diff").iloc[0]
 # =========================
 # INPUT USER
 # =========================
-st.subheader(" Paramètres étudiant (modifiables)")
+st.subheader("🛠️ Paramètres étudiant (modifiables)")
 
 col1, col2, col3 = st.columns(3)
 
@@ -189,7 +222,7 @@ percent = (diff / moyenne_actuelle) * 100 if moyenne_actuelle != 0 else 0
 # =========================
 # RESULTATS
 # =========================
-st.subheader(" Résultats de simulation")
+st.subheader("🧠 Résultats de simulation")
 
 # =========================
 # STYLE KPI CARDS
@@ -313,7 +346,7 @@ st.divider()
 # =========================
 # RADAR CHART
 # =========================
-st.subheader(" Profil étudiant")
+st.subheader("👤 Profil étudiant")
 
 radar = go.Figure()
 
@@ -345,52 +378,30 @@ fig.update_layout(
 
 st.plotly_chart(fig, use_container_width=True)
 st.divider()
-# =========================
-# OPTIMISATION AUTO
-# =========================
-st.subheader(" Optimisation automatique")
 
-best_score = pred
-
-for _ in range(100):
-    test = build_input(
-        np.random.randint(2, 10),
-        np.random.randint(1, 6),
-        np.random.randint(5, 10),
-        np.random.randint(6, 10),
-        np.random.randint(6, 10),
-        np.random.randint(0, 6)
-    )
-
-    score = model.predict(test)[0]
-
-    if score > best_score:
-        best_score = score
-
-st.metric(" Meilleure moyenne possible", round(best_score, 2))
 
 # =========================
 # RECOMMANDATIONS IA
 # =========================
-st.subheader(" Recommandations IA")
+if st.button("🚨 Recommandations "):
 
-if heures < 4:
-    st.warning("📚 Augmente ton temps d'étude")
+    if heures < 4:
+        st.warning("📚 Augmente ton temps d'étude")
 
-if stress > 6:
-    st.warning("😰 Réduis ton stress")
+    if stress > 6:
+        st.warning("😰 Réduis ton stress")
 
-if sommeil < 6:
-    st.warning("😴 Dors plus")
+    if sommeil < 6:
+        st.warning("😴 Dors plus")
 
-if motivation < 5:
-    st.warning("🔥 Travaille ta motivation")
+    if motivation < 5:
+        st.warning("🔥 Travaille ta motivation")
 
-if concentration < 5:
-    st.warning("🧠 Améliore ta concentration")
+    if concentration < 5:
+        st.warning("🧠 Améliore ta concentration")
 
-if telephone > 6:
-    st.warning("📱 Réduis le téléphone")
+    if telephone > 6:
+        st.warning("📱 Réduis le téléphone")
 
 # =========================
 # DIAGNOSTIC IA

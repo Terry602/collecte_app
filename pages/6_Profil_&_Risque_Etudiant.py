@@ -1,14 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Profil Étudiant", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== PROFIL HEADER (AI PROFILE STYLE) ===== */
-.profil-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
     padding: 22px;
     border-radius: 16px;
@@ -16,29 +14,65 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 10px 25px rgba(14,165,233,0.12);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.profil-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #0F172A;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.profil-subtitle {
-    font-size: 13px;
-    color: #0369A1;
-    margin-top: 6px;
-}
-</style>
+        <!-- 👤 + 🧠 + 📊 ICON (Smart student profile AI) -->
+        <svg width="44" height="44" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#0EA5E9"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="profil-header">
-    <div class="profil-title"> Profil Intelligent de l'Étudiant</div>
-    <div class="profil-subtitle">AI-driven Student Profile • Behavioral Analytics • Academic Intelligence</div>
+            <!-- user head -->
+            <circle cx="12" cy="7" r="3"/>
+
+            <!-- body -->
+            <path d="M5.5 21c0-4 4-6 6.5-6s6.5 2 6.5 6"/>
+
+            <!-- AI nodes / analytics -->
+            <circle cx="5" cy="14" r="1"/>
+            <circle cx="19" cy="14" r="1"/>
+            <circle cx="12" cy="18" r="1"/>
+
+            <!-- connections -->
+            <line x1="5" y1="14" x2="12" y2="18"/>
+            <line x1="19" y1="14" x2="12" y2="18"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#0F172A;
+            letter-spacing:-0.4px;
+        ">
+            Profil Intelligent de l'Étudiant
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#0369A1;
+        margin-top:6px;
+    ">
+        AI-driven Student Profile • Behavioral Analytics • Academic Intelligence
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 
 DATA_FILE = "data_students.csv"
@@ -162,24 +196,25 @@ values = [
 
 st.bar_chart(dict(zip(categories, values)))
 
+
 # =========================
 # RECOMMANDATIONS AUTOMATIQUES
 # =========================
-st.subheader(" Recommandations personnalisées")
 
-if sommeil < 6:
-    st.info("😴 Essaie de dormir au moins 6h par nuit")
+if st.button(" Recommandations personnalisées"):
+    if sommeil < 6:
+        st.info("😴 Essaie de dormir au moins 6h par nuit")
 
-if heures_etude < 4:
-    st.info("📚 Augmente progressivement ton temps d'étude")
+    if heures_etude < 4:
+        st.info("📚 Augmente progressivement ton temps d'étude")
 
-if stress > 7:
-    st.info("🧘 Fais des pauses, des distractions et gère ton stress")
+    if stress > 7:
+        st.info("🧘 Fais des pauses, des distractions et gère ton stress")
 
-if motivation < 5:
-    st.info("🔥 Fixe-toi des objectifs courts et motivants")
+    if motivation < 5:
+        st.info("🔥 Fixe-toi des objectifs courts et motivants")
 
-if telephone > 6:
-    st.info("📵 Réduis le temps passé sur téléphone")
-else:
-    st.info(" Allez, nos encouragements")
+    if telephone > 6:
+        st.info("📵 Réduis le temps passé sur téléphone")
+    else:
+        st.info("💪 Allez, nos encouragements")

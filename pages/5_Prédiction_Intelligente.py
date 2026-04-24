@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import streamlit.components.v1 as components
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
@@ -8,11 +9,8 @@ from sklearn.metrics import mean_absolute_error, accuracy_score
 
 st.set_page_config(page_title="Prédiction IA", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== HEADER CONTAINER ===== */
-.header-box {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #0F172A, #111827);
     padding: 22px;
     border-radius: 16px;
@@ -20,29 +18,59 @@ st.markdown("""
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     margin-bottom: 10px;
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.header-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #F8FAFC;
-    letter-spacing: -0.5px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTLE TAG */
-.header-tag {
-    margin-top: 6px;
-    font-size: 13px;
-    color: #94A3B8;
-}
-</style>
+        <!-- 🧠 + 📈 AI PREDICTION ICON -->
+        <svg width="44" height="44" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#A78BFA"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="header-box">
-    <div class="header-title"> Module de Prédiction Intelligente</div>
-    <div class="header-tag">AI-powered Academic Performance Prediction System</div>
+            <!-- brain / AI core -->
+            <path d="M9 3c-2 0-3.5 1.5-3.5 3.5S7 10 7 10"/>
+            <path d="M15 3c2 0 3.5 1.5 3.5 3.5S17 10 17 10"/>
+            <path d="M7 10c-1.5 0-2.5 1-2.5 2.5S6 15 7 15"/>
+            <path d="M17 10c1.5 0 2.5 1 2.5 2.5S18 15 17 15"/>
+
+            <!-- upward trend (prediction) -->
+            <polyline points="6 18 10 14 13 16 18 9"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#F8FAFC;
+            letter-spacing:-0.5px;
+        ">
+            Module de Prédiction Intelligente
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        margin-top:6px;
+        font-size:13px;
+        color:#94A3B8;
+    ">
+        AI-powered Academic Performance Prediction System
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 st.divider()
 # =========================
@@ -141,7 +169,7 @@ models = train_models(df)
 # EXPLICATION PÉDAGOGIQUE
 # =========================
 
-st.subheader(" Explication du modèle")
+st.subheader("📖 Explication du modèle")
 
 st.components.v1.html("""
 <style>
@@ -241,7 +269,7 @@ st.components.v1.html("""
 # =========================
 #  SELECTION FILIERE
 # =========================
-st.subheader(" Choisir une filière")
+st.subheader("📌 Choisir une filière")
 
 filiere_selected = st.selectbox(
     "Filière",
@@ -259,11 +287,11 @@ acc = model_data["acc"]
 # =========================
 # RESULTATS
 # =========================
-st.subheader(" Performances du modèle")
+st.subheader("⚡ Performances du modèle")
 
 col1, col2 = st.columns(2)
 
-col1.metric(" MAE", round(mae, 2))
+col1.metric(" MAE(Erreur Moyenne)", round(mae, 2))
 col2.metric(" Accuracy", round(acc, 2))
 
 if mae < 1.5:
@@ -285,7 +313,7 @@ st.divider()
 # =========================
 # IMPORTANCE
 # =========================
-st.subheader(" Facteurs les plus influents")
+st.subheader("🌫️ Facteurs les plus influents")
 
 importance = pd.Series(model_reg.feature_importances_, index=features)
 importance = importance.sort_values()
@@ -295,7 +323,7 @@ st.divider()
 # =========================
 #  SIMULATION
 # =========================
-st.subheader(" Tester ton profil")
+st.subheader("🧪 Tester ton profil")
 
 col1, col2 = st.columns(2)
 

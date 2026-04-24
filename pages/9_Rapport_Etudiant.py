@@ -3,14 +3,12 @@ import pandas as pd
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import io
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Rapport IA", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== REPORT HEADER (PREMIUM BLUE / INDIGO STYLE) ===== */
-.report-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
     padding: 22px;
     border-radius: 16px;
@@ -18,30 +16,59 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 10px 25px rgba(79,70,229,0.12);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.report-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #1E1B4B;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.report-subtitle {
-    font-size: 13px;
-    color: #4338CA;
-    margin-top: 6px;
-}
-</style>
+        <!-- 📄 + 📊 + 🧠 ICON (AI Report generation) -->
+        <svg width="44" height="44" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#4338CA"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="report-header">
-    <div class="report-title"> Génération de Rapport Personnel</div>
-    <div class="report-subtitle">AI-driven Academic Report • Insights • Performance Intelligence</div>
+            <!-- document -->
+            <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+            <path d="M14 3v4h4"/>
+
+            <!-- analytics inside -->
+            <line x1="8" y1="14" x2="8" y2="12"/>
+            <line x1="11" y1="14" x2="11" y2="10"/>
+            <line x1="14" y1="14" x2="14" y2="8"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#1E1B4B;
+            letter-spacing:-0.4px;
+        ">
+            Génération de Rapport Personnel
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#4338CA;
+        margin-top:6px;
+    ">
+        AI-driven Academic Report • Insights • Performance Intelligence
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
-
+""", height=150)
 st.divider()
 # =========================
 # DATA SAFE LOAD
@@ -146,28 +173,28 @@ st.success(f"Niveau de risque : {risk}")
 # =========================
 # RECOMMANDATIONS
 # =========================
-st.subheader(" Recommandations")
+if st.button(" Recommandations personnalisées"):
 
-if student.get("stress", 0) > 5:
-    st.warning(" Réduire le stress")
+    if student.get("stress", 0) > 5:
+        st.warning(" Réduire le stress")
 
-if student.get("telephone", 0) > 6:
-    st.warning(" Réduire votre temps au téléphone")
+    if student.get("telephone", 0) > 6:
+        st.warning(" Réduire votre temps au téléphone")
 
-if student.get("heures_etude", 0) < 5:
-    st.error(" Augmenter les heures d'étude")
+    if student.get("heures_etude", 0) < 5:
+        st.error(" Augmenter les heures d'étude")
 
-if student.get("sommeil", 0) < 6:
-    st.warning(" Avoir entre 6h et 8h de sommeil")
+    if student.get("sommeil", 0) < 6:
+        st.warning(" Avoir entre 6h et 8h de sommeil")
 
-if student.get("sommeil", 0) > 8:
-    st.info(" Réduire votre temps de sommeil")
+    if student.get("sommeil", 0) > 8:
+        st.info(" Réduire votre temps de sommeil")
 
-if student.get("motivation", 0) < 5:
-    st.error(" La motivation est essentielle, fixez-vous des objectifs")
+    if student.get("motivation", 0) < 5:
+        st.error(" La motivation est essentielle, fixez-vous des objectifs")
 
-if student.get("concentration", 0) < 5:
-    st.error(" La concentration est un facteur clé, améliorez-la")
+    if student.get("concentration", 0) < 5:
+        st.error(" La concentration est un facteur clé, améliorez-la")
 # =========================
 # PDF GENERATION
 # =========================

@@ -1,17 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-
+import streamlit.components.v1 as components
 # =========================
 # CONFIG
 # =========================
 st.set_page_config(page_title="Data Explorer PRO", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== EXPLORATION HEADER INDIGO STYLE ===== */
-.explorer-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
     padding: 22px;
     border-radius: 16px;
@@ -19,29 +16,59 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 8px 20px rgba(99,102,241,0.10);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.explorer-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #1E1B4B;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.explorer-subtitle {
-    font-size: 13px;
-    color: #4338CA;
-    margin-top: 6px;
-}
-</style>
+        <!-- 🔍 + 📊 ICON (Data Exploration) -->
+        <svg width="40" height="40" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#4F46E5"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="explorer-header">
-    <div class="explorer-title"> Analyse Exploratoire</div>
-    <div class="explorer-subtitle">Data Exploration • Patterns Detection • Statistical Insights</div>
+            <!-- magnifying glass -->
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="21" y2="21"/>
+
+            <!-- small chart inside -->
+            <line x1="8.5" y1="13" x2="8.5" y2="11"/>
+            <line x1="11" y1="13" x2="11" y2="9"/>
+            <line x1="13.5" y1="13" x2="13.5" y2="7"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#1E1B4B;
+            letter-spacing:-0.4px;
+        ">
+            Analyse Exploratoire
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#4338CA;
+        margin-top:6px;
+    ">
+        Data Exploration • Patterns Detection • Statistical Insights
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 st.divider()
 
@@ -96,7 +123,7 @@ if sexe != "Tous":
 # =========================
 # SEARCH SAFE
 # =========================
-st.markdown("##  Recherche étudiant")
+st.markdown("## 🔍 Recherche étudiant")
 
 search = st.text_input("Tape le nom de l'étudiant")
 
@@ -111,24 +138,12 @@ if search:
     st.stop()
 
 st.divider()
-# =========================
-# KPIs
-# =========================
-st.markdown("##  Indicateurs clés")
 
-col1, col2, col3, col4 = st.columns(4)
-
-col1.metric("👨‍🎓 Étudiants", len(df_filtered))
-col2.metric("🎓 Moyenne", round(df_filtered["moyenne"].mean(), 2))
-col3.metric("😰 Stress", round(df_filtered["stress"].mean(), 2))
-col4.metric("📚 Étude", round(df_filtered["heures_etude"].mean(), 2))
-
-st.divider()
 
 # =========================
 # FILIERE BAR CHART (SAFE)
 # =========================
-st.markdown("##  Nombre d'étudiants par filière")
+st.markdown("## 👨‍🎓 Nombre d'étudiants par filière")
 
 filiere_counts = df_filtered["filiere"].value_counts().reset_index()
 filiere_counts.columns = ["filiere", "count"]

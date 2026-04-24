@@ -1,17 +1,17 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit.components.v1 as components
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
 st.set_page_config(page_title="Clustering Étudiants", layout="wide")
 
-st.markdown("""
-<style>
 
-/* ===== CLUSTERING HEADER (AI / PURPLE SCIENCE STYLE) ===== */
-.clustering-header {
+
+components.html("""
+<div style="
     background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
     padding: 22px;
     border-radius: 16px;
@@ -19,29 +19,61 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 10px 25px rgba(139,92,246,0.12);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.clustering-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #1E1B4B;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.clustering-subtitle {
-    font-size: 13px;
-    color: #6D28D9;
-    margin-top: 6px;
-}
-</style>
+        <!-- 🧬 + 🔗 ICON (Clustering / ML segmentation) -->
+        <svg width="44" height="44" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#6D28D9"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="clustering-header">
-    <div class="clustering-title"> Segmentation Intelligente des Étudiants</div>
-    <div class="clustering-subtitle">Machine Learning • K-Means • AI-driven Student Profiling</div>
+            <!-- cluster nodes -->
+            <circle cx="6" cy="7" r="2"/>
+            <circle cx="18" cy="7" r="2"/>
+            <circle cx="12" cy="18" r="2"/>
+            <circle cx="12" cy="11" r="2"/>
+
+            <!-- connections -->
+            <line x1="6" y1="7" x2="12" y2="11"/>
+            <line x1="18" y1="7" x2="12" y2="11"/>
+            <line x1="12" y1="11" x2="12" y2="18"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#1E1B4B;
+            letter-spacing:-0.4px;
+        ">
+            Segmentation Intelligente des Étudiants
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#6D28D9;
+        margin-top:6px;
+    ">
+        Machine Learning • K-Means • AI-driven Student Profiling
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 # =========================
 # DATA
@@ -102,18 +134,87 @@ st.divider()
 # =========================
 # DISPLAY KPI
 # =========================
-st.subheader(" Répartition des profils")
+st.markdown("""
+<style>
+
+/* ===== SOFT KPI CARDS ===== */
+.card {
+    background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+/* icon */
+.icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+/* KPI number */
+.kpi {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+/* label */
+.small {
+    font-size: 12.5px;
+    color: #64748B;
+    margin-top: 4px;
+}
+
+/* hover effect (optionnel mais beau) */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
+    transition: 0.25s ease;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.subheader("👤 Répartition des profils")
 
 col1, col2, col3 = st.columns(3)
 
-col1.metric("🟢 Performants", (df["profil"] == "🟢 Performants").sum())
-col2.metric("🟡 Moyens", (df["profil"] == "🟡 Moyens").sum())
-col3.metric("🔴 À risque", (df["profil"] == "🔴 À risque").sum())
+# valeurs inchangées
+perf = (df["profil"] == "🟢 Performants").sum()
+moy = (df["profil"] == "🟡 Moyens").sum()
+risque = (df["profil"] == "🔴 À risque").sum()
+
+
+col1.markdown(f"""
+<div class="card">
+    <div class="icon">🟢</div>
+    <div class="kpi">{perf}</div>
+    <div class="small">Performants</div>
+</div>
+""", unsafe_allow_html=True)
+
+col2.markdown(f"""
+<div class="card">
+    <div class="icon">🟡</div>
+    <div class="kpi">{moy}</div>
+    <div class="small">Moyens</div>
+</div>
+""", unsafe_allow_html=True)
+
+col3.markdown(f"""
+<div class="card">
+    <div class="icon">🔴</div>
+    <div class="kpi">{risque}</div>
+    <div class="small">À risque</div>
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 # =========================
 # VISUALISATION 2D
 # =========================
-st.subheader(" Visualisation des clusters")
+st.subheader("📉 Visualisation des clusters")
 
 fig = px.scatter(
     df,
@@ -133,7 +234,7 @@ st.divider()
 # =========================
 # PROFILS EXPLIQUÉS
 # =========================
-st.subheader(" Analyse des groupes")
+st.subheader("🧬 Analyse des groupes")
 
 for profil in df["profil"].unique():
     st.markdown(f"### {profil}")

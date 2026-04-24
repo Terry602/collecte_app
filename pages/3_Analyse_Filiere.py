@@ -3,14 +3,12 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Analyse par Filière", layout="wide")
 
-st.markdown("""
-<style>
-
-/* ===== FILIERE ANALYSIS HEADER (AMBER STYLE) ===== */
-.filiere-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
     padding: 22px;
     border-radius: 16px;
@@ -18,29 +16,60 @@ st.markdown("""
     text-align: center;
     margin-bottom: 12px;
     box-shadow: 0 8px 20px rgba(245,158,11,0.10);
-}
+    font-family: Arial, sans-serif;
+">
 
-/* TITLE */
-.filiere-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: #7C2D12;
-    letter-spacing: -0.4px;
-}
+    <!-- HEADER FLEX -->
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+    ">
 
-/* SUBTITLE */
-.filiere-subtitle {
-    font-size: 13px;
-    color: #92400E;
-    margin-top: 6px;
-}
-</style>
+        <!-- 📚 + 📊 ICON (Filière / Academic track analysis) -->
+        <svg width="42" height="42" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#7C2D12"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-<div class="filiere-header">
-    <div class="filiere-title"> Analyse par Filière</div>
-    <div class="filiere-subtitle">Comparaison des performances, comportements et tendances par spécialisation</div>
+            <!-- book -->
+            <path d="M4 19c0-2 2-3 5-3h11"/>
+            <path d="M4 5c0-2 2-3 5-3h11v16"/>
+            <path d="M9 2v14"/>
+
+            <!-- analytics bars -->
+            <line x1="14" y1="18" x2="14" y2="14"/>
+            <line x1="16.5" y1="18" x2="16.5" y2="12"/>
+            <line x1="19" y1="18" x2="19" y2="10"/>
+
+        </svg>
+
+        <!-- TITLE -->
+        <div style="
+            font-size:30px;
+            font-weight:800;
+            color:#7C2D12;
+            letter-spacing:-0.4px;
+        ">
+            Analyse par Filière
+        </div>
+
+    </div>
+
+    <!-- SUBTITLE -->
+    <div style="
+        font-size:13px;
+        color:#92400E;
+        margin-top:6px;
+    ">
+        Comparaison des performances, comportements et tendances par spécialisation
+    </div>
+
 </div>
-""", unsafe_allow_html=True)
+""", height=150)
 
 DATA_FILE = "data_students.csv"
 
@@ -63,7 +92,7 @@ st.divider()
 # FILTRES
 # =========================
 filiere_selected = st.selectbox(
-    " Choisir une filière",
+    "📌 Choisir une filière",
     df["filiere"].dropna().unique()
 )
 
@@ -73,21 +102,95 @@ df_fil = df[df["filiere"] == filiere_selected]
 # =========================
 # KPI FILIERE + SEXE (SEMI CIRCLE)
 # =========================
-st.subheader(f" Indicateurs de la filiere - {filiere_selected}")
+st.subheader(f"🌍 Indicateurs de la filiere - {filiere_selected}")
+
+st.markdown("""
+<style>
+
+/* ===== ANIMATED KPI CARDS ===== */
+.kpi-card {
+    background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    transition: all 0.3s ease;
+}
+
+/* hover effect + glow border */
+.kpi-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    border: 1px solid #60A5FA;
+    box-shadow:
+        0 0 10px rgba(96, 165, 250, 0.6),
+        0 10px 25px rgba(96, 165, 250, 0.25);
+}
+
+/* title icon */
+.kpi-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+/* value */
+.kpi-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+/* label */
+.kpi-label {
+    font-size: 12.5px;
+    color: #64748B;
+    margin-top: 4px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 
 col1, col2, col3, col4 = st.columns(4)
 
-col1.metric("🎓 Moyenne", round(df_fil["moyenne"].mean(), 2))
-col2.metric("😰 Stress", round(df_fil["stress"].mean(), 2))
-col3.metric("📚 Heures étude", round(df_fil["heures_etude"].mean(), 2))
-col4.metric("👨‍🎓 Total étudiants", len(df_fil))
+col1.markdown(f"""
+<div class="kpi-card">
+    <div class="kpi-icon">🎓</div>
+    <div class="kpi-value">{round(df_fil["moyenne"].mean(), 2)}</div>
+    <div class="kpi-label">Moyenne</div>
+</div>
+""", unsafe_allow_html=True)
+
+col2.markdown(f"""
+<div class="kpi-card">
+    <div class="kpi-icon">😰</div>
+    <div class="kpi-value">{round(df_fil["stress"].mean(), 2)}</div>
+    <div class="kpi-label">Stress</div>
+</div>
+""", unsafe_allow_html=True)
+
+col3.markdown(f"""
+<div class="kpi-card">
+    <div class="kpi-icon">📚</div>
+    <div class="kpi-value">{round(df_fil["heures_etude"].mean(), 2)}</div>
+    <div class="kpi-label">Heures étude</div>
+</div>
+""", unsafe_allow_html=True)
+
+col4.markdown(f"""
+<div class="kpi-card">
+    <div class="kpi-icon">👨‍🎓</div>
+    <div class="kpi-value">{len(df_fil)}</div>
+    <div class="kpi-label">Total étudiants</div>
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
 # =========================
 #  SEMI-CIRCLE SEXE
 # =========================
-st.subheader(f" Analyse de la filiere - {filiere_selected}")
+st.subheader(f"🔬 Analyse de la filiere - {filiere_selected}")
 
 st.subheader("")
 
@@ -179,7 +282,7 @@ st.divider()
 # =========================
 # COMPARAISONS
 # =========================
-st.subheader(" Comparaison des filières")
+st.subheader("⚖️ Comparaison des filières")
 
 moyenne_filiere = df.groupby("filiere")["moyenne"].mean().reset_index()
 
@@ -228,7 +331,7 @@ st.divider()
 # =========================
 # INSIGHTS
 # =========================
-st.subheader(" Analyse intelligente")
+st.subheader("🔁 Analyse intelligente")
 
 # Moyenne
 best_filiere = df.groupby("filiere")["moyenne"].mean().idxmax()

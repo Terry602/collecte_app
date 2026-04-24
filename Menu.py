@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import time
+import numpy as np
+import streamlit.components.v1 as components
+
 # ==========================================================
 #  CONFIG PAGE
 # ==========================================================
@@ -25,62 +28,86 @@ except:
 # ==========================================================
 #  HEADER
 # ==========================================================
-
-st.markdown("""
-<style>
-
-/* ===== FINTECH HEADER WRAPPER ===== */
-.fintech-header {
+components.html("""
+<div style="
     background: linear-gradient(135deg, #0F172A, #111827);
     padding: 28px 20px;
-    border-radius: 16px;
+    border-radius: 18px;
     border: 1px solid #1F2937;
     text-align: center;
     margin-bottom: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-}
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    font-family: Arial;
+">
 
-/* TITLE FINTECH */
-.fintech-title {
-    font-size: 32px;
-    font-weight: 800;
-    color: #F8FAFC;
-    letter-spacing: -0.5px;
-}
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:14px;
+    ">
 
-/* SUBTITLE FINTECH */
-.fintech-subtitle {
-    font-size: 14px;
-    color: #94A3B8;
-    margin-top: 8px;
-    letter-spacing: 0.3px;
-}
+        <!-- 🧠 AI + DATA NETWORK ICON (WOW STYLE) -->
+        <svg width="48" height="48" viewBox="0 0 24 24"
+             fill="none"
+             stroke="#22D3EE"
+             stroke-width="2.2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
 
-/* SMALL FINTECH TAG */
-.fintech-tag {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 6px 12px;
-    font-size: 12px;
-    color: #22D3EE;
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    border-radius: 20px;
-    background: rgba(34, 211, 238, 0.08);
-}
+            <!-- brain core -->
+            <path d="M9 3c-2 0-3.5 1.5-3.5 3.5S7 10 7 10"/>
+            <path d="M15 3c2 0 3.5 1.5 3.5 3.5S17 10 17 10"/>
+            <path d="M7 10c-1.5 0-2.5 1-2.5 2.5S6 15 7 15"/>
+            <path d="M17 10c1.5 0 2.5 1 2.5 2.5S18 15 17 15"/>
 
-</style>
-""", unsafe_allow_html=True)
+            <!-- data network nodes -->
+            <circle cx="5" cy="18" r="1.2"/>
+            <circle cx="12" cy="20" r="1.2"/>
+            <circle cx="19" cy="18" r="1.2"/>
 
-st.markdown("""
-<div class="fintech-header">
-    <div class="fintech-title"> Application d'Analyse des Étudiants</div>
-    <div class="fintech-subtitle">
-       Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA 
+            <!-- connections -->
+            <line x1="7" y1="14" x2="5" y2="18"/>
+            <line x1="12" y1="14" x2="12" y2="20"/>
+            <line x1="17" y1="14" x2="19" y2="18"/>
+
+        </svg>
+
+        <div style="
+            font-size:32px;
+            font-weight:800;
+            color:#F8FAFC;
+            letter-spacing:-0.5px;
+        ">
+             Application d'Analyse des Étudiants
+        </div>
+
     </div>
-    <div class="fintech-tag">AI • Data Science • Predictive Analytics</div>
-</div>
-""", unsafe_allow_html=True)
 
+    <div style="
+        font-size:14px;
+        color:#94A3B8;
+        margin-top:10px;
+        letter-spacing:0.3px;
+    ">
+        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
+    </div>
+
+    <div style="
+        display:inline-block;
+        margin-top:14px;
+        padding:6px 14px;
+        font-size:12px;
+        color:#22D3EE;
+        border:1px solid rgba(34, 211, 238, 0.3);
+        border-radius:20px;
+        background: rgba(34, 211, 238, 0.08);
+    ">
+        AI • Data Science • Predictive Intelligence
+    </div>
+
+</div>
+""", height=200)
 st.divider()
 
 # =========================
@@ -98,7 +125,7 @@ def load_data():
 # OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
 
-st.markdown("##  Objectif du projet")
+st.markdown("## 🧭 Objectif du projet")
 
 st.components.v1.html("""
 <style>
@@ -208,39 +235,97 @@ st.divider()
 # =========================
 # KPI CARDS
 # =========================
-st.markdown("##  Indicateurs globaux")
+st.markdown("""
+<style>
+
+/* ===== SOFT KPI CARDS (SAAS STYLE) ===== */
+.card {
+    background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    transition: all 0.25s ease;
+}
+
+/* hover effect */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
+    border-color: #C7D2FE;
+}
+
+/* icon */
+.icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+/* KPI number */
+.kpi {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.5px;
+}
+
+/* label */
+.small {
+    font-size: 12.5px;
+    color: #64748B;
+    margin-top: 4px;
+}
+
+/* section title */
+h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 12px;
+}
+</style>
+""", unsafe_allow_html=True)
+st.markdown("## 🌍 Indicateurs globaux")
 
 col1, col2, col3, col4 = st.columns(4)
 
+# sécurisation des valeurs (évite NaN / erreurs)
+nb_etudiants = len(df)
+moyenne_gen = round(df['moyenne'].mean(), 2) if 'moyenne' in df else 0
+stress_moy = round(df['stress'].mean(), 2) if 'stress' in df else 0
+heures_moy = round(df['heures_etude'].mean(), 2) if 'heures_etude' in df else 0
+
+
 col1.markdown(f"""
 <div class="card">
-<div class="icon">👨‍🎓</div>
-<div class="kpi">{len(df)}</div>
-<div class="small">Étudiants</div>
+    <div class="icon">👨‍🎓</div>
+    <div class="kpi">{nb_etudiants}</div>
+    <div class="small">Étudiants enregistrés</div>
 </div>
 """, unsafe_allow_html=True)
 
 col2.markdown(f"""
 <div class="card">
-<div class="icon">🎓</div>
-<div class="kpi">{round(df['moyenne'].mean(),2)}</div>
-<div class="small">Moyenne générale</div>
+    <div class="icon">🎓</div>
+    <div class="kpi">{moyenne_gen}</div>
+    <div class="small">Moyenne générale</div>
 </div>
 """, unsafe_allow_html=True)
 
 col3.markdown(f"""
 <div class="card">
-<div class="icon">😰</div>
-<div class="kpi">{round(df['stress'].mean(),2)}</div>
-<div class="small">Stress moyen</div>
+    <div class="icon">😰</div>
+    <div class="kpi">{stress_moy}</div>
+    <div class="small">Niveau de stress moyen</div>
 </div>
 """, unsafe_allow_html=True)
 
 col4.markdown(f"""
 <div class="card">
-<div class="icon">📚</div>
-<div class="kpi">{round(df['heures_etude'].mean(),2)}</div>
-<div class="small">Heures d'étude</div>
+    <div class="icon">📚</div>
+    <div class="kpi">{heures_moy}</div>
+    <div class="small">Heures d'étude moyennes</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -249,7 +334,7 @@ st.divider()
 # =========================
 # INSIGHTS
 # =========================
-st.markdown("##  Insights automatiques")
+st.markdown("## 🧠 Insights automatiques")
 
 best = df.groupby("filiere")["moyenne"].mean().idxmax()
 worst = df.groupby("filiere")["moyenne"].mean().idxmin()
@@ -271,40 +356,43 @@ col2.info(f" Filière la plus travailleuse : {study_high}")
 col3.success(f" Filière la plus motivée : {motivation_high}")
 
 st.divider()
-
 # =========================
 # PERFORMANCE
 # =========================
-st.markdown("##  Performance globale")
+st.markdown("## 📈 Performance globale")
 
 pass_rate = (df["moyenne"] >= 10).mean() * 100
 
 col1, col2 = st.columns(2)
 
-col1.metric(" Taux de réussite", f"{pass_rate:.1f}%")
-col2.metric(" Taux d'échec", f"{100-pass_rate:.1f}%")
+col1.markdown(f"""
+<div style="text-align:center;">
+    <div style="font-size:16px; font-weight:600; color:#6B4226;">
+         Taux de réussite
+    </div>
+    <div style="font-size:26px; font-weight:800; color:#16A34A;">
+        {pass_rate:.1f}%
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-st.divider()
-# ==========================================================
-#  DISTRIBUTION DES NOTES
-# ==========================================================
-st.subheader(" Distribution des performances")
+col2.markdown(f"""
+<div style="text-align:center;">
+    <div style="font-size:16px; font-weight:600; color:#6B4226;">
+         Taux d'échec
+    </div>
+    <div style="font-size:26px; font-weight:800; color:#DC2626;">
+        {100-pass_rate:.1f}%
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-fig_hist = px.histogram(
-    df,
-    x="moyenne",
-    nbins=20,
-    title="Distribution des moyennes",
-    marginal="box"
-)
-
-st.plotly_chart(fig_hist, use_container_width=True)
 st.divider()
 # ==========================================================
 #  TOP ÉTUDIANTS
 # ==========================================================
 
-st.subheader(" Top étudiants")
+st.subheader("🏆 Top étudiants")
 
 top_students = df.sort_values("moyenne", ascending=False).head(10)
 
@@ -337,7 +425,7 @@ st.divider()
 # ==========================================================
 #  FACTEURS D’IMPACT
 # ==========================================================
-st.subheader(" Facteurs influençant la performance")
+st.subheader("📊 Facteurs influençant la performance")
 
 correlation = df.select_dtypes(include="number").corr()["moyenne"].sort_values()
 
@@ -355,7 +443,7 @@ st.divider()
 # ==========================================================
 #  PROFIL IDÉAL
 # ==========================================================
-st.subheader(" Profil étudiant idéal")
+st.subheader("🌟 Profil étudiant idéal")
 
 best_student = df.sort_values("moyenne", ascending=False).iloc[0]
 
@@ -371,28 +459,9 @@ st.success(f"""
 st.divider()
 
 # ==========================================================
-#  TENDANCES
-# ==========================================================
-st.subheader(" Tendances globales")
-
-trend = df.groupby("niveau")["moyenne"].mean().reset_index()
-
-fig_trend = px.line(
-    trend,
-    x="niveau",
-    y="moyenne",
-    markers=True,
-    title="Évolution des performances par niveau"
-)
-
-st.plotly_chart(fig_trend, use_container_width=True)
-
-st.divider()
-
-# ==========================================================
 # CONCLUSION IA
 # ==========================================================
-st.subheader(" Espace recommandation")
+st.subheader("💡 Espace recommandation")
 
 if df["stress"].mean() > 6:
     st.warning(" Le stress est un facteur critique global")
@@ -408,5 +477,6 @@ st.info("""
 - Réduire le stress
 - Améliorer la régularité
 """)
-
+st.divider()
+st.info(""" Utiliser l'onglet  [<<]  visible au dessus a gauche de votre écran pour remplir le formulaire et naviguer dans l'application""")
 
