@@ -85,15 +85,6 @@ components.html("""
     </div>
 
     <div style="
-        font-size:14px;
-        color:#94A3B8;
-        margin-top:10px;
-        letter-spacing:0.3px;
-    ">
-        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
-    </div>
-
-    <div style="
         display:inline-block;
         margin-top:14px;
         padding:6px 14px;
@@ -120,7 +111,17 @@ def load_data():
 
     df = load_data()
 
-
+st.markdown("""
+                <div style="
+        font-size:14px;
+        color:#94A3B8;
+        margin-top:10px;
+        letter-spacing:0.3px;
+    ">
+        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
+    </div>
+""", height=200)
+st.divider
 # =========================
 # OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
