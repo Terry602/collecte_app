@@ -98,7 +98,7 @@ st.divider()
 #  HISTOGRAMMES (inchangé)
 # =========================
 st.markdown("""
-<h3 style="color:#3B82F6;font-size:22px;">
+<h3 style="color:#3B82F6;font-size:25px;">
 📦 Distributions des moyennes
 </h3>
 """, unsafe_allow_html=True)
