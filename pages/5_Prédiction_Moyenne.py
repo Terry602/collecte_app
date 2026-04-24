@@ -401,7 +401,54 @@ if st.button("🔍 Voir le résultat"):
     """, unsafe_allow_html=True)
 
     st.divider()
+# =========================
+# RESULTATS MODELE (COMPATIBLE)
+# =========================
 
+st.subheader("⚡ Performances du modèle")
+
+model_data = models[filiere_input]
+
+mae = model_data.get("mae")
+acc = model_data.get("acc")
+
+col1, col2 = st.columns(2)
+
+# sécurisation MAE
+if mae is not None:
+    col1.metric("📉 MAE (Erreur Moyenne)", f"{round(mae, 2)}")
+else:
+    col1.metric("📉 MAE", "N/A")
+
+# sécurisation accuracy
+if acc is not None:
+    col2.metric("🎯 Accuracy", f"{round(acc, 2)}")
+else:
+    col2.metric("🎯 Accuracy", "N/A")
+
+st.markdown("---")
+
+# =========================
+# INTERPRETATION MAE
+# =========================
+if mae is not None:
+    if mae < 1.5:
+        st.success(" Prédiction très fiable (faible erreur)")
+    elif mae < 3:
+        st.warning(" Précision moyenne mais acceptable")
+    else:
+        st.error(" Modèle peu précis")
+
+# =========================
+# INTERPRETATION ACCURACY
+# =========================
+if acc is not None:
+    if acc > 0.85:
+        st.success(" Excellent modèle de classification")
+    elif acc > 0.7:
+        st.warning(" Modèle correct mais améliorable")
+    else:
+        st.error(" Modèle faible")
 st.divider()
 # =========================
 # RADAR CHART
