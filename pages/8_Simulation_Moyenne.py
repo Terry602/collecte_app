@@ -335,29 +335,38 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 st.divider()
 
-
 # =========================
 # RECOMMANDATIONS IA
 # =========================
+
+warning = False  # 🔥 AJOUT ICI (IMPORTANT)
+
 if st.button("🚨 Recommandations "):
 
     if heures < 4:
         st.warning("📚 Augmente ton temps d'étude")
+        warning = True
 
     if stress > 6:
         st.warning("😰 Réduis ton stress")
+        warning = True
 
     if sommeil < 6:
         st.warning("😴 Dors plus")
+        warning = True
 
     if motivation < 5:
         st.warning("🔥 Travaille ta motivation")
+        warning = True
 
     if concentration < 5:
         st.warning("🧠 Améliore ta concentration")
+        warning = True
 
     if telephone > 6:
         st.warning("📱 Réduis le téléphone")
+        warning = True
+
     if not warning:
         st.success("👏 Bravo, continue dans ta lancée !")
 
