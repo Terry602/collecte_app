@@ -142,14 +142,14 @@ st.markdown("""
     background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
     border: 1px solid #E2E8F0;
     border-radius: 16px;
-    padding: 18px 14px;
+    padding: 10px 8px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
 }
 
 /* icon */
 .icon {
-    font-size: 22px;
+    font-size: 16px;
     margin-bottom: 6px;
 }
 
