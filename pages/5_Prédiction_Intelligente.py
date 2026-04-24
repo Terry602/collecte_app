@@ -202,9 +202,9 @@ st.components.v1.html("""
 
 /* ===== ACTIVE LINE ===== */
 .line.active {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
-    color:#3B82F6;
+    color:#22D3EE;
     transform: scale(1.05);
 }
 
