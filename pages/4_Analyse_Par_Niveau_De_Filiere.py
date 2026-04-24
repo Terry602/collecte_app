@@ -177,7 +177,7 @@ col3.markdown(f"""
     <div class="kpi-label">Étudiants</div>
 </div>
 """, unsafe_allow_html=True)
-
+st.markdown("<br>", unsafe_allow_html=True)
 # =========================
 # ANALYSE PAR NIVEAU
 # =========================
