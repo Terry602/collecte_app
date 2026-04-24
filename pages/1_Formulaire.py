@@ -168,11 +168,11 @@ if submit:
     # =========================
     placeholder = st.empty()
 
-    placeholder.success(" Données enregistrées avec succès !")
+    placeholder.success(" Données enregistrées avec succès, Merci pour votre souscription !")
     time.sleep(2)
     placeholder.empty()
 
     placeholder2 = st.empty()
-    placeholder2.info(" Données ajoutées au système d'analyse")
+    placeholder2.info(" Données ajoutées au système d'analyse,Bonne Nvigation et prédiction de vos futures performances ")
     time.sleep(2)
     placeholder2.empty()
