@@ -127,7 +127,7 @@ st.divider()
 # OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
 
-st.markdown("# 🧭 Objectif du projet")
+st.markdown("### 🧭 Objectif du projet")
 
 st.components.v1.html("""
 <style>
@@ -156,7 +156,7 @@ st.components.v1.html("""
 
 /* TITRE */
 .title {
-    font-size: 9px;
+    font-size: 13px;
     font-weight: 500;
     margin-bottom: 4px;
 }
