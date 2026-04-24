@@ -184,9 +184,9 @@ if st.button("⚠️ Voir ton risque"):
     """, unsafe_allow_html=True)
 
     st.divider()
-# =========================
-# RADAR SIMPLE (VISUEL)
-# =========================
+
+import plotly.graph_objects as go
+
 st.subheader("📡 Profil global")
 
 categories = ["Étude", "Sommeil", "Stress", "Motivation"]
@@ -197,9 +197,31 @@ values = [
     motivation/10
 ]
 
-st.bar_chart(dict(zip(categories, values)))
+# fermer le cercle
+categories += [categories[0]]
+values += [values[0]]
 
+fig = go.Figure()
 
+fig.add_trace(go.Scatterpolar(
+    r=values,
+    theta=categories,
+    fill='toself',
+    line=dict(width=3),
+))
+
+fig.update_layout(
+    polar=dict(
+        radialaxis=dict(
+            visible=True,
+            range=[0, 1]
+        )
+    ),
+    showlegend=False,
+    margin=dict(l=30, r=30, t=30, b=30)
+)
+
+st.plotly_chart(fig, use_container_width=True)
 # =========================
 # RECOMMANDATIONS AUTOMATIQUES
 # =========================
