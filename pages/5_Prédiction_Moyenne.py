@@ -402,61 +402,53 @@ if st.button("🔍 Voir le résultat"):
 
     st.divider()
 
-models[filiere] = {
-    "model": model,
-    "features": features,
-    "data": df_fil,
-    "mae": mae_value,
-    "acc": acc_value
-}
 # =========================
-# RESULTATS MODELE (COMPATIBLE)
+# MODELE (COMPATIBLE 2e PARTIE)
 # =========================
-
-st.subheader("⚡ Performances du modèle")
 
 model_data = models[filiere_input]
 
+model = model_data["model"]   # ✅ obligatoire pour compatibilité
+features = model_data["features"]
+df_fil = model_data["data"]
+
+# récupération sécurisée des métriques
 mae = model_data.get("mae")
 acc = model_data.get("acc")
 
+# =========================
+# RESULTATS
+# =========================
+st.subheader("⚡ Performances du modèle")
+
 col1, col2 = st.columns(2)
 
-# sécurisation MAE
-if mae is not None:
-    col1.metric("📉 MAE (Erreur Moyenne)", f"{round(mae, 2)}")
-else:
-    col1.metric("📉 MAE", "N/A")
-
-# sécurisation accuracy
-if acc is not None:
-    col2.metric("🎯 Accuracy", f"{round(acc, 2)}")
-else:
-    col2.metric("🎯 Accuracy", "N/A")
-
-st.markdown("---")
+col1.metric("📉 MAE (Erreur Moyenne)", round(mae, 2) if mae is not None else "N/A")
+col2.metric("🎯 Accuracy", round(acc, 2) if acc is not None else "N/A")
 
 # =========================
-# INTERPRETATION MAE
+# INTERPRÉTATION MAE
 # =========================
 if mae is not None:
     if mae < 1.5:
-        st.success(" Prédiction très fiable (faible erreur)")
+        st.success("✅ Prédiction très fiable (faible erreur)")
     elif mae < 3:
-        st.warning(" Précision moyenne mais acceptable")
+        st.warning("⚠️ Précision moyenne mais acceptable")
     else:
-        st.error(" Modèle peu précis")
+        st.error("❌ Modèle peu précis → bruit élevé")
 
 # =========================
-# INTERPRETATION ACCURACY
+# INTERPRÉTATION ACC
 # =========================
 if acc is not None:
     if acc > 0.85:
-        st.success(" Excellent modèle de classification")
+        st.success("🚀 Excellent modèle de classification")
     elif acc > 0.7:
-        st.warning(" Modèle correct mais améliorable")
+        st.warning("⚠️ Modèle correct mais améliorable")
     else:
-        st.error(" Modèle faible")
+        st.error("❌ Modèle faible")
+
+st.divider()
 st.divider()
 # =========================
 # RADAR CHART
