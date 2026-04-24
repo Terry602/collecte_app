@@ -224,125 +224,81 @@ percent = (diff / moyenne_actuelle) * 100 if moyenne_actuelle != 0 else 0
 # =========================
 st.subheader("🧠 Résultats de simulation")
 
-# =========================
-# STYLE KPI CARDS
-# =========================
-st.markdown("""
-<style>
-.sim-card {
-    background: #FFFFFF;
-    padding: 18px;
-    border-radius: 14px;
-    border: 1px solid #E5E7EB;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    transition: 0.25s ease;
-}
+if st.button("🔍 Voir le résultat"):
 
-.sim-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
+    # =========================
+    # STYLE KPI CARDS
+    # =========================
+    st.markdown("""
+    <style>
+    .sim-card {
+        background: #FFFFFF;
+        padding: 18px;
+        border-radius: 14px;
+        border: 1px solid #E5E7EB;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        transition: 0.25s ease;
+    }
 
-.sim-title {
-    font-size: 13px;
-    color: #64748B;
-    margin-bottom: 6px;
-}
+    .sim-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
 
-.sim-value {
-    font-size: 26px;
-    font-weight: 800;
-    color: #0F172A;
-}
+    .sim-title {
+        font-size: 13px;
+        color: #64748B;
+        margin-bottom: 6px;
+    }
 
-.sim-impact {
-    font-size: 26px;
-    font-weight: 800;
-}
-</style>
-""", unsafe_allow_html=True)
+    .sim-value {
+        font-size: 26px;
+        font-weight: 800;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-# =========================
-# COULEUR IMPACT
-# =========================
-impact_color = "#16A34A" if percent >= 0 else "#DC2626"
+    # =========================
+    # COULEURS DYNAMIQUES
+    # =========================
+    pred_color = "#16A34A" if percent >= 0 else "#DC2626"
+    current_color = "#EAB308"
+    impact_color = "#16A34A" if percent >= 0 else "#DC2626"
 
+    # =========================
+    # AFFICHAGE
+    # =========================
+    col1, col2, col3 = st.columns(3)
 
-# =========================
-# STYLE KPI CARDS
-# =========================
-st.markdown("""
-<style>
-.sim-card {
-    background: #FFFFFF;
-    padding: 18px;
-    border-radius: 14px;
-    border: 1px solid #E5E7EB;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    transition: 0.25s ease;
-}
-
-.sim-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.sim-title {
-    font-size: 13px;
-    color: #64748B;
-    margin-bottom: 6px;
-}
-
-.sim-value {
-    font-size: 26px;
-    font-weight: 800;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# =========================
-# COULEURS DYNAMIQUES
-# =========================
-pred_color = "#16A34A" if percent >= 0 else "#DC2626"   # vert / rouge
-current_color = "#EAB308"  # jaune fort (visible)
-impact_color = "#16A34A" if percent >= 0 else "#DC2626"
-
-# =========================
-# AFFICHAGE
-# =========================
-col1, col2, col3 = st.columns(3)
-
-col1.markdown(f"""
-<div class="sim-card">
-    <div class="sim-title"> Moyenne prédite</div>
-    <div class="sim-value" style="color:{pred_color};">
-        {round(pred, 2)}
+    col1.markdown(f"""
+    <div class="sim-card">
+        <div class="sim-title"> Moyenne prédite</div>
+        <div class="sim-value" style="color:{pred_color};">
+            {round(pred, 2)}
+        </div>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-col2.markdown(f"""
-<div class="sim-card">
-    <div class="sim-title"> Moyenne actuelle</div>
-    <div class="sim-value" style="color:{current_color};">
-        {round(moyenne_actuelle, 2)}
+    col2.markdown(f"""
+    <div class="sim-card">
+        <div class="sim-title"> Moyenne actuelle</div>
+        <div class="sim-value" style="color:{current_color};">
+            {round(moyenne_actuelle, 2)}
+        </div>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-col3.markdown(f"""
-<div class="sim-card">
-    <div class="sim-title"> Impact</div>
-    <div class="sim-value" style="color:{impact_color};">
-        {percent:.1f}%
+    col3.markdown(f"""
+    <div class="sim-card">
+        <div class="sim-title"> Impact</div>
+        <div class="sim-value" style="color:{impact_color};">
+            {percent:.1f}%
+        </div>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-st.divider()
+    st.divider()
 # =========================
 # RADAR CHART
 # =========================
