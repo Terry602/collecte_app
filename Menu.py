@@ -288,7 +288,7 @@ h2 {
 }
 </style>
 """, unsafe_allow_html=True)
-st.markdown("## 🌍 Indicateurs globaux")
+st.markdown("### 🌍 Indicateurs globaux")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -336,7 +336,7 @@ st.divider()
 # =========================
 # INSIGHTS
 # =========================
-st.markdown("## 🧠 Insights automatiques")
+st.markdown("### 🧠 Insights automatiques")
 
 best = df.groupby("filiere")["moyenne"].mean().idxmax()
 worst = df.groupby("filiere")["moyenne"].mean().idxmin()
@@ -361,7 +361,7 @@ st.divider()
 # =========================
 # PERFORMANCE
 # =========================
-st.markdown("## 📈 Performance globale")
+st.markdown("### 📈 Performance globale")
 
 pass_rate = (df["moyenne"] >= 10).mean() * 100
 
@@ -427,7 +427,8 @@ st.divider()
 # ==========================================================
 #  FACTEURS D’IMPACT
 # ==========================================================
-st.subheader("📊 Facteurs influençant la performance")
+st.subheader("###
+📊 Facteurs influençant la performance")
 
 correlation = df.select_dtypes(include="number").corr()["moyenne"].sort_values()
 
