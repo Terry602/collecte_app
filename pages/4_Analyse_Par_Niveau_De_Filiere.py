@@ -134,7 +134,7 @@ st.markdown("""
 
 /* value */
 .kpi-value {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
     color: #0F172A;
 }
