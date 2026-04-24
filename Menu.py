@@ -427,7 +427,7 @@ st.divider()
 # ==========================================================
 #  FACTEURS D’IMPACT
 # ==========================================================
-st.markdown("#### 📊Facteurs influençant la performance")
+st.markdown("### 📊Facteurs influençant la performance")
 
 correlation = df.select_dtypes(include="number").corr()["moyenne"].sort_values()
 
