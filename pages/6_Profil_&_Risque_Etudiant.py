@@ -187,7 +187,7 @@ if st.button("⚠️ Voir ton risque"):
 
 import plotly.graph_objects as go
 
-st.subheader("📡 Profil global")
+st.subheader("📡Ton Profil actuel")
 
 categories = ["Étude", "Sommeil", "Stress", "Motivation"]
 values = [
