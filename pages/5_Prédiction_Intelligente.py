@@ -50,7 +50,7 @@ components.html("""
 
         <!-- TITLE -->
         <div style="
-            font-size:30px;
+            font-size:20px;
             font-weight:800;
             color:#F8FAFC;
             letter-spacing:-0.5px;
