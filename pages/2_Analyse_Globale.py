@@ -98,7 +98,7 @@ st.divider()
 #  HISTOGRAMMES (inchangé)
 # =========================
 st.markdown("""
-<h3 style="color:#3B82F6;">
+<h3 style="color:#3B82F6;font-size:14px;">
 📦 Distributions des moyennes
 </h3>
 """, unsafe_allow_html=True)
@@ -152,7 +152,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#92400E;">
-🔗 Corrélation
+🔗Matrice de Corrélation
 </h3>
 """, unsafe_allow_html=True)
 
@@ -161,8 +161,7 @@ corr_matrix = numeric_df.corr()
 fig6 = px.imshow(
     corr_matrix,
     text_auto=True,
-    color_continuous_scale="RdBu_r",
-    title=" Matrice de corrélation"
+    color_continuous_scale="RdBu_r"
 )
 
 st.plotly_chart(fig6, use_container_width=True)
@@ -170,7 +169,7 @@ st.plotly_chart(fig6, use_container_width=True)
 st.divider()
 
 # =========================
-#  RELATIONS IMPORTANTES (inchangé)
+#  RELATIONS IMPORTANTES 
 # =========================
 st.markdown("""
 <h3 style="color:#EAB308;">
