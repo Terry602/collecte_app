@@ -112,7 +112,7 @@ st.markdown("""
     background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
     border: 1px solid #E2E8F0;
     border-radius: 16px;
-    padding: 12px 8px;
+    padding: 8px 5px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
     transition: all 0.3s ease;
@@ -129,13 +129,13 @@ st.markdown("""
 
 /* title icon */
 .kpi-icon {
-    font-size: 20px;
+    font-size: 12px;
     margin-bottom: 6px;
 }
 
 /* value */
 .kpi-value {
-    font-size: 24px;
+    font-size: 10px;
     font-weight: 800;
     color: #0F172A;
 }
