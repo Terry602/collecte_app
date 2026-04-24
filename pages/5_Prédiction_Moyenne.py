@@ -401,6 +401,14 @@ if st.button("🔍 Voir le résultat"):
     """, unsafe_allow_html=True)
 
     st.divider()
+
+models[filiere] = {
+    "model": model,
+    "features": features,
+    "data": df_fil,
+    "mae": mae_value,
+    "acc": acc_value
+}
 # =========================
 # RESULTATS MODELE (COMPATIBLE)
 # =========================
