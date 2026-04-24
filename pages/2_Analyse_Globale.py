@@ -339,5 +339,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+     show_stats = st.button("📊 Statistique par filière")
+if show_stats:
+    
 
+  
 
