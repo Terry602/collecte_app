@@ -156,14 +156,14 @@ st.components.v1.html("""
 
 /* TITRE */
 .title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 4px;
 }
 
 /* DESCRIPTION */
 .desc {
-    font-size: 13px;
+    font-size: 9px;
     color: #000000;
 }
 
