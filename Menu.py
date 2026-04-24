@@ -74,7 +74,7 @@ components.html("""
         </svg>
 
         <div style="
-            font-size:32px;
+            font-size:25px;
             font-weight:800;
             color:#F8FAFC;
             letter-spacing:-0.5px;
