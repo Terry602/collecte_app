@@ -82,7 +82,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#92400E;">
-🌍  Indicateurs clés
+### 🌍  Indicateurs clés
 </h3>
 """, unsafe_allow_html=True)
 
@@ -99,7 +99,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#3B82F6;">
-📦 Distributions des variables
+### 📦 Distributions des variables
 </h3>
 """, unsafe_allow_html=True)
 
@@ -128,7 +128,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#059669;">
-🔀 Répartitions
+### 🔀 Répartitions
 </h3>
 """, unsafe_allow_html=True)
 
@@ -159,7 +159,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#92400E;">
-🔗 Corrélation
+### 🔗 Corrélation
 </h3>
 """, unsafe_allow_html=True)
 
@@ -181,7 +181,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#EAB308;">
-🔑 Relations clés
+### 🔑 Relations clés
 </h3>
 """, unsafe_allow_html=True)
 
@@ -222,7 +222,7 @@ st.divider()
 # =========================
 st.markdown("""
 <h3 style="color:#94A3B8;">
-📊 Distribution des notes par filière
+### 📊 Distribution des notes par filière
 </h3>
 """, unsafe_allow_html=True)
 
