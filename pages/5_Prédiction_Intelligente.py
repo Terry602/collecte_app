@@ -377,34 +377,35 @@ input_data = pd.DataFrame([input_dict])
 # =========================
 pred_moyenne = model_reg.predict(input_data)[0]
 pred_reussite = model_clf.predict(input_data)[0]
-
 # =========================
 # RESULTATS
 # =========================
 st.subheader(" Résultat")
 
-color = "#16A34A" if pred_moyenne >= 10 else "#DC2626"
+if st.button("🔍 Voir le résultat"):
 
-st.markdown(f"""
-<div style="
-    background: #FFFFFF;
-    padding: 16px;
-    border-radius: 12px;
-    border: 1px solid #E5E7EB;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-">
-    <div style="font-size:14px; color:#64748B;">🎓 Moyenne prédite</div>
-    <div style="font-size:28px; font-weight:800; color:{color};">
-        {round(pred_moyenne, 2)} / 20
+    color = "#16A34A" if pred_moyenne >= 10 else "#DC2626"
+
+    st.markdown(f"""
+    <div style="
+        background: #FFFFFF;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid #E5E7EB;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    ">
+        <div style="font-size:14px; color:#64748B;">🎓 Moyenne prédite</div>
+        <div style="font-size:28px; font-weight:800; color:{color};">
+            {round(pred_moyenne, 2)} / 20
+        </div>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-if pred_reussite == 1:
-    st.success("🎉 Réussite probable")
-else:
-    st.error("⚠ Risque d'échec")
+    if pred_reussite == 1:
+        st.success("🎉 Réussite probable")
+    else:
+        st.error("⚠ Risque d'échec")
 
 st.divider()
 # =========================
