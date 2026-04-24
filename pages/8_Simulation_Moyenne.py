@@ -135,6 +135,108 @@ models = train_models(df)
 
 st.markdown("""
  ***Le modèle analyse chaque filiere et prédit en fonction des données collectées et traitées de la filiere de l'étudiant***""")
+
+# =========================
+# EXPLICATION PÉDAGOGIQUE
+# =========================
+
+st.subheader("📖 Explication du modèle")
+
+st.components.v1.html("""
+<style>
+
+/* ===== CONTAINER GLOBAL ===== */
+.scroll-wrapper {
+    height: 60px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* ===== CONTENT ===== */
+.scroll-content {
+    display: flex;
+    flex-direction: column;
+    animation: scrollStep 32s infinite;
+}
+
+/* ===== LINE ===== */
+.line {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #64748B;
+    transition: all 0.4s ease;
+}
+
+/* ===== ACTIVE LINE ===== */
+.line.active {
+    font-size: 15px;
+    font-weight: 700;
+    color:#22D3EE;
+    transform: scale(1.05);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes scrollStep {
+
+    0%   { transform: translateY(0%); }
+    10%  { transform: translateY(0%); }
+
+    12.5% { transform: translateY(-60px); }
+    22.5% { transform: translateY(-60px); }
+
+    25%  { transform: translateY(-120px); }
+    35%  { transform: translateY(-120px); }
+
+    37.5% { transform: translateY(-180px); }
+    47.5% { transform: translateY(-180px); }
+
+    50%  { transform: translateY(-240px); }
+    60%  { transform: translateY(-240px); }
+
+    62.5% { transform: translateY(-300px); }
+    72.5% { transform: translateY(-300px); }
+
+    75%  { transform: translateY(-360px); }
+    85%  { transform: translateY(-360px); }
+
+    87.5% { transform: translateY(-420px); }
+    97.5% { transform: translateY(-420px); }
+
+    100% { transform: translateY(0%); }
+}
+
+</style>
+
+<div class="scroll-wrapper">
+    <div class="scroll-content">
+
+        <div class="line active"> Le modèle analyse et exploite toutes les variables de la filière choisie </div>
+        <div class="line"> Ceci étant, les variables exploitées sont entre autres : </div>
+
+        <div class="line">- Habitudes d’étude : heures et régularité</div>
+
+        <div class="line">- Mode de vie : sommeil, téléphone, sport</div>
+
+        <div class="line">- Bien-être : stress, motivation, concentration</div>
+
+        <div class="line">- Profil académique : filière, niveau, sexe, méthode</div>
+
+        <div class="line"> Objectif : </div>
+
+        <div class="line">- prédire la moyenne académique</div> 
+
+        <div class="line">- prédire la réussite ou l’échec</div>
+
+
+        <div class="line"> Algorithme utilisée : Random Forest (robuste et performant)</div>
+
+    </div>
+</div>
+""", height=90)
 # =========================
 # CHOIX FILIERE
 # =========================
