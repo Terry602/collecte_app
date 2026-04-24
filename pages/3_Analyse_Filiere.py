@@ -368,6 +368,9 @@ st.success(f" Filière la plus régulière : {regularite_high}")
 if age_high:
     st.info(f" Filière avec étudiants les plus âgés : {age_high}")
 
+
+
+niveau_group = df_fil.groupby("niveau").mean(numeric_only=True).reset_index()
 # =========================
 # ANALYSE PAR NIVEAU
 # =========================
