@@ -138,7 +138,7 @@ st.markdown("""
 # =========================
 # CHOIX FILIERE
 # =========================
-st.subheader(" Profil étudiant")
+st.subheader(" Renseigne ton profil")
 
 filiere_input = st.selectbox("📚 Filière", list(models.keys()))
 model_data = models[filiere_input]
@@ -168,7 +168,7 @@ closest = df_fil.sort_values("diff").iloc[0]
 # =========================
 # INPUT USER
 # =========================
-st.subheader("🛠️ Paramètres étudiant (modifiables)")
+st.subheader("🛠️ Adapte à tes nouveaux paramètres d'études")
 
 col1, col2, col3 = st.columns(3)
 
