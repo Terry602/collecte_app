@@ -463,7 +463,7 @@ st.divider()
 # ==========================================================
 # CONCLUSION IA
 # ==========================================================
-st.subheader("💡 Espace recommandation")
+st.subheader("💡À propos")
 
 if df["stress"].mean() > 6:
     st.warning(" Le stress est un facteur critique global")
