@@ -79,7 +79,7 @@ components.html("""
             color:#F8FAFC;
             letter-spacing:-0.5px;
         ">
-             Application d'Analyse des Étudiants
+             Application d'Analyse des Perfomances des Étudiants
         </div>
 
     </div>
@@ -117,7 +117,7 @@ st.markdown("""
     margin-top:10px;
     letter-spacing:0.3px;
 ">
-    Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
+    Chaque donnée étudiante révèle un potentiel, chaque analyse ouvre une réussite.
 </div>
 """, unsafe_allow_html=True)
 
@@ -480,5 +480,15 @@ st.info("""
 - Améliorer la régularité
 """)
 st.divider()
-st.info(""" Utiliser l'onglet  [<<]  visible au dessus a gauche de votre écran pour remplir le formulaire et naviguer dans l'application""")
+st.info(""" Utiliser l'onglet  [<<]  visible au dessus a gauche de votre écran pour remplir le formulaire, naviguer dans l'application et prédire vos futures moyennes""")
+st.markdown("""
+<div style="
+    font-size:14px;
+    color:#94A3B8;
+    margin-top:10px;
+    letter-spacing:0.3px;
+">
+   Analyser. Comprendre. Réussir.
+</div>
+""", unsafe_allow_html=True)
 
