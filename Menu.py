@@ -112,8 +112,8 @@ def load_data():
     df = load_data()
 st.markdown("""
 <div style="
-    font-size:14px;
-    color:#94A3B8;
+    font-size:16px;
+    color:#38BDF8;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
