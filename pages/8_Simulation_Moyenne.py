@@ -358,6 +358,8 @@ if st.button("🚨 Recommandations "):
 
     if telephone > 6:
         st.warning("📱 Réduis le téléphone")
+    if not warning:
+        st.success("👏 Bravo, continue dans ta lancée !")
 
 # =========================
 # DIAGNOSTIC IA
