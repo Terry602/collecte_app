@@ -3,10 +3,10 @@ import pandas as pd
 import plotly.express as px
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="Analyse Globale", layout="wide")
+st.set_page_config(page_title="Analyse Filière & Niveau", layout="wide")
 
 # =========================
-# HEADER GLOBAL
+# HEADER UNIQUE
 # =========================
 components.html("""
 <div style="
@@ -17,16 +17,31 @@ components.html("""
     text-align: center;
     margin-bottom: 14px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    font-family: Arial;
 ">
-    <div style="font-size:30px;font-weight:800;color:#0F172A;">
-        📊 Analyse Académique Complète
+
+    <div style="display:flex; align-items:center; justify-content:center; gap:14px;">
+
+        <svg width="45" height="45" viewBox="0 0 24 24"
+             fill="none" stroke="#4F46E5" stroke-width="2.2">
+
+            <path d="M3 9l9-4 9 4-9 4-9-4z"/>
+            <path d="M7 12v4c0 1 2 3 5 3s5-2 5-3v-4"/>
+            <line x1="8" y1="20" x2="8" y2="16"/>
+            <line x1="12" y1="20" x2="12" y2="14"/>
+            <line x1="16" y1="20" x2="16" y2="10"/>
+        </svg>
+
+        <div style="font-size:30px; font-weight:800;">
+            Analyse Filière & Niveau Académique
+        </div>
+
     </div>
-    <div style="font-size:13px;color:#64748B;margin-top:6px;">
-        Filières • Niveaux • Performance • Corrélations • Insights
+
+    <div style="font-size:13px; color:#64748B; margin-top:6px;">
+        Analyse complète des performances, comportements et évolutions étudiantes
     </div>
 </div>
-""", height=140)
+""", height=160)
 
 # =========================
 # DATA
@@ -38,136 +53,108 @@ def load_data():
 df = load_data()
 
 # =========================
-# FILTRE FILIÈRE (POINT CENTRAL)
+# FILTRE FILIÈRE
 # =========================
-st.subheader("📌 Sélection de la filière")
-
 filiere_selected = st.selectbox(
-    " Choisir une filière",
+    "📌 Choisir une filière",
     df["filiere"].dropna().unique()
 )
 
 df_fil = df[df["filiere"] == filiere_selected]
 
 if df_fil.empty:
-    st.warning(" Aucune donnée pour cette filière")
+    st.warning("Aucune donnée pour cette filière")
     st.stop()
 
 st.divider()
 
-# =========================================================
-# 🟡 PARTIE 1 : ANALYSE FILIÈRE
-# =========================================================
-st.subheader(f"📚 Analyse de la filière - {filiere_selected}")
-
-# KPI FILIERE
-st.markdown("""<style>
-.kpi-card {
-    background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
-    border: 1px solid #E2E8F0;
-    border-radius: 16px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    transition: 0.3s;
-}
-.kpi-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-.kpi-value {font-size:18px;font-weight:800;}
-.kpi-label {font-size:12px;color:#64748B;}
-</style>""", unsafe_allow_html=True)
+# =========================
+# KPI GLOBAL FILIÈRE
+# =========================
+st.subheader(f"🌍 Indicateurs globaux - {filiere_selected}")
 
 col1, col2, col3, col4 = st.columns(4)
 
-col1.markdown(f"""<div class="kpi-card"><div class="kpi-value">{round(df_fil["moyenne"].mean(),2)}</div><div class="kpi-label">Moyenne</div></div>""", unsafe_allow_html=True)
-col2.markdown(f"""<div class="kpi-card"><div class="kpi-value">{round(df_fil["stress"].mean(),2)}</div><div class="kpi-label">Stress</div></div>""", unsafe_allow_html=True)
-col3.markdown(f"""<div class="kpi-card"><div class="kpi-value">{round(df_fil["heures_etude"].mean(),2)}</div><div class="kpi-label">Heures étude</div></div>""", unsafe_allow_html=True)
-col4.markdown(f"""<div class="kpi-card"><div class="kpi-value">{len(df_fil)}</div><div class="kpi-label">Étudiants</div></div>""", unsafe_allow_html=True)
+col1.metric("🎓 Moyenne", round(df_fil["moyenne"].mean(), 2))
+col2.metric("😰 Stress", round(df_fil["stress"].mean(), 2))
+col3.metric("📚 Étude", round(df_fil["heures_etude"].mean(), 2))
+col4.metric("👨‍🎓 Étudiants", len(df_fil))
 
-# Sexe
-sex_counts = df_fil["sexe"].value_counts().reset_index()
-sex_counts.columns = ["sexe", "count"]
+st.divider()
+
+# =========================
+# ANALYSE FILIÈRE
+# =========================
+st.subheader("🔬 Analyse de la filière")
 
 fig_sex = px.pie(
-    sex_counts,
+    df_fil,
     names="sexe",
-    values="count",
     hole=0.5,
-    title=" Répartition du sexe",
-    color_discrete_sequence=["#FF9F1C", "#2EC4B6"]
+    title="Répartition du sexe"
 )
 st.plotly_chart(fig_sex, use_container_width=True)
 
-# Corrélation
 numeric_df = df_fil.select_dtypes(include=["int64", "float64"])
-fig_corr = px.imshow(
-    numeric_df.corr(),
-    text_auto=True,
-    color_continuous_scale="RdBu",
-    title=" Corrélation des variables"
-)
+fig_corr = px.imshow(numeric_df.corr(), text_auto=True, title="Corrélation")
 st.plotly_chart(fig_corr, use_container_width=True)
 
-# Scatter
-st.plotly_chart(px.scatter(df_fil, x="heures_etude", y="moyenne", trendline="ols", title=" Études vs Performance"), use_container_width=True)
-st.plotly_chart(px.scatter(df_fil, x="motivation", y="moyenne", trendline="ols", title=" Motivation vs Performance"), use_container_width=True)
+# =========================
+# RELATIONS
+# =========================
+st.subheader("📊 Relations clés")
 
+fig = px.scatter(df_fil, x="heures_etude", y="moyenne", trendline="ols",
+                 title="Études vs Performance")
+st.plotly_chart(fig, use_container_width=True)
+
+fig = px.scatter(df_fil, x="motivation", y="moyenne", trendline="ols",
+                 title="Motivation vs Performance")
+st.plotly_chart(fig, use_container_width=True)
+
+# =========================
+# ANALYSE PAR NIVEAU
+# =========================
 st.divider()
-
-# =========================================================
-# 🔵 PARTIE 2 : ANALYSE PAR NIVEAU (DANS LA FILIÈRE)
-# =========================================================
-st.subheader(f"🎓 Analyse par niveau - {filiere_selected}")
+st.subheader("🎓 Analyse par niveau")
 
 niveau_group = df_fil.groupby("niveau").mean(numeric_only=True).reset_index()
 
-# KPI NIVEAU
-col1, col2, col3 = st.columns(3)
+fig1 = px.bar(niveau_group, x="niveau", y="moyenne",
+              title="Moyenne par niveau")
+st.plotly_chart(fig1, use_container_width=True)
 
-col1.metric("🎓 Meilleure moyenne", round(niveau_group["moyenne"].max(),2))
-col2.metric("😰 Stress moyen", round(df_fil["stress"].mean(),2))
-col3.metric("👨‍🎓 Étudiants", len(df_fil))
+fig2 = px.bar(niveau_group, x="niveau", y="stress",
+              title="Stress par niveau")
+st.plotly_chart(fig2, use_container_width=True)
 
-# Graphes
-st.plotly_chart(px.bar(niveau_group, x="niveau", y="moyenne", color="niveau",
-                       title=" Moyenne par niveau"), use_container_width=True)
+fig3 = px.bar(niveau_group, x="niveau", y="heures_etude",
+              title="Étude par niveau")
+st.plotly_chart(fig3, use_container_width=True)
 
-st.plotly_chart(px.bar(niveau_group, x="niveau", y="stress", color="niveau",
-                       title=" Stress par niveau"), use_container_width=True)
+fig4 = px.pie(df_fil, names="niveau", title="Répartition des niveaux")
+st.plotly_chart(fig4, use_container_width=True)
 
-st.plotly_chart(px.bar(niveau_group, x="niveau", y="heures_etude", color="niveau",
-                       title=" Heures d'étude par niveau"), use_container_width=True)
-
-# Répartition niveau
-st.plotly_chart(px.pie(df_fil, names="niveau",
-                       title=" Répartition des niveaux"), use_container_width=True)
-
+# =========================
+# COMPARAISONS FILIÈRES
+# =========================
 st.divider()
-
-# =========================================================
-# 🧠 PARTIE 3 : COMPARAISONS GLOBALES
-# =========================================================
 st.subheader("⚖️ Comparaison des filières")
 
-st.plotly_chart(px.bar(df.groupby("filiere")["moyenne"].mean().reset_index(),
-                       x="filiere", y="moyenne", color="filiere",
-                       title=" Moyenne par filière"), use_container_width=True)
+fig = px.bar(df.groupby("filiere")["moyenne"].mean().reset_index(),
+             x="filiere", y="moyenne", title="Moyenne par filière")
+st.plotly_chart(fig, use_container_width=True)
 
-st.plotly_chart(px.bar(df.groupby("filiere")["stress"].mean().reset_index(),
-                       x="filiere", y="stress", color="filiere",
-                       title=" Stress par filière"), use_container_width=True)
+fig = px.bar(df.groupby("filiere")["stress"].mean().reset_index(),
+             x="filiere", y="stress", title="Stress par filière")
+st.plotly_chart(fig, use_container_width=True)
 
+# =========================
+# INSIGHTS
+# =========================
 st.divider()
+st.subheader("🧠 Insights intelligents")
 
-# =========================================================
-# 🤖 INSIGHTS IA
-# =========================================================
-st.subheader("🔁 Analyse intelligente")
-
-best = df.groupby("filiere")["moyenne"].mean().idxmax()
-worst = df.groupby("filiere")["moyenne"].mean().idxmin()
-
-st.success(f" Filière la plus performante : {best}")
-st.error(f" Filière la moins performante : {worst}")
+st.success(f"Meilleure filière : {df.groupby('filiere')['moyenne'].mean().idxmax()}")
+st.error(f"Moins performante : {df.groupby('filiere')['moyenne'].mean().idxmin()}")
+st.warning(f"Plus stressée : {df.groupby('filiere')['stress'].mean().idxmax()}")
