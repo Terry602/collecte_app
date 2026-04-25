@@ -95,14 +95,14 @@ with st.form("student_form"):
         "Filière",
         ["Informatique", "Maths", "Économie", "Droit", "Médecine",
          "Physique", "Chimie", "Biologie", "Histoire", "Géographie",
-         "Langue étrangère", "Géologie", "Philosophie"]
+         "Langue étrangère", "Géologie", "Philosophie", "Architecture", "Énergies renouvelables"]
     )
 
     niveau = st.selectbox("Niveau", ["L1", "L2", "L3", "Master1", "Master2", "PhD"])
 
     st.markdown("### 📚 Habitudes d'étude")
     heures_etude = st.slider("Heures d'étude par jour", 0, 12, 2)
-    methode = st.selectbox("Méthode d'apprentissage", ["Seul", "Groupe"])
+    methode = st.selectbox("Méthode d'apprentissage", ["Seul(e)", "Groupe"])
     regularite = st.slider("Régularité (1 à 10)", 1, 10, 5)
 
     st.markdown("### 🍎 Mode de vie")
