@@ -183,7 +183,6 @@ st.plotly_chart(fig6, use_container_width=True)
 st.components.v1.html("""
 <style>
 
-/* ===== CONTAINER GLOBAL ===== */
 .scroll-wrapper {
     height: 60px;
     overflow: hidden;
@@ -191,71 +190,46 @@ st.components.v1.html("""
     position: relative;
 }
 
-/* ===== CONTENT ===== */
 .scroll-content {
     display: flex;
     flex-direction: column;
-    animation: scrollStep 32s infinite;
+    animation: scrollLoop 20s linear infinite;
 }
 
-/* ===== LINE ===== */
+/* lignes */
 .line {
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-    color: #64748B;
-    transition: all 0.4s ease;
+    font-size: 11px;
+    color: #ffffff;
 }
 
-/* ===== ACTIVE LINE ===== */
-.line.active {
-    font-size: 15px;
-    font-weight: 700;
-    color:#22D3EE;
-    transform: scale(1.05);
-}
-
-/* ===== ANIMATION ===== */
-@keyframes scrollStep {
-
-    0%   { transform: translateY(0%); }
-    10%  { transform: translateY(0%); }
-
-    12.5% { transform: translateY(-60px); }
-    22.5% { transform: translateY(-60px); }
-
-    25%  { transform: translateY(-120px); }
-    35%  { transform: translateY(-120px); }
-
-    37.5% { transform: translateY(-180px); }
-    47.5% { transform: translateY(-180px); }
-
-    50%  { transform: translateY(-240px); }
-    60%  { transform: translateY(-240px); }
-
-    62.5% { transform: translateY(-300px); }
-    72.5% { transform: translateY(-300px); }
-
-    75%  { transform: translateY(-360px); }
-    85%  { transform: translateY(-360px); }
-
-    87.5% { transform: translateY(-420px); }
-    97.5% { transform: translateY(-420px); }
-
-    100% { transform: translateY(0%); }
+/* animation fluide */
+@keyframes scrollLoop {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
 }
 
 </style>
 
 <div class="scroll-wrapper">
     <div class="scroll-content">
-        <div class="line active">Interprétation de la matrice de corrélation </div>
-        <div class="line"> Cette matrice permet d’analyser les relations entre les différentes variables numériques du dataset</div>
-        <div class="line">• Une valeur proche de +1 indique une forte corrélation positive (les variables évoluent dans le même sens) </div>
-        <div class="line">• Une valeur proche de -1 indique une forte corrélation négative (les variables évoluent en sens opposé)</div>
-        <div class="line">• Une valeur proche de 0 signifie qu’il n’existe pas de relation linéaire significative</div>
+
+        <!-- CONTENU ORIGINAL -->
+        <div class="line">Interprétation de la matrice de corrélation</div>
+        <div class="line">Analyse des relations entre variables</div>
+        <div class="line">+1 = corrélation positive (les variables évoluent dans le même sens)</div>
+        <div class="line">-1 = corrélation négative (les variables evoluent en sens contraire)</div>
+        <div class="line">0 = pas de relation entre les variables</div>
+
+        <!-- DUPLICATION (IMPORTANT) -->
+        <div class="line">Interprétation de la matrice de corrélation</div>
+        <div class="line">Analyse des relations entre variables</div>
+        <div class="line">+1 = corrélation positive (les variables évoluent dans le même sens)</div>
+        <div class="line">-1 = corrélation négative (les variables evoluent en sens contraire)</div>
+        <div class="line">0 = pas de relation entre les variables</div>
 
     </div>
 </div>
