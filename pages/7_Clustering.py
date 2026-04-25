@@ -141,7 +141,7 @@ st.markdown("""
 .card {
     background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
     border: 1px solid #E2E8F0;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 6px 4px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
@@ -149,14 +149,14 @@ st.markdown("""
 
 /* icon */
 .icon {
-    font-size: 16px;
+    font-size: 12px;
     margin-bottom: 6px;
 }
 
 /* KPI number */
 .kpi {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500;
     color: #0F172A;
 }
 
