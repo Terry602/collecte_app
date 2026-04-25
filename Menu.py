@@ -484,7 +484,7 @@ st.info(""" Utiliser l'onglet  [<<]  visible au dessus à gauche de votre écran
 st.markdown("""
 <div style="
     font-size:16px;
-    color:#38BDF8;
+    color:#A16207;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
