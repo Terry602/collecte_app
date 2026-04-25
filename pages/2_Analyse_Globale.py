@@ -141,10 +141,24 @@ with col2:
         df,
         names="sexe",
         title=" Répartition par sexe",
-        color_discrete_sequence=["#FF9F1C", "#2EC4B6"]
+        color_discrete_sequence=["#FF9F1C", "#2EC4B6"],
+        hole=0.6  # effet donut
     )
-    st.plotly_chart(fig5, use_container_width=True)
 
+    fig5.update_traces(
+        textinfo="percent+label",
+        rotation=180,          # démarre à gauche
+        direction="clockwise"  # sens
+    )
+
+    fig5.update_layout(
+        height=400,
+        margin=dict(t=50, b=0),
+        showlegend=True,
+        annotations=[dict(text="Sexe", x=0.5, y=0.5, showarrow=False)],
+    )
+
+    st.plotly_chart(fig5, use_container_width=True)
 st.divider()
 
 # =========================
