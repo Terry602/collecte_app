@@ -241,12 +241,9 @@ st.markdown("""
     color:#065F46;
 ">
 
-📊 <b>Interprétation des clusters d’étudiants</b><br><br>
+<b>Interprétation des clusters d’étudiants</b><br><br>
 
 Ce graphique permet de visualiser la répartition des étudiants selon leur <b>temps d’étude</b> et leur <b>performance académique</b>.
-
-🎯 <b>Objectif :</b> identifier des profils d’étudiants afin de mieux comprendre les comportements et anticiper les risques.
-
 <br>
 
 🟢 <b>Performants</b>  
@@ -268,12 +265,8 @@ Nécessitent un accompagnement (méthode de travail, motivation, gestion du stre
 <br>
 
 📌 <b>Lecture du graphique :</b>  
-• Axe horizontal = nombre d’heures d’étude  
-• Axe vertical = moyenne académique  
 • Chaque point = un étudiant  
 • La couleur indique son profil  
-<br>
-Ce type de segmentation permet de détecter rapidement les étudiants en difficulté et d’adapter les stratégies pédagogiques.
 
 </div>
 """, unsafe_allow_html=True)
@@ -289,8 +282,8 @@ for profil in df["profil"].unique():
     subset = df[df["profil"] == profil]
 
     st.write("📊 Moyenne :", round(subset["moyenne"].mean(), 2))
-    st.write("😰 Stress :", round(subset["stress"].mean(), 2))
-    st.write("📚 Étude :", round(subset["heures_etude"].mean(), 2))
+    st.write("😰 Stress moyen:", round(subset["stress"].mean(), 2))
+    st.write("📚 Heure d'étude moyenne :", round(subset["heures_etude"].mean(), 2))
     st.write("👥 Effectif :", len(subset))
 
 st.divider()
