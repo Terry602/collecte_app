@@ -202,7 +202,7 @@ st.components.v1.html("""
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #ffffff;
 }
 
