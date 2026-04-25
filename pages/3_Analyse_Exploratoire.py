@@ -95,15 +95,27 @@ def load_data():
     return df
 
 df = load_data()
+st.markdown("## 🎯 Filtres")
 
-# =========================
-# SIDEBAR FILTERS
-# =========================
-st.sidebar.header(" Filtres")
+col1, col2, col3 = st.columns(3)
 
-filiere = st.sidebar.selectbox("📚 Filière", ["Toutes"] + sorted(df["filiere"].dropna().unique()))
-niveau = st.sidebar.selectbox("🎓 Niveau", ["Tous"] + sorted(df["niveau"].dropna().unique()))
-sexe = st.sidebar.selectbox("👤 Sexe", ["Tous"] + sorted(df["sexe"].dropna().unique()))
+with col1:
+    filiere = st.selectbox(
+        "📚 Filière",
+        ["Toutes"] + sorted(df["filiere"].dropna().unique())
+    )
+
+with col2:
+    niveau = st.selectbox(
+        "🎓 Niveau",
+        ["Tous"] + sorted(df["niveau"].dropna().unique())
+    )
+
+with col3:
+    sexe = st.selectbox(
+        "👤 Sexe",
+        ["Tous"] + sorted(df["sexe"].dropna().unique())
+    )
 
 # =========================
 # FILTER DATA
@@ -120,23 +132,19 @@ if sexe != "Tous":
     df_filtered = df_filtered[df_filtered["sexe"] == sexe]
 
 
-# =========================
-# SEARCH SAFE
-# =========================
-st.markdown("## 🔍 Recherche étudiant")
+st.markdown("## 👤 Sélectionner un étudiant")
 
-search = st.text_input("Tape le nom de l'étudiant")
+if len(df_filtered) == 0:
+    st.warning("Aucun étudiant trouvé avec ces filtres")
+else:
+    student_selected = st.selectbox(
+        "Choisir un étudiant",
+        df_filtered["nom"].unique()
+    )
 
-if search:
-    if "nom" in df_filtered.columns:
-        result = df_filtered[
-            df_filtered["nom"].astype(str).str.contains(search, case=False, na=False)
-        ]
-        st.dataframe(result)
-    else:
-        st.warning("Colonne nom absente dans les données")
-    st.stop()
+    student_data = df_filtered[df_filtered["nom"] == student_selected]
 
+    st.dataframe(student_data, use_container_width=True)
 st.divider()
 
 
