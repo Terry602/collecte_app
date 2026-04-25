@@ -241,7 +241,7 @@ st.markdown("""
     color:#065F46;
 ">
 
-<b>Interprétation des clusters d’étudiants</b>
+💡 <b>Interprétation des clusters d’étudiants</b>
 <br>
 Ce graphique permet de visualiser la répartition des étudiants selon leur <b>temps d’étude</b> et leur <b>performance académique</b>.
 <br>
@@ -255,9 +255,7 @@ Profil stable et autonome
 🔴 <b>À risque</b>  
 Faible moyenne malgré parfois un effort  
 Nécessitent un accompagnement (méthode de travail, motivation, gestion du stress)  
-
 <br>
-
 📌 <b>Lecture du graphique :</b>  
 • Chaque point = un étudiant  
 • La couleur indique son profil  
