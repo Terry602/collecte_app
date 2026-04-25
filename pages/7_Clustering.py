@@ -230,6 +230,53 @@ fig = px.scatter(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
+st.markdown("""
+<div style="
+    background: #F0FDF4;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #86EFAC;
+    font-size:14px;
+    color:#065F46;
+">
+
+📊 <b>Interprétation des clusters d’étudiants</b><br><br>
+
+Ce graphique permet de visualiser la répartition des étudiants selon leur <b>temps d’étude</b> et leur <b>performance académique</b>.
+
+🎯 <b>Objectif :</b> identifier des profils d’étudiants afin de mieux comprendre les comportements et anticiper les risques.
+
+<br>
+
+🟢 <b>Performants</b>  
+Étudiants avec de bonnes moyennes et généralement un bon volume d’étude  
+Profil stable et autonome  
+
+<br>
+
+🟡 <b>Moyens</b>  
+ Résultats corrects mais variables  
+ Peuvent progresser avec plus de régularité ou de concentration  
+
+<br>
+
+🔴 <b>À risque</b>  
+Faible moyenne malgré parfois un effort  
+Nécessitent un accompagnement (méthode de travail, motivation, gestion du stress)  
+
+<br>
+
+📌 <b>Lecture du graphique :</b>  
+• Axe horizontal = nombre d’heures d’étude  
+• Axe vertical = moyenne académique  
+• Chaque point = un étudiant  
+• La couleur indique son profil  
+<br>
+Ce type de segmentation permet de détecter rapidement les étudiants en difficulté et d’adapter les stratégies pédagogiques.
+
+</div>
+""", unsafe_allow_html=True)
 st.divider()
 # =========================
 # PROFILS EXPLIQUÉS
