@@ -151,7 +151,7 @@ st.divider()
 # =========================
 # FILIERE BAR CHART (SAFE)
 # =========================
-st.markdown("#### 👨‍🎓 Nombre d'étudiants par filière")
+st.markdown("#### 👨‍🎓 Nombre d'étudiants")
 
 filiere_counts = df_filtered["filiere"].value_counts().reset_index()
 filiere_counts.columns = ["filiere", "count"]
