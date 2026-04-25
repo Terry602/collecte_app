@@ -383,6 +383,12 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 show_stats = st.button("🧮 Statistique par filière")
 if show_stats:
+    import streamlit as st
+    import pandas as pd
+    import plotly.express as px
+    import streamlit.components.v1 as components
+    import matplotlib.pyplot as plt
+    import seaborn as sns
     # =========================
     # FILTRES
     # =========================
