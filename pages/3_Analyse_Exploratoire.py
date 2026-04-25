@@ -95,7 +95,7 @@ def load_data():
     return df
 
 df = load_data()
-st.markdown("## 🎯 Filtres")
+st.markdown("###  Filtres")
 
 col1, col2, col3 = st.columns(3)
 
@@ -132,7 +132,7 @@ if sexe != "Tous":
     df_filtered = df_filtered[df_filtered["sexe"] == sexe]
 
 
-st.markdown("## 👤 Sélectionner un étudiant")
+st.markdown("### 👤 Sélectionner un étudiant")
 
 if len(df_filtered) == 0:
     st.warning("Aucun étudiant trouvé avec ces filtres")
@@ -151,7 +151,7 @@ st.divider()
 # =========================
 # FILIERE BAR CHART (SAFE)
 # =========================
-st.markdown("## 👨‍🎓 Nombre d'étudiants par filière")
+st.markdown("### 👨‍🎓 Nombre d'étudiants par filière")
 
 filiere_counts = df_filtered["filiere"].value_counts().reset_index()
 filiere_counts.columns = ["filiere", "count"]
