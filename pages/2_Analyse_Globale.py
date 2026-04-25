@@ -180,6 +180,105 @@ fig6 = px.imshow(
 
 st.plotly_chart(fig6, use_container_width=True)
 
+st.components.v1.html("""
+<style>
+
+/* ===== CONTAINER GLOBAL ===== */
+.scroll-wrapper {
+    height: 60px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* ===== CONTENT ===== */
+.scroll-content {
+    display: flex;
+    flex-direction: column;
+    animation: scrollStep 32s infinite;
+}
+
+/* ===== LINE ===== */
+.line {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #64748B;
+    transition: all 0.4s ease;
+}
+
+/* ===== ACTIVE LINE ===== */
+.line.active {
+    font-size: 15px;
+    font-weight: 700;
+    color:#22D3EE;
+    transform: scale(1.05);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes scrollStep {
+
+    0%   { transform: translateY(0%); }
+    10%  { transform: translateY(0%); }
+
+    12.5% { transform: translateY(-60px); }
+    22.5% { transform: translateY(-60px); }
+
+    25%  { transform: translateY(-120px); }
+    35%  { transform: translateY(-120px); }
+
+    37.5% { transform: translateY(-180px); }
+    47.5% { transform: translateY(-180px); }
+
+    50%  { transform: translateY(-240px); }
+    60%  { transform: translateY(-240px); }
+
+    62.5% { transform: translateY(-300px); }
+    72.5% { transform: translateY(-300px); }
+
+    75%  { transform: translateY(-360px); }
+    85%  { transform: translateY(-360px); }
+
+    87.5% { transform: translateY(-420px); }
+    97.5% { transform: translateY(-420px); }
+
+    100% { transform: translateY(0%); }
+}
+
+</style>
+
+<div class="scroll-wrapper">
+    <div class="scroll-content">
+        <div class="line active">Interprétation de la matrice de corrélation </div>
+        <div class="line"> Cette matrice permet d’analyser les relations entre les différentes variables numériques du dataset</div>
+        <div class="line">• Une valeur proche de +1 indique une forte corrélation positive (les variables évoluent dans le même sens) </div>
+        <div class="line">• Une valeur proche de -1 indique une forte corrélation négative (les variables évoluent en sens opposé)</div>
+        <div class="line">• Une valeur proche de 0 signifie qu’il n’existe pas de relation linéaire significative</div>
+
+    </div>
+</div>
+""", height=90)
+st.markdown("""
+<div style="
+    background: #FFFBEB;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #FDE68A;
+    font-size:14px;
+    color:#92400E;
+">
+
+  <b>Lecture du graphique :</b>  
+• Les couleurs <b>rouges</b> représentent des corrélations positives  
+• Les couleurs <b>bleues</b> représentent des corrélations négatives  
+• Plus la couleur est intense, plus la relation est forte  
+
+💡 Cette analyse permet de détecter rapidement les variables clés comme le <b>temps d’étude</b>, la <b>motivation</b>, le <b>stress</b> ou la <b>concentration</b>.
+
+</div>
+""", unsafe_allow_html=True)
 st.divider()
 
 # =========================
