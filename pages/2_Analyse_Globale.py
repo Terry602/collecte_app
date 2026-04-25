@@ -721,8 +721,7 @@ if st.session_state.show_stats:
     st.plotly_chart(fig4, use_container_width=True)
 
 
-    if credits_high:
-        st.info(f" Filière avec le plus de crédits validés : {credits_high}")
+   
     
 
   
