@@ -379,16 +379,18 @@ st.markdown("""
 🤔 Souhaitez-vous visualiser les statistiques par Filière ?
 </div>
 """, unsafe_allow_html=True)
+
 st.markdown("<br>", unsafe_allow_html=True)
 
-show_stats = st.button("🧮 Statistique par filière")
-if show_stats:
-    import streamlit as st
-    import pandas as pd
-    import plotly.express as px
-    import streamlit.components.v1 as components
-    import matplotlib.pyplot as plt
-    import seaborn as sns
+# ===== SESSION STATE =====
+if "show_stats" not in st.session_state:
+    st.session_state.show_stats = False
+
+if st.button("🧮 Statistique par filière"):
+    st.session_state.show_stats = True
+
+# ===== AFFICHAGE PERSISTANT =====
+if st.session_state.show_stats:
     # =========================
     # FILTRES
     # =========================
