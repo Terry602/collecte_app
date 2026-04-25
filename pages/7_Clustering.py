@@ -241,23 +241,17 @@ st.markdown("""
     color:#065F46;
 ">
 
-<b>Interprétation des clusters d’étudiants</b><br><br>
-
+<b>Interprétation des clusters d’étudiants</b>
+<br>
 Ce graphique permet de visualiser la répartition des étudiants selon leur <b>temps d’étude</b> et leur <b>performance académique</b>.
 <br>
 
 🟢 <b>Performants</b>  
 Étudiants avec de bonnes moyennes et généralement un bon volume d’étude  
 Profil stable et autonome  
-
-<br>
-
 🟡 <b>Moyens</b>  
  Résultats corrects mais variables  
  Peuvent progresser avec plus de régularité ou de concentration  
-
-<br>
-
 🔴 <b>À risque</b>  
 Faible moyenne malgré parfois un effort  
 Nécessitent un accompagnement (méthode de travail, motivation, gestion du stress)  
