@@ -152,7 +152,7 @@ with col2:
     )
 
     fig5.update_layout(
-        height=200,
+        height=300,
         margin=dict(t=50, b=0),
         showlegend=True,
         annotations=[dict(text="Sexe", x=0.5, y=0.5, showarrow=False)],
