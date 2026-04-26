@@ -3,9 +3,10 @@ base="dark"
 
 primaryColor="#22D3EE"
 
-backgroundColor="#2F3A4A"              # gris bleu plus lumineux
-secondaryBackgroundColor="#445066"     # cartes plus claires
+backgroundColor="#1F2937"              # gris foncé doux (pas noir)
+secondaryBackgroundColor="#374151"     # cartes visibles mais pas dures
 
-textColor="#F8FAFC"                   # presque blanc mais doux
+textColor="#F3F4F6"                   # texte très doux
 
 font="sans serif"
+
