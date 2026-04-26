@@ -216,16 +216,16 @@ st.components.v1.html("""
         <!-- CONTENU ORIGINAL -->
         <div class="line">Interprétation de la matrice de corrélation</div>
         <div class="line">Analyse des relations entre variables</div>
-        <div class="line">+1 = corrélation positive (les variables évoluent dans le même sens)</div>
-        <div class="line">-1 = corrélation négative (les variables evoluent en sens contraire)</div>
+        <div class="line">]0,1]  = corrélation positive (les variables évoluent dans le même sens)</div>
+        <div class="line">[-1,0[ = corrélation négative (les variables evoluent en sens contraire)</div>
         <div class="line">0 = pas de relation entre les variables</div>
 
         <!-- DUPLICATION (IMPORTANT) -->
         <div class="line">Interprétation de la matrice de corrélation</div>
         <div class="line">Analyse des relations entre variables</div>
-        <div class="line"> ]0,1] = corrélation positive (les variables évoluent dans le même sens)</div>
-        <div class="line"> [-1,0[ = corrélation négative (les variables evoluent en sens contraire)</div>
-        <div class="line"> 0 = pas de relation entre les variables</div>
+        <div class="line">]0,1] = corrélation positive (les variables évoluent dans le même sens)</div>
+        <div class="line">[-1,0[ = corrélation négative (les variables evoluent en sens contraire)</div>
+        <div class="line">0 = pas de relation entre les variables</div>
 
     </div>
 </div>
