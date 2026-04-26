@@ -187,7 +187,7 @@ st.components.v1.html("""
 <div class="container">
 
     <div class="objective active">
-        <div class="title">Objectif de la collecte :</div>
+        <div class="title">Objectif de l'application :</div>
     </div>
 
     <div class="objective active">
@@ -239,7 +239,7 @@ setInterval(showNext, 3000);
 """, height=140)
 
 st.info("""
-📌 Utilisation de l'application :
+📌Utilisation de l'application :
 Utilisez l'onglet « << » en haut à gauche pour :
 - remplir le formulaire
 - naviguer dans l'application
