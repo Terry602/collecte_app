@@ -387,10 +387,8 @@ st.divider()
 # =========================
 # ANALYSE INTELLIGENTE
 # =========================
-st.subheader("🧠 Insights intelligents")
+st.subheader("🔁 Analyse intelligente")
 if st.button(" 🔍 Visualiser"):
-
-    st.subheader("🔁 Analyse intelligente")
 
     # Moyenne
     best_filiere = df.groupby("filiere")["moyenne"].mean().idxmax()
