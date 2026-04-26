@@ -166,18 +166,17 @@ st.components.v1.html("""
 
 /* TITRE */
 .title {
-    font-size: 12px;
-    font-style: italic;
+    font-size: 16px;
+    font-style: oblique;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    line-height: 1.6;
+    text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
     color: #9CA3AF;
     font-weight: 500;
     margin-bottom: 4px;
 }
 
-/* DESCRIPTION */
-.desc {
-    font-size: 12px;
-    color: #9CA3AF;
-}
 
 /* ACTIVE */
 .objective.active {
