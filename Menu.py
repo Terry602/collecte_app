@@ -84,7 +84,7 @@ components.html("""
 
     </div>
     <div style="
-        font-size:14px;
+        font-size:11px;
         color:#94A3B8;
         margin-top:10px;
         letter-spacing:0.3px;
@@ -96,7 +96,7 @@ components.html("""
         display:inline-block;
         margin-top:14px;
         padding:6px 14px;
-        font-size:12px;
+        font-size:9px;
         color:#22D3EE;
         border:1px solid rgba(34, 211, 238, 0.3);
         border-radius:20px;
