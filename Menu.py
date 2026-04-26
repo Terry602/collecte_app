@@ -145,20 +145,20 @@ st.components.v1.html("""
     align-items: center;
     justify-content: center;
 }
-
-/* OBJECTIF GLOBAL */
 .objective {
     position: absolute;
     opacity: 0;
     text-align: center;
-    padding: 18px 28px;
-    border-radius: 14px;
-    border: 1px solid #E5E7EB;
-    background:#F8FAFC ;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    padding: 0; /* ❌ plus de padding carte */
+    
+    background: none; /* ❌ supprime fond */
+    border: none;     /* ❌ supprime bordure */
+    box-shadow: none; /* ❌ supprime ombre */
+    border-radius: 0;
+
     transition: opacity 0.8s ease, transform 0.8s ease;
     transform: translateY(10px);
-    width: 80%;
+    width: 100%;
 }
 
 /* TITRE */
