@@ -139,7 +139,7 @@ st.markdown("""
 
 /* ===== SOFT KPI CARDS ===== */
 .card {
-    background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+    background: linear-gradient(135deg, #9CA3AF, #F8FAFC);
     border: 1px solid #E2E8F0;
     border-radius: 8px;
     padding: 6px 4px;
