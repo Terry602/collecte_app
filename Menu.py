@@ -171,7 +171,7 @@ st.components.v1.html("""
 /* DESCRIPTION */
 .desc {
     font-size: 13px;
-    color: #000000;
+    color: #ffffff;
 }
 
 /* ACTIVE */
