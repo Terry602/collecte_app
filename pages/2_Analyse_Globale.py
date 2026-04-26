@@ -134,7 +134,7 @@ with col1:
         color_discrete_sequence=["#FF5733", "#FFC300", "#28B463", "#3498DB", "#9B59B6"]
     )
 
-    fig4.update_layout(height= 500) 
+    fig4.update_layout(height=500) 
 
     st.plotly_chart(fig4, use_container_width=True)
 
@@ -147,7 +147,7 @@ with col2:
         hole=0.6
     )
 
-    fig5.update_layout(height=500) 
+    fig5.update_layout(height=450) 
 
     st.plotly_chart(fig5, use_container_width=True)
 
