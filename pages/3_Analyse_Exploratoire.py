@@ -132,7 +132,7 @@ if sexe != "Tous":
     df_filtered = df_filtered[df_filtered["sexe"] == sexe]
 
 
-st.markdown("### 👤 Sélectionner un étudiant")
+st.markdown("### 👤 Sélectionner l'étudiant")
 
 if len(df_filtered) == 0:
     st.warning("Aucun étudiant trouvé avec ces filtres")
