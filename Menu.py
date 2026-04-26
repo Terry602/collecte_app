@@ -79,9 +79,17 @@ components.html("""
             color:#F8FAFC;
             letter-spacing:-0.5px;
         ">
-             Application d'Analyse des Perfomances des Étudiants
+             Application de Collecte et d'Analyse des Perfomances des Étudiants
         </div>
 
+    </div>
+    <div style="
+        font-size:14px;
+        color:#94A3B8;
+        margin-top:10px;
+        letter-spacing:0.3px;
+    ">
+        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
     </div>
 
     <div style="
@@ -99,7 +107,6 @@ components.html("""
 
 </div>
 """, height=200)
-st.divider()
 
 # =========================
 # DATA 
