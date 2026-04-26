@@ -231,8 +231,8 @@ st.components.v1.html("""
         <!-- DUPLICATION (IMPORTANT) -->
         <div class="line">Interprétation de la matrice de corrélation</div>
         <div class="line">Analyse des relations entre variables</div>
-        <div class="line">+1 = corrélation positive (les variables évoluent dans le même sens)</div>
-        <div class="line">-1 = corrélation négative (les variables evoluent en sens contraire)</div>
+        <div class="line">]0,1] = corrélation positive (les variables évoluent dans le même sens)</div>
+        <div class="line">[-1,0[ = corrélation négative (les variables evoluent en sens contraire)</div>
         <div class="line">0 = pas de relation entre les variables</div>
 
     </div>
@@ -252,6 +252,7 @@ st.markdown("""
 • Les couleurs <b>rouges</b> représentent des corrélations positives  
 • Les couleurs <b>bleues</b> représentent des corrélations négatives  
 • Plus la couleur est intense, plus la relation est forte  
+• Le relation entre deux variables est d'autant plus forte lorsque leur corrélation tend vers +1 et plus faible lorsqu'elle tend vers -1
 
 💡 Cette analyse permet de détecter rapidement les variables clés comme le <b>temps d’étude</b>, la <b>motivation</b>, le <b>stress</b> ou la <b>concentration</b>.
 
@@ -263,7 +264,7 @@ st.divider()
 #  RELATIONS IMPORTANTES 
 # =========================
 st.markdown("""
-<h3 style="color:#EAB308;">
+<h3 style="color:#A16207;">
 🔑 Relations clés
 </h3>
 """, unsafe_allow_html=True)
