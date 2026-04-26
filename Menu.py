@@ -136,8 +136,7 @@ st.divider()
 # =========================
 # OBJECTIFS (ANIMATION ULTRA FLUIDE - VERSION AMÉLIORÉE)
 # =========================
-
-st.markdown("### 🧭 Objectif du projet")
+st.subheader("💡À propos")
 
 st.components.v1.html("""
 <style>
@@ -188,6 +187,10 @@ st.components.v1.html("""
 <div class="container">
 
     <div class="objective active">
+        <div class="title">Objectif de la collecte :</div>
+    </div>
+
+    <div class="objective active">
         <div class="title">Collecte intelligente des données</div>
     </div>
 
@@ -235,6 +238,13 @@ setInterval(showNext, 3000);
 </script>
 """, height=140)
 
+st.info("""
+📌 Utilisation de l'application :
+Utilisez l'onglet « << » en haut à gauche pour :
+- remplir le formulaire
+- naviguer dans l'application
+- prédire vos futures moyennes
+""")
 st.divider()
 
 # =========================
@@ -466,7 +476,7 @@ st.divider()
 # ==========================================================
 # CONCLUSION IA
 # ==========================================================
-st.subheader("💡À propos")
+st.subheader("💡Utile")
 
 if df["stress"].mean() > 6:
     st.warning(" Le stress est un facteur critique global")
@@ -483,15 +493,21 @@ st.info("""
 - Améliorer la régularité
 """)
 st.divider()
-st.info(""" Utiliser l'onglet  [<<]  visible au dessus à gauche de votre écran pour remplir le formulaire, naviguer dans l'application et prédire vos futures moyennes""")
+
 st.markdown("""
 <div style="
     font-size:16px;
-    color:#A16207;
+    color:#9CA3AF;
     margin-top:10px;
-    letter-spacing:0.3px;
+    letter-spacing:0.4px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.6;
+    padding: 6px 12px;
+    border-left: 3px solid rgba(156, 163, 175, 0.4);
 ">
-   Analyser. Comprendre. Réussir.
+    “Analyser.Comprendre.Réussir.”
 </div>
 """, unsafe_allow_html=True)
+
 
