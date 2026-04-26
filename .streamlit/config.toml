@@ -1,11 +1,11 @@
 [theme]
 base="light"
 
-primaryColor="#22D3EE"
+primaryColor="#38BDF8"
 
-backgroundColor="#EEF2F7"              # légèrement bleuté
-secondaryBackgroundColor="#E5EAF0"
+backgroundColor="#DCE3EA"              # gris bleuté plus profond
+secondaryBackgroundColor="#C7D2FE"     # léger contraste
 
-textColor="#0F172A"
+textColor="#020617"                   # texte un peu plus marqué
 
 font="sans serif"
