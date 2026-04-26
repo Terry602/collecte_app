@@ -387,8 +387,8 @@ st.divider()
 # =========================
 # ANALYSE INTELLIGENTE
 # =========================
-
-if st.button("🧠 Analyse intelligente"):
+ st.subheader("🧠 Insights intelligents")
+if st.button(" 🔍 Visualiser"):
 
     st.subheader("🔁 Analyse intelligente")
 
@@ -430,7 +430,7 @@ if st.button("🧠 Analyse intelligente"):
     if age_high:
         st.info(f"👴 Filière avec étudiants les plus âgés : {age_high}")
 
-    st.divider()
+st.divider()
 # =========================
 # EXPORT CSV + AFFICHAGE DONNÉES (inchangé)
 # =========================
