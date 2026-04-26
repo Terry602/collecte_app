@@ -207,7 +207,7 @@ st.components.v1.html("""
     align-items: center;
     justify-content: center;
     font-size: 12px;
-    color: #ffffff;
+    color: #EAB308;
 }
 
 /* animation fluide */
