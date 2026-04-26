@@ -1,11 +1,10 @@
 [theme]
 base="dark"
+primaryColor="#22D3EE"
 
-primaryColor="#38BDF8"
+backgroundColor="#0F172A"              # bleu nuit doux
+secondaryBackgroundColor="#1E293B"     # gris bleuté
 
-backgroundColor="#0B1220"              # fond principal (bleu nuit profond mais doux)
-secondaryBackgroundColor="#111827"     # cartes / containers
-
-textColor="#E6EDF3"                    # blanc cassé premium
+textColor="#E2E8F0"                   # blanc cassé (moins agressif)
 
 font="sans serif"
