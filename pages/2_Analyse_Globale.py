@@ -124,7 +124,6 @@ st.markdown("""
 🔀 Répartitions
 </h3>
 """, unsafe_allow_html=True)
-
 col1, col2 = st.columns(2)
 
 with col1:
@@ -134,6 +133,9 @@ with col1:
         title=" Répartition par filière",
         color_discrete_sequence=["#FF5733", "#FFC300", "#28B463", "#3498DB", "#9B59B6"]
     )
+
+    fig4.update_layout(height=350) 
+
     st.plotly_chart(fig4, use_container_width=True)
 
 with col2:
@@ -142,23 +144,13 @@ with col2:
         names="sexe",
         title=" Répartition par sexe",
         color_discrete_sequence=["#FF9F1C", "#2EC4B6"],
-        hole=0.6  # effet donut
+        hole=0.6
     )
 
-    fig5.update_traces(
-        textinfo="percent+label",
-        rotation=180,          # démarre à gauche
-        direction="clockwise"  # sens
-    )
-
-    fig5.update_layout(
-        height=300,
-        margin=dict(t=50, b=0),
-        showlegend=True,
-        annotations=[dict(text="Sexe", x=0.5, y=0.5, showarrow=False)],
-    )
+    fig5.update_layout(height=350) 
 
     st.plotly_chart(fig5, use_container_width=True)
+
 st.divider()
 
 # =========================
@@ -264,7 +256,7 @@ st.divider()
 #  RELATIONS IMPORTANTES 
 # =========================
 st.markdown("""
-<h3 style="color:#A16207;">
+<h3 style="color:#ffffff;">
 🔑 Relations clés
 </h3>
 """, unsafe_allow_html=True)
