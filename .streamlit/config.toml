@@ -1,11 +1,10 @@
 [theme]
-base="light"
-
+base="dark"
 primaryColor="#22D3EE"
 
-backgroundColor="#E2E8F0"              # plus sombre que #EEF2F7
-secondaryBackgroundColor="#CBD5E1"     # cartes bien visibles
+backgroundColor="#0F172A"              # bleu nuit doux
+secondaryBackgroundColor="#1E293B"     # gris bleuté
 
-textColor="#0F172A"
+textColor="#E2E8F0"                   # blanc cassé (moins agressif)
 
 font="sans serif"
