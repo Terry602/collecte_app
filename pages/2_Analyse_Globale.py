@@ -387,7 +387,7 @@ st.divider()
 # =========================
 # ANALYSE INTELLIGENTE
 # =========================
- st.subheader("🧠 Insights intelligents")
+st.subheader("🧠 Insights intelligents")
 if st.button(" 🔍 Visualiser"):
 
     st.subheader("🔁 Analyse intelligente")
