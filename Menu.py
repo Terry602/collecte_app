@@ -458,7 +458,7 @@ st.divider()
 # ==========================================================
 #  PROFIL IDÉAL
 # ==========================================================
-st.subheader("🌟 Profil étudiant idéal")
+st.subheader("🌟 Profil meilleur étudiant")
 
 best_student = df.sort_values("moyenne", ascending=False).iloc[0]
 
