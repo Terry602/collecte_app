@@ -385,47 +385,52 @@ st.plotly_chart(fig_trend, use_container_width=True)
 
 st.divider()
 # =========================
-# INSIGHTS
+# ANALYSE INTELLIGENTE
 # =========================
-st.subheader("🔁 Analyse intelligente")
 
-# Moyenne
-best_filiere = df.groupby("filiere")["moyenne"].mean().idxmax()
-worst_filiere = df.groupby("filiere")["moyenne"].mean().idxmin()
+if st.button("🧠 Analyse intelligente"):
 
-# Stress
-stress_high = df.groupby("filiere")["stress"].mean().idxmax()
-stress_low = df.groupby("filiere")["stress"].mean().idxmin()
+    st.subheader("🔁 Analyse intelligente")
 
-concentration_high = df.groupby("filiere")["concentration"].mean().idxmax()
-motivation_high = df.groupby("filiere")["motivation"].mean().idxmax()
-regularite_high = df.groupby("filiere")["regularite"].mean().idxmax()
+    # Moyenne
+    best_filiere = df.groupby("filiere")["moyenne"].mean().idxmax()
+    worst_filiere = df.groupby("filiere")["moyenne"].mean().idxmin()
 
-age_high = None
-credits_high = None
+    # Stress
+    stress_high = df.groupby("filiere")["stress"].mean().idxmax()
+    stress_low = df.groupby("filiere")["stress"].mean().idxmin()
 
-if "age" in df.columns:
-    age_high = df.groupby("filiere")["age"].mean().idxmax()
+    concentration_high = df.groupby("filiere")["concentration"].mean().idxmax()
+    motivation_high = df.groupby("filiere")["motivation"].mean().idxmax()
+    regularite_high = df.groupby("filiere")["regularite"].mean().idxmax()
 
-if "credits" in df.columns:
-    credits_high = df.groupby("filiere")["credits"].mean().idxmax()
+    age_high = None
+    credits_high = None
 
-# =========================
-# AFFICHAGE
-# =========================
-st.success(f" Filière la plus performante : {best_filiere}")
-st.error(f" Filière la moins performante : {worst_filiere}")
+    if "age" in df.columns:
+        age_high = df.groupby("filiere")["age"].mean().idxmax()
 
-st.warning(f" Filière la plus stressée : {stress_high}")
-st.info(f" Filière la moins stressée : {stress_low}")
+    if "credits" in df.columns:
+        credits_high = df.groupby("filiere")["credits"].mean().idxmax()
 
-st.success(f" Filière la plus concentrée : {concentration_high}")
-st.success(f" Filière la plus motivée : {motivation_high}")
-st.success(f" Filière la plus régulière : {regularite_high}")
+    # =========================
+    # AFFICHAGE
+    # =========================
 
-if age_high:
-    st.info(f" Filière avec étudiants les plus âgés : {age_high}")
-st.divider()
+    st.success(f"🏆 Filière la plus performante : {best_filiere}")
+    st.error(f"📉 Filière la moins performante : {worst_filiere}")
+
+    st.warning(f"😰 Filière la plus stressée : {stress_high}")
+    st.info(f"😌 Filière la moins stressée : {stress_low}")
+
+    st.success(f"🧠 Filière la plus concentrée : {concentration_high}")
+    st.success(f"🔥 Filière la plus motivée : {motivation_high}")
+    st.success(f"📅 Filière la plus régulière : {regularite_high}")
+
+    if age_high:
+        st.info(f"👴 Filière avec étudiants les plus âgés : {age_high}")
+
+    st.divider()
 # =========================
 # EXPORT CSV + AFFICHAGE DONNÉES (inchangé)
 # =========================
