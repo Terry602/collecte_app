@@ -120,7 +120,7 @@ def load_data():
 st.markdown("""
 <div style="
     font-size:16px;
-    color:#065F46;
+    color:#047857;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
