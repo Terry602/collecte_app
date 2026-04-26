@@ -178,8 +178,8 @@ fig6 = px.imshow(
     color_continuous_scale="RdBu_r"
 )
 fig6.update_layout(
-    height=700, 
-    width=900    
+    height=500, 
+    width=700    
 )
 
 st.plotly_chart(fig6, use_container_width=True)
