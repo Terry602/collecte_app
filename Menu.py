@@ -89,7 +89,7 @@ components.html("""
         margin-top:10px;
         letter-spacing:0.3px;
     ">
-        Dashboard intelligent d’analyse des performances étudiantes basé sur la Data Science & l’IA
+        Dashboard intelligent d’analyse des performances étudiantes basé
     </div>
 
     <div style="
@@ -120,11 +120,11 @@ def load_data():
 st.markdown("""
 <div style="
     font-size:16px;
-    color:#38BDF8;
+    color:#059669;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
-    Chaque donnée étudiante révèle un potentiel, chaque analyse ouvre une réussite.
+       Chaque donnée étudiante révèle un potentiel, chaque analyse ouvre une réussite.
 </div>
 """, unsafe_allow_html=True)
 
