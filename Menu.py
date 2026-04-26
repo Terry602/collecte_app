@@ -89,7 +89,7 @@ components.html("""
         margin-top:10px;
         letter-spacing:0.3px;
     ">
-        Dashboard intelligent d’analyse des performances étudiantes basé
+        Dashboard intelligent d’analyse des performances étudiantes 
     </div>
 
     <div style="
@@ -120,7 +120,7 @@ def load_data():
 st.markdown("""
 <div style="
     font-size:16px;
-    color:#059669;
+    color:#F8FAFC;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
@@ -154,7 +154,7 @@ st.components.v1.html("""
     padding: 18px 28px;
     border-radius: 14px;
     border: 1px solid #E5E7EB;
-    background: #FFFFFF;
+    background:#F8FAFC ;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     transition: opacity 0.8s ease, transform 0.8s ease;
     transform: translateY(10px);
