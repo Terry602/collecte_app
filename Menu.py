@@ -79,7 +79,7 @@ components.html("""
             color:#F8FAFC;
             letter-spacing:-0.5px;
         ">
-             Application de Collecte et d'Analyse des Perfomances des Étudiants
+             Application de Collecte & Analyse des Perfomances des Étudiants
         </div>
 
     </div>
