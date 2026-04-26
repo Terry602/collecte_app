@@ -1,7 +1,10 @@
 [theme]
 base="dark"
 primaryColor="#22D3EE"
-backgroundColor="#0E1117"
-secondaryBackgroundColor="#111827"
-textColor="#F8FAFC"
+
+backgroundColor="#0F172A"              # bleu nuit doux
+secondaryBackgroundColor="#1E293B"     # gris bleuté
+
+textColor="#E2E8F0"                   # blanc cassé (moins agressif)
+
 font="sans serif"
