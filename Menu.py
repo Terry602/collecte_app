@@ -117,7 +117,7 @@ def load_data():
 st.markdown("""
 <div style="
     font-size:16px;
-    color:#047857;
+    color:#9CA3AF;
     margin-top:10px;
     letter-spacing:0.3px;
 ">
