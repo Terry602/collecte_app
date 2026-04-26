@@ -168,7 +168,7 @@ st.components.v1.html("""
 /* DESCRIPTION */
 .desc {
     font-size: 12px;
-    color: #ffffff;
+    color: #9CA3AF;
 }
 
 /* ACTIVE */
@@ -246,7 +246,7 @@ st.markdown("""
 
 /* ===== SOFT KPI CARDS (SAAS STYLE) ===== */
 .card {
-    background: linear-gradient(135deg, #FFFFFF, #F8FAFC);
+    background: linear-gradient(135deg, #9CA3AF, #F8FAFC);
     border: 1px solid #E2E8F0;
     border-radius: 16px;
     padding: 10px 8px;
