@@ -163,7 +163,7 @@ st.components.v1.html("""
 
 /* TITRE */
 .title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     margin-bottom: 4px;
 }
