@@ -166,7 +166,9 @@ st.components.v1.html("""
 
 /* TITRE */
 .title {
-    font-size: 16px;
+    font-size: 12px;
+    font-style: italic;
+    color: #9CA3AF;
     font-weight: 500;
     margin-bottom: 4px;
 }
@@ -187,43 +189,35 @@ st.components.v1.html("""
 <div class="container">
 
     <div class="objective active">
-        <div class="title" style="color:#60A5FA;">Collecte intelligente des données</div>
-        <div class="desc">Centralisation et structuration des données étudiantes pour analyse.</div>
+        <div class="title">Collecte intelligente des données</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;">Analyse comportementale & académique</div>
-        <div class="desc">Étude des performances et comportements des étudiants.</div>
+        <div class="title">Analyse comportementale & académique</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;"> Identification des facteurs de réussite</div>
-        <div class="desc">Détection des variables influençant les résultats académiques.</div>
+        <div class="title"> Identification des facteurs de réussite</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;"> Prédiction des performances</div>
-        <div class="desc">Utilisation de modèles IA pour anticiper les résultats.</div>
+        <div class="title"> Prédiction des performances</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;"> Génération de rapports intelligents</div>
-        <div class="desc">Production automatique d’insights pour la prise de décision.</div>
+        <div class="title"> Génération de rapports intelligents</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;"> Data Cleaning & Preprocessing</div>
-        <div class="desc">Nettoyage, transformation et préparation des données.</div>
+        <div class="title"> Data Cleaning & Preprocessing</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;"> Data Visualization Avancée</div>
-        <div class="desc">Création de dashboards interactifs et visuels.</div>
+        <div class="title"> Data Visualization Avancée</div>
     </div>
 
     <div class="objective">
-        <div class="title" style="color:#9CA3AF;"> Feature Engineering & Model Evaluation</div>
-        <div class="desc">Optimisation des variables et évaluation des modèles.</div>
+        <div class="title"> Feature Engineering & Model Evaluation</div>
     </div>
 
 </div>
