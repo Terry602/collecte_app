@@ -119,9 +119,15 @@ st.markdown("""
     font-size:16px;
     color:#9CA3AF;
     margin-top:10px;
-    letter-spacing:0.3px;
+    letter-spacing:0.4px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.6;
+    padding: 6px 12px;
+    border-left: 3px solid rgba(156, 163, 175, 0.4);
 ">
-       Chaque donnée étudiante révèle un potentiel, chaque analyse ouvre une réussite.
+    “Chaque donnée étudiante révèle un potentiel,<br>
+    chaque analyse ouvre une réussite.”
 </div>
 """, unsafe_allow_html=True)
 
