@@ -98,7 +98,7 @@ st.divider()
 #  HISTOGRAMMES (inchangé)
 # =========================
 st.markdown("""
-<h3 style="color:#3B82F6;font-size:25px;">
+<h3 style="color:#ffffff;font-size:25px;">
 📦 Distributions des moyennes
 </h3>
 """, unsafe_allow_html=True)
@@ -178,8 +178,8 @@ fig6 = px.imshow(
     color_continuous_scale="RdBu_r"
 )
 fig6.update_layout(
-    height=500, 
-    width=700    
+    height=550, 
+    width=750    
 )
 
 st.plotly_chart(fig6, use_container_width=True)
