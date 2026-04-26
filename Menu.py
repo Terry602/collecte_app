@@ -187,7 +187,7 @@ st.components.v1.html("""
 <div class="container">
 
     <div class="objective active">
-        <div class="title" style="color:#E5E7EB;">Collecte intelligente des données</div>
+        <div class="title" style="color:#F3F4F6;">Collecte intelligente des données</div>
         <div class="desc">Centralisation et structuration des données étudiantes pour analyse.</div>
     </div>
 
