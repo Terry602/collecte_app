@@ -147,7 +147,7 @@ with col2:
         hole=0.6
     )
 
-    fig5.update_layout(height=450) 
+    fig5.update_layout(height=500) 
 
     st.plotly_chart(fig5, use_container_width=True)
 
