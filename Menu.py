@@ -30,13 +30,13 @@ except:
 # ==========================================================
 components.html("""
 <div style="
-    background: linear-gradient(135deg, #0F172A, #111827);
-    padding: 28px 20px;
+    background: linear-gradient(135deg, #1F2937, #374151);
+    padding: 26px 20px;
     border-radius: 18px;
-    border: 1px solid #1F2937;
+    border: 1px solid #4B5563;
     text-align: center;
     margin-bottom: 18px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     font-family: Arial;
 ">
 
@@ -47,26 +47,23 @@ components.html("""
         gap:14px;
     ">
 
-        <!-- 🧠 AI + DATA NETWORK ICON (WOW STYLE) -->
-        <svg width="48" height="48" viewBox="0 0 24 24"
+        <!-- ICON -->
+        <svg width="46" height="46" viewBox="0 0 24 24"
              fill="none"
              stroke="#22D3EE"
              stroke-width="2.2"
              stroke-linecap="round"
              stroke-linejoin="round">
 
-            <!-- brain core -->
             <path d="M9 3c-2 0-3.5 1.5-3.5 3.5S7 10 7 10"/>
             <path d="M15 3c2 0 3.5 1.5 3.5 3.5S17 10 17 10"/>
             <path d="M7 10c-1.5 0-2.5 1-2.5 2.5S6 15 7 15"/>
             <path d="M17 10c1.5 0 2.5 1 2.5 2.5S18 15 17 15"/>
 
-            <!-- data network nodes -->
             <circle cx="5" cy="18" r="1.2"/>
             <circle cx="12" cy="20" r="1.2"/>
             <circle cx="19" cy="18" r="1.2"/>
 
-            <!-- connections -->
             <line x1="7" y1="14" x2="5" y2="18"/>
             <line x1="12" y1="14" x2="12" y2="20"/>
             <line x1="17" y1="14" x2="19" y2="18"/>
@@ -76,37 +73,37 @@ components.html("""
         <div style="
             font-size:20px;
             font-weight:700;
-            color:#F8FAFC;
-            letter-spacing:-0.5px;
+            color:#F3F4F6;
+            letter-spacing:-0.4px;
         ">
-             Application de Collecte & Analyse des Perfomances des Étudiants
+            Application de Collecte & Analyse des Performances Étudiantes
         </div>
 
     </div>
+
     <div style="
-        font-size:11px;
-        color:#94A3B8;
-        margin-top:10px;
-        letter-spacing:0.3px;
+        font-size:12px;
+        color:#9CA3AF;
+        margin-top:8px;
     ">
-        Dashboard intelligent d’analyse des performances étudiantes 
+        Dashboard intelligent d’analyse des performances étudiantes
     </div>
 
     <div style="
         display:inline-block;
-        margin-top:14px;
+        margin-top:12px;
         padding:6px 14px;
-        font-size:9px;
+        font-size:10px;
         color:#22D3EE;
-        border:1px solid rgba(34, 211, 238, 0.3);
+        border:1px solid rgba(34, 211, 238, 0.25);
         border-radius:20px;
-        background: rgba(34, 211, 238, 0.08);
+        background: rgba(34, 211, 238, 0.06);
     ">
         AI • Data Science • Predictive Intelligence
     </div>
 
 </div>
-""", height=200)
+""", height=190)
 
 # =========================
 # DATA 
