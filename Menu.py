@@ -151,11 +151,11 @@ st.components.v1.html("""
     position: absolute;
     opacity: 0;
     text-align: center;
-    padding: 0; /* ❌ plus de padding carte */
+    padding: 0; 
     
-    background: none; /* ❌ supprime fond */
-    border: none;     /* ❌ supprime bordure */
-    box-shadow: none; /* ❌ supprime ombre */
+    background: none; 
+    border: none;     
+    box-shadow: none; 
     border-radius: 0;
 
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -239,7 +239,6 @@ setInterval(showNext, 3000);
 """, height=140)
 
 st.info("""
-📌Utilisation de l'application :
 Utilisez l'onglet « << » en haut à gauche pour :
 - remplir le formulaire
 - naviguer dans l'application
