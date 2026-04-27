@@ -173,6 +173,6 @@ if submit:
     placeholder.empty()
 
     placeholder2 = st.empty()
-    placeholder2.info(" Données ajoutées au système d'analyse,Bonne Nvigation et prédiction de vos futures performances ")
+    placeholder2.info(" Données ajoutées au système d'analyse,Bonne Navigation et prédiction de vos futures performances ")
     time.sleep(2)
     placeholder2.empty()
