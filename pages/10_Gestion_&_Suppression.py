@@ -77,7 +77,7 @@ DATA_FILE = "data_students.csv"
 # =========================
 # LOAD DATA
 # =========================
-@st.cache_data
+@st.cache_data(ttl=5)
 def load_data():
     df = pd.read_csv(DATA_FILE)
 
@@ -92,7 +92,12 @@ def load_data():
 
     return df
 
-df = load_data()
+try:
+    df = load_data()
+except Exception as e:
+    st.error("❌ Erreur lors du chargement des données")
+    st.caption(f"Détail : {e}")
+    st.stop()
 
 # =========================
 # FILTRES
