@@ -175,31 +175,7 @@ st.divider()
 st.subheader("🧠 Diagnostic Intelligent")
 st.success(f"Niveau de risque : {risk}")
 
-# =========================
-# RECOMMANDATIONS
-# =========================
-if st.button(" Recommandations personnalisées"):
 
-    if student.get("stress", 0) > 5:
-        st.warning(" Réduire le stress")
-
-    if student.get("telephone", 0) > 6:
-        st.warning(" Réduire votre temps au téléphone")
-
-    if student.get("heures_etude", 0) < 5:
-        st.error(" Augmenter les heures d'étude")
-
-    if student.get("sommeil", 0) < 6:
-        st.warning(" Avoir entre 6h et 8h de sommeil")
-
-    if student.get("sommeil", 0) > 8:
-        st.info(" Réduire votre temps de sommeil")
-
-    if student.get("motivation", 0) < 5:
-        st.error(" La motivation est essentielle, fixez-vous des objectifs")
-
-    if student.get("concentration", 0) < 5:
-        st.error(" La concentration est un facteur clé, améliorez-la")
 # =========================
 # PDF GENERATION
 # =========================
