@@ -78,14 +78,13 @@ components.html("""
 # =========================
 # DATA
 # =========================
-@st.cache_data
+@st.cache_data(ttl=5)
 def load_data():
     return pd.read_csv("data_students.csv")
-
 try:
     df = load_data()
 except:
-    st.error(" Aucune donnée disponible")
+    st.error(" Aucune donnée disponible, veuillez remplir le formulaire dans le menu retractable.")
     st.stop()
 
 # =========================
