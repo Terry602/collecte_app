@@ -59,21 +59,21 @@ components.html("""
 # =========================
 # DATA
 # =========================
-@st.cache_data
+import streamlit as st
+import pandas as pd
+from streamlit_autorefresh import st_autorefresh
+
+# 🔄 refresh automatique toutes les 2 secondes
+st_autorefresh(interval=2000, key="refresh")
+
+@st.cache_data(ttl=2)
 def load_data():
     return pd.read_csv("data_students.csv")
-try:
-    df = load_data()
-
-if st.button("🔄 Rafraîchir"):
-    st.cache_data.clear()
-
-df = load_data()
 
 try:
     df = load_data()
 except:
-    st.error(" Aucune donnée disponible.")
+    st.error("Aucune donnée disponible.")
     st.stop()
 
 numeric_df = df.select_dtypes(include=['int64', 'float64'])
