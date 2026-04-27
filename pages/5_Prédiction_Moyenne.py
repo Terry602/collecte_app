@@ -94,6 +94,8 @@ except:
 # =========================
 #  TRAIN MODELS PAR FILIERE
 # =========================
+from sklearn.metrics import mean_absolute_error
+
 @st.cache_resource
 def train_models(df):
 
@@ -124,11 +126,15 @@ def train_models(df):
         )
 
         model.fit(X, y)
+        # 🔥 prédiction sur dataset (pour MAE)
+        y_pred = model.predict(X)
+        mae = mean_absolute_error(y, y_pred)
 
         models[filiere] = {
             "model": model,
             "features": features,
-            "data": df_fil
+            "data": df_fil,
+            "mae": mae
         }
 
     return models
