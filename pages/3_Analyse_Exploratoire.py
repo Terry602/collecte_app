@@ -100,7 +100,6 @@ except:
 
     return df
 
-df = load_data()
 st.markdown("###  Filtres")
 
 col1, col2, col3 = st.columns(3)
