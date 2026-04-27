@@ -336,33 +336,65 @@ if st.button("🔍 Voir le résultat"):
     # =========================
     st.markdown("""
     <style>
+
+    /* ===== CARD AVEC BORDURE LUMINEUSE ===== */
     .sim-card {
-        background: #9CA3AF;
-        padding: 10px;
-        border-radius: 7px;
-        border: 1px solid #E5E7EB;
+        position: relative;
+        background: #1F2937;
+        padding: 14px 10px;
+        border-radius: 14px;
         text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        transition: 0.25s ease;
+        overflow: hidden;
+        transition: 0.3s ease;
     }
 
+    /* 🔥 BORDER GLOW (pseudo-element) */
+    .sim-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 14px;
+        padding: 1.5px;
+        background: linear-gradient(
+            135deg,
+            #22D3EE,
+            #3B82F6,
+            #6366F1,
+            #22D3EE
+        );
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+    /* HOVER EFFECT */
     .sim-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transform: translateY(-6px) scale(1.02);
+        box-shadow:
+            0 0 15px rgba(34, 211, 238, 0.4),
+            0 10px 30px rgba(0,0,0,0.4);
     }
 
+    /* TITRE */
     .sim-title {
-        font-size: 13px;
-        color: #64748B;
+        font-size: 12px;
+        color: #9CA3AF;
         margin-bottom: 6px;
     }
 
+    /* VALEUR */
     .sim-value {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 800;
+        color: #F9FAFB;
+        letter-spacing: -0.3px;
     }
+
     </style>
     """, unsafe_allow_html=True)
+    
 
     # =========================
     # COULEURS DYNAMIQUES
