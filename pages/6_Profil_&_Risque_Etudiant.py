@@ -226,7 +226,7 @@ st.plotly_chart(fig, use_container_width=True)
 # RECOMMANDATIONS AUTOMATIQUES
 # =========================
 
-if st.button(" Recommandations personnalisées"):
+if st.button("💡 Recommandations personnalisées"):
     if sommeil < 6:
         st.info("😴 Essaie de dormir au moins 6h par nuit")
 
