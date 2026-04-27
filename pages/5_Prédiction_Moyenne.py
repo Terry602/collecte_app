@@ -441,11 +441,11 @@ if st.button("🔍 Voir le résultat"):
     </div>
     """, unsafe_allow_html=True)
 
-    st.subheader("📊 Performance du modèle")
+    st.subheader(" Performance du modèle")
 
     col1, col2 = st.columns(2)
 
-    col1.metric("📉 MAE", round(mae, 2))
+    col1.metric("📉 MAE(Erreur Moyenne)", round(mae, 2))
 
     if mae < 1.5:
         col2.success("Modèle très précis")
