@@ -337,7 +337,7 @@ if st.button("🔍 Voir le résultat"):
     st.markdown("""
     <style>
     .sim-card {
-        background: #FFFFFF;
+        background: #9CA3AF;
         padding: 10px;
         border-radius: 7px;
         border: 1px solid #E5E7EB;
