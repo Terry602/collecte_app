@@ -59,14 +59,7 @@ components.html("""
 # =========================
 # DATA
 # =========================
-import streamlit as st
-import pandas as pd
-from streamlit_autorefresh import st_autorefresh
-
-# 🔄 refresh automatique toutes les 2 secondes
-st_autorefresh(interval=2000, key="refresh")
-
-@st.cache_data(ttl=2)
+@st.cache_data(ttl=5)
 def load_data():
     return pd.read_csv("data_students.csv")
 
