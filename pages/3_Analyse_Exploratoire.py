@@ -71,21 +71,14 @@ components.html("""
 """, height=150)
 
 st.divider()
-
 # =========================
 # LOAD DATA SAFE
 # =========================
 @st.cache_data(ttl=5)
 def load_data():
-    return pd.read_csv("data_students.csv")
+    df = pd.read_csv("data_students.csv")
 
-try:
-    df = load_data()
-except:
-    st.error("Aucune donnée disponible.")
-    st.stop()
-
-    #  COMPATIBILITÉ ANCIENNES DONNÉES
+    #  compatibilité colonnes
     if "nom" not in df.columns:
         df["nom"] = "Inconnu"
 
@@ -98,8 +91,20 @@ except:
     if "sexe" not in df.columns:
         df["sexe"] = "Non défini"
 
-    return df
+    return df  # ✅ au bon endroit
 
+# =========================
+# EXECUTION
+# =========================
+try:
+    df = load_data()
+except:
+    st.error("Aucune donnée disponible.")
+    st.stop()
+
+# =========================
+# UI
+# =========================
 st.markdown("###  Filtres")
 
 col1, col2, col3 = st.columns(3)
