@@ -75,9 +75,15 @@ st.divider()
 # =========================
 # LOAD DATA SAFE
 # =========================
-@st.cache_data
+@st.cache_data(ttl=5)
 def load_data():
-    df = pd.read_csv("data_students.csv")
+    return pd.read_csv("data_students.csv")
+
+try:
+    df = load_data()
+except:
+    st.error("Aucune donnée disponible.")
+    st.stop()
 
     #  COMPATIBILITÉ ANCIENNES DONNÉES
     if "nom" not in df.columns:
