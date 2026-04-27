@@ -435,7 +435,6 @@ if st.button("🔍 Voir le résultat"):
     </div>
     """, unsafe_allow_html=True)
 
-    st.divider()
 
 st.divider()
 # =========================
