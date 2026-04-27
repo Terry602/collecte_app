@@ -239,7 +239,7 @@ setInterval(showNext, 3000);
 """, height=140)
 
 st.info("""
-Utilisez l'onglet « << » en haut à gauche pour :
+Utilisez l'onglet « << » en haut à gauche de votre écran pour :
 - remplir le formulaire
 - naviguer dans l'application
 - prédire vos futures moyennes
