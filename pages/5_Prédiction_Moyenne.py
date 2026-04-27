@@ -257,7 +257,7 @@ model_data = models[filiere_input]
 model = model_data["model"]
 features = model_data["features"]
 df_fil = model_data["data"]
-
+mae = model_data["mae"]
 sexe_input = st.selectbox("👤 Sexe", df_fil["sexe"].unique())
 st.divider()
 # =========================
@@ -441,6 +441,18 @@ if st.button("🔍 Voir le résultat"):
     </div>
     """, unsafe_allow_html=True)
 
+    st.subheader("📊 Performance du modèle")
+
+    col1, col2 = st.columns(2)
+
+    col1.metric("📉 MAE", round(mae, 2))
+
+    if mae < 1.5:
+        col2.success("Modèle très précis")
+    elif mae < 3:
+        col2.warning("Précision moyenne")
+    else:
+        col2.error("Modèle peu fiable")
 
 st.divider()
 # =========================
