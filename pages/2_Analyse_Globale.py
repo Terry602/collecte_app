@@ -62,6 +62,8 @@ components.html("""
 @st.cache_data
 def load_data():
     return pd.read_csv("data_students.csv")
+try:
+    df = load_data()
 
 if st.button("🔄 Rafraîchir"):
     st.cache_data.clear()
