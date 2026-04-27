@@ -82,11 +82,14 @@ st.divider()
 # =========================
 # DATA
 # =========================
-@st.cache_data
+@st.cache_data(ttl=5)
 def load_data():
     return pd.read_csv("data_students.csv")
-
-df = load_data()
+try:
+    df = load_data()
+except:
+    st.error(" Aucune donnée disponible, veuillez remplir le formulaire dans le menu retractable.")
+    st.stop()
 
 # =========================
 #  TRAIN MODELS PAR FILIERE
